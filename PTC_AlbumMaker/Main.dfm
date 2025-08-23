@@ -242,6 +242,14 @@ object FormMain: TFormMain
           OnClick = BitBtn2Click
           Kind = bkAbort
         end
+        object CB_Encrypt: TCheckBox
+          Left = 8
+          Top = 12
+          Width = 65
+          Height = 17
+          Caption = 'Encrypt'
+          TabOrder = 3
+        end
       end
     end
   end

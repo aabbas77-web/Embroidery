@@ -59,7 +59,10 @@ void SearchTree()
 //                    NewFileName=NewEmbFileName+".bmp";
                     NewFileName=NewEmbFileName+".jpg";
                     FormMain->OpenFile(FileName,NewFileName);
-                    spl_EncodeFile(Key,FileName,NewEmbFileName);
+                    if(FormMain->CB_Encrypt->Checked)
+	                    spl_EncodeFile(Key,FileName,NewEmbFileName);
+                    else
+                    	spl_CopyFile(FileName,NewEmbFileName);
                 }
             }
         }

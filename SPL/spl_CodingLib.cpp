@@ -51,4 +51,14 @@ bool spl_EncodeFile(Byte Key,AnsiString InFile,AnsiString OutFile)
     return Result;
 }
 //---------------------------------------------------------------------------
+bool spl_CopyFile(AnsiString InFile,AnsiString OutFile)
+{
+    bool Result = true;
+    TMemoryStream *pStream=new TMemoryStream();
+    pStream->LoadFromFile(InFile);
+    pStream->SaveToFile(OutFile);
+    if(pStream) delete pStream;
+    return Result;
+}
+//---------------------------------------------------------------------------
 

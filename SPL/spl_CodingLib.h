@@ -20,4 +20,7 @@ bool spl_EncodeStream(Byte Key,TMemoryStream *pSource,bool FirstBlock);
 // Encoding File Function
 bool spl_EncodeFile(Byte Key,AnsiString InFile,AnsiString OutFile);
 //---------------------------------------------------------------------------
+// Copying File Function
+bool spl_CopyFile(AnsiString InFile,AnsiString OutFile);
+//---------------------------------------------------------------------------
 #endif

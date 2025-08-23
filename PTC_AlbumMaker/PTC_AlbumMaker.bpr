@@ -28,7 +28,7 @@
     <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
     <RELEASELIBPATH value="$(BCB)\lib\release"/>
     <LINKER value="tlink32"/>
-    <USERDEFINES value="spl_Demo_Version"/>
+    <USERDEFINES value="spl_Full_Version"/>
     <SYSDEFINES value="NO_STRICT"/>
     <MAINSOURCE value="PTC_AlbumMaker.cpp"/>
     <INCLUDEPATH value="..\SPL;..\tformtranslation;..\Libs\SPL;E:\SPL\;..\EmbBrowser;$(BCB)\include;$(BCB)\include\vcl"/>
@@ -37,7 +37,7 @@
   </MACROS>
   <OPTIONS>
     <IDLCFLAGS value="-I..\SPL -I..\tformtranslation -I..\Libs\SPL -IE:\SPL\. -I..\EmbBrowser 
-      -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -Dspl_Demo_Version 
+      -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -Dspl_Full_Version 
       -boa"/>
     <CFLAG1 value="-O2 -H=$(BCB)\lib\vcl50.csm -Hc -Vx -Ve -X- -a8 -b- -k- -vi -c -tW -tWM"/>
     <PFLAGS value="-$Y- -$L- -$D- -v -JPHNE -M"/>
@@ -145,8 +145,8 @@ Item0=$(BCB)\source\vcl
 
 [HistoryLists\hlConditionals]
 Count=3
-Item0=spl_Demo_Version
-Item1=spl_Full_Version
+Item0=spl_Full_Version
+Item1=spl_Demo_Version
 Item2=_DEBUG
 
 [Debugging]

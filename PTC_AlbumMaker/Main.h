@@ -48,6 +48,7 @@ __published:	// IDE-managed Components
 	TEdit *Edit1;
 	TBitBtn *BitBtn2;
 	TFormTranslation *FormTranslation1;
+	TCheckBox *CB_Encrypt;
     void __fastcall BitBtn1Click(TObject *Sender);
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
