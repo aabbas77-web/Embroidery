@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node40.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Blob algorithm</TITLE>
+<META content="Blob algorithm" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node40_files/include_all.css" rel=STYLESHEET><LINK href="node41.htm"
+rel=next><LINK href="node39.htm" rel=previous><LINK href="node39.htm"
+rel=up><LINK href="node41.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node41.htm"
+name=tex2html658><IMG align=bottom alt=next border=0 height=24 
+src="node40_files/next_motif.gif" width=37></A> <A 
+href="node39.htm"
+name=tex2html654><IMG align=bottom alt=up border=0 height=24 
+src="node40_files/up_motif.gif" width=26></A> <A 
+href="node39.htm"
+name=tex2html648><IMG align=bottom alt=previous border=0 height=24 
+src="node40_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html656><IMG align=bottom alt=contents border=0 height=24 
+src="node40_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html657><IMG align=bottom alt=index border=0 height=24 
+src="node40_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node41.htm"
+name=tex2html659>Contour tracing</A> <B>Up:</B> <A 
+href="node39.htm"
+name=tex2html655>Segmentation</A> <B>Previous:</B> <A 
+href="node39.htm"
+name=tex2html649>Segmentation</A> <BR><BR><!--End of Navigation Panel-->
+<H3><A name=SECTION000101100000000000000>&nbsp;</A><A name=1114>&nbsp;</A> <A 
+name=subsec:blob>&nbsp;</A> <BR>Blob algorithm </H3>The blob<A 
+href="footnode.html#foot1116"
+name=tex2html19><SUP>13</SUP></A> algorithm segmentates the image pixels not 
+belongning to the background (the pixels in interest) into groups of pixels 
+which are either 4 or 8 connected. The method is found in the 
+<TT>CSegmentate</TT><A name=1118>&nbsp;</A> class and looks like this: <A 
+name=1119>&nbsp;</A> 
+<BLOCKQUOTE><BR><IMG align=bottom 
+  alt="\begin{texttt}DeriveBlobs(CStdImage\&amp; Source, CPixelGroups\&amp; PixelGroups, COLORTYPE&#10;Color, UINT8 Threshold, CONNECTIVITY Connected)&#10;\end{texttt}" 
+  border=0 height=40 src="node40_files/img12.gif" width=595> <BR></BLOCKQUOTE>
+<P>The <EM>Source</EM> parameter is the image to derive the blobs from and each 
+blob is stored as a <EM>PixelGroup</EM> in <EM>PixelGroups</EM>. The 
+<EM>Color</EM> defines whether white or black pixels are to be considered as 
+foreground. The type COLORTYPE<A name=1128>&nbsp;</A> can be either HIGHCOLOR<A 
+name=1129>&nbsp;</A> (white) or LOWCOLOR<A name=1130>&nbsp;</A> (black). If the 
+source image is a graytone image the <EM>Threshold</EM> parameter is used to set 
+a global threshold in the image. The last parameter of type CONNECTIVITY<A 
+name=1132>&nbsp;</A> can be either EIGHTCONNECTED<A name=1133>&nbsp;</A> or 
+FOURCONNECTED<A name=1134>&nbsp;</A>. Here is a complete example on how to work 
+with the blob algorithm and the resulting blobs stored in a 
+<TT>CPixelGroups</TT> container, the corresponding C example can be found in the 
+appendix at page&nbsp;<A 
+href="node58.html#ap:segmentation:ex1"><IMG
+align=bottom alt=[*] border=1 src="node40_files/cross_ref_motif.gif"></A>: 
+<P><A name=subsec:segmentation:ex1>&nbsp;</A><PRE>void main()
+{
+   CImage Img,ImgDest; // Images
+   CPixelGroups PixelGroups; // Holds information about blobs
+   unsigned int BlobIndex;
+   unsigned int LastPos;
+   CTimeDate Timer;
+   Timer.StartTimer(); // stop watch for time elapsed
+   unsigned int PosIndex;
+        
+    if (Img.Load("c:/temp/three_segments.bmp")) // your image with 8 b/p
+    {
+       cout &lt;&lt; Img &lt;&lt; endl;
+                
+       // Find the blobs in image
+        CSegmentate Segm;
+        Segm.DeriveBlobs(Img,PixelGroups,HIGHCOLOR,128,EIGHTCONNECTED);
+                
+        // Ask which blob pixel position (30,30) belongs to
+        CPoint2D&lt;unsigned short&gt; pnt(30,30);
+        if(PixelGroups.GetGroupWithPos(BlobIndex,pnt,PosIndex))
+        {
+           LastPos=(PixelGroups.GetGroup(BlobIndex))-&gt;GetTotalPositions();
+           cout &lt;&lt; "Pixel at pos " &lt;&lt; pnt &lt;&lt; " in blob " &lt;&lt; 
+                BlobIndex &lt;&lt; endl;
+           cout &lt;&lt; "First pixel " &lt;&lt;
+                (PixelGroups.GetGroup(BlobIndex))-&gt;GetPosition(0) &lt;&lt; endl;
+           cout &lt;&lt; "Last pixel " &lt;&lt; 
+                (PixelGroups.GetGroup(BlobIndex))-&gt;GetPosition(LastPos-1)
+                &lt;&lt; endl;
+           cout &lt;&lt; "Total pixels in blob: " &lt;&lt; 
+                (PixelGroups.GetGroup(BlobIndex))-&gt;GetTotalPositions()
+                &lt;&lt; endl;
+        }
+                
+        // Remove a blob from the list of groups
+        cout &lt;&lt; "Total groups now: " &lt;&lt; PixelGroups.GetTotalGroups()
+             &lt;&lt; endl;
+        cout &lt;&lt; "Removing one group" &lt;&lt; endl;
+             PixelGroups.RemoveGroup(0);
+        cout &lt;&lt; "Total groups now: " &lt;&lt; PixelGroups.GetTotalGroups()
+             &lt;&lt; endl;
+                
+                
+        if (PixelGroups.GetTotalGroups()&gt;1)
+        {
+            // Copy blob number 1 to gray tone image and write to
+            // disk (c:/temp/test.bmp)
+            PixelGroups.AddColors(Img); // first add colors
+            (PixelGroups.GetGroup(1))-&gt;CopyToImage(&amp;Img.m_Pal,128,ImgDest);
+            ImgDest.Save("c:/temp/test.bmp");
+            cout &lt;&lt; "Blob 1 saved as c:/temp/test.bmp" &lt;&lt; endl;
+
+            cout &lt;&lt; "Total time: " &lt;&lt; Timer.StopTimer() &lt;&lt; endl;
+
+        }
+    }
+    else
+    {
+        cout &lt;&lt; "Loading failed" &lt;&lt; endl; 
+    }
+}
+</PRE>
+<P><BR>
+<HR>
+
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

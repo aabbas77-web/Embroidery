@@ -1,0 +1,14 @@
+USEUNIT("..\Circle\Main.cpp");
+USEFORM("..\Circle\Interface.cpp", FormInterface);
+USEUNIT("..\..\Packages\VECAD52\vecad52\VECAD\api_VecApi.cpp");
+USEFORM("..\Circle\About.cpp", FormAbout);
+USELIB("..\Circle\memmgr.lib");
+USEUNIT("..\..\Libs\SPL\spl_Point.cpp");
+USEUNIT("..\..\Libs\SPL\spl_Contour.cpp");
+USEUNIT("..\..\Libs\SPL\spl_Embroidery.cpp");
+USEUNIT("..\..\Libs\SPL\Pyramids\pyramidfilters.cpp");
+USEUNIT("..\..\Libs\SPL\Pyramids\pyramidtools.cpp");
+//---------------------------------------------------------------------------
+This file is used by the project manager only and should be treated like the project file
+
+DllEntryPoint

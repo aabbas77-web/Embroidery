@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node32.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Working with pixels</TITLE>
+<META content="Working with pixels" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node32_files/include_all.css" rel=STYLESHEET><LINK href="node35.htm"
+rel=next><LINK href="node31.htm" rel=previous><LINK href="node27.htm"
+rel=up><LINK href="node33.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node33.htm"
+name=tex2html552><IMG align=bottom alt=next border=0 height=24 
+src="node32_files/next_motif.gif" width=37></A> <A 
+href="node27.htm"
+name=tex2html548><IMG align=bottom alt=up border=0 height=24 
+src="node32_files/up_motif.gif" width=26></A> <A 
+href="node31.htm"
+name=tex2html542><IMG align=bottom alt=previous border=0 height=24 
+src="node32_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html550><IMG align=bottom alt=contents border=0 height=24 
+src="node32_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html551><IMG align=bottom alt=index border=0 height=24 
+src="node32_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node33.htm"
+name=tex2html553>The palette</A> <B>Up:</B> <A 
+href="node27.htm"
+name=tex2html549>Using IPL98 to represent</A> <B>Previous:</B> <A 
+href="node31.htm"
+name=tex2html543>Manipulating an image in</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00095000000000000000>&nbsp;</A><A name=842>&nbsp;</A> <A 
+name=subsec:workingwithpixels>&nbsp;</A> <BR>Working with pixels </H2>Accessing 
+positions in an image and reading their color values is probably the most 
+essential issue when working with image processing. A bit of knowledge is needed 
+before describing the methods for pixel access. The pixel values stored in the 
+image can have two meanings: In case of 24 b/p the returned value consist of 3 
+bytes containing the RGB-value<A name=844>&nbsp;</A>, ie. the color is stored 
+directly in this value. For 1 and 8 b/p images the pixel value contains indexes 
+in a palette. The returned value is for a 1 b/p 0 or 1 and for 8 b/p in the 
+range 0-255. To get the corresponding color it is neccesary to look this index 
+up in a corresponding palette. When creating an image with 1 or 8 b/p a default 
+palette is constructed. For 1 b/p index 0 is (R,G,B)=(0,0,0) which is black and 
+index 1 is (R,G,B)=(255,255,255) which is white. For 8 b/p it is a gray tone 
+palette where the index equals each R, G and B value in the palette, for 
+instance palette index 76 has (R,G,B)=(76,76,76). So when working with a 8 b/p 
+gray tone image the index can be used directly as the color information knowing 
+that the R, G and B value is the same as the index. In the case of 1 b/p the 
+value 1 can simply be interpreted directly as white and 0 as black. 
+<P><BR>
+<HR>
+<!--Table of Child-Links--><A name=CHILD_LINKS>&nbsp;</A> 
+<UL>
+  <LI><A 
+  href="node33.htm"
+  name=tex2html554>The palette</A> 
+  <LI><A 
+  href="node34.htm"
+  name=tex2html555>Pixel access</A> </LI></UL><!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel--><A 
+href="node33.htm"
+name=tex2html552><IMG align=bottom alt=next border=0 height=24 
+src="node32_files/next_motif.gif" width=37></A> <A 
+href="node27.htm"
+name=tex2html548><IMG align=bottom alt=up border=0 height=24 
+src="node32_files/up_motif.gif" width=26></A> <A 
+href="node31.htm"
+name=tex2html542><IMG align=bottom alt=previous border=0 height=24 
+src="node32_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html550><IMG align=bottom alt=contents border=0 height=24 
+src="node32_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html551><IMG align=bottom alt=index border=0 height=24 
+src="node32_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node33.htm"
+name=tex2html553>The palette</A> <B>Up:</B> <A 
+href="node27.htm"
+name=tex2html549>Using IPL98 to represent</A> <B>Previous:</B> <A 
+href="node31.htm"
+name=tex2html543>Manipulating an image in</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

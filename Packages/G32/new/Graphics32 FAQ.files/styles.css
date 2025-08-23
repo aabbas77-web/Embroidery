@@ -1,0 +1,60 @@
+BODY {
+	MARGIN: 0px
+}
+TD.main {
+	PADDING-BOTTOM: 32px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; PADDING-TOP: 2px
+}
+P {
+	FONT-FAMILY: "Trebuchet MS", Verdana, Helvetica, sans-serif; FONT-SIZE: 80%; MARGIN-BOTTOM: 10px; MARGIN-TOP: 10px
+}
+H1 {
+	FONT-FAMILY: "Arial Narrow", Arial, sans-serif; LETTER-SPACING: -0.05em
+}
+P.nav-0 {
+	COLOR: #ffffff; FONT-FAMILY: Tahoma, Arial, sans-serif; FONT-SIZE: 60%; FONT-WEIGHT: bold; LETTER-SPACING: 0.05em; MARGIN: 12px 8px
+}
+P.nav-1 {
+	COLOR: #ffffff; FONT-FAMILY: Tahoma, Arial, sans-serif; FONT-SIZE: 60%; LETTER-SPACING: 0.05em; MARGIN: 12px 8px 12px 24px
+}
+P.nav-2 {
+	COLOR: #ffffff; FONT-FAMILY: Tahoma, Arial, sans-serif; FONT-SIZE: 60%; LETTER-SPACING: 0.05em; MARGIN: 12px 8px 12px 48px
+}
+A.nav-current {
+	COLOR: white; CURSOR: default; TEXT-DECORATION: underline overline
+}
+A.nav-current:hover {
+	BACKGROUND-COLOR: #807870; TEXT-DECORATION: underline overline
+}
+H2 {
+	FONT-FAMILY: "Arial Narrow", Arial, sans-serif; FONT-SIZE: 125%; MARGIN-BOTTOM: 10pt
+}
+P.body {
+	FONT-FAMILY: "Trebuchet MS", Verdana, Helvetica, sans-serif; FONT-SIZE: 80%; MARGIN-BOTTOM: 10px; MARGIN-LEFT: 24px; MARGIN-TOP: 10px
+}
+A:hover {
+	BACKGROUND-COLOR: #d0d0d0; TEXT-DECORATION: none
+}
+A.nav:link {
+	COLOR: white; TEXT-DECORATION: none
+}
+A.nav:visited {
+	COLOR: white; TEXT-DECORATION: none
+}
+A.nav:hover {
+	BACKGROUND-COLOR: #807870; COLOR: white; TEXT-DECORATION: underline
+}
+TABLE.internal {
+	BACKGROUND-COLOR: #e0e0e0; FONT-FAMILY: "Trebuchet MS", Verdana, Helvetica, sans-serif; MARGIN-LEFT: 24px; MARGIN-RIGHT: 16px
+}
+TD.gray {
+	PADDING-BOTTOM: 4px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; PADDING-TOP: 4px
+}
+TH.gray {
+	BACKGROUND-COLOR: #cccccc; PADDING-LEFT: 8px; PADDING-RIGHT: 8px
+}
+LI {
+	FONT-FAMILY: "Trebuchet MS", Verdana, Helvetica; FONT-SIZE: 80%; LIST-STYLE: square
+}
+P.question {
+	COLOR: #006600; MARGIN-TOP: 24pt
+}

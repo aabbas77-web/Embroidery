@@ -1,0 +1,6 @@
+Graphics32 Change Log
+=====================
+
+This file is no longer maintained. 
+See the Changes section in G32 Help.chm for information 
+on bug fixes and new features.

@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node54.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Code recommendations</TITLE>
+<META content="Code recommendations" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node54_files/include_all.css" rel=STYLESHEET><LINK href="node53.htm"
+rel=previous><LINK href="node51.htm" rel=up><LINK href="node55.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node55.htm"
+name=tex2html821><IMG align=bottom alt=next border=0 height=24 
+src="node54_files/next_motif.gif" width=37></A> <A 
+href="node51.htm"
+name=tex2html817><IMG align=bottom alt=up border=0 height=24 
+src="node54_files/up_motif.gif" width=26></A> <A 
+href="node53.htm"
+name=tex2html813><IMG align=bottom alt=previous border=0 height=24 
+src="node54_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html819><IMG align=bottom alt=contents border=0 height=24 
+src="node54_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html820><IMG align=bottom alt=index border=0 height=24 
+src="node54_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node55.htm"
+name=tex2html822>Apendix: C code from</A> <B>Up:</B> <A 
+href="node51.htm"
+name=tex2html818>Adding code to IPL98</A> <B>Previous:</B> <A 
+href="node53.htm"
+name=tex2html814>Adding history</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION000123000000000000000>Code recommendations</A> </H2>Here is a 
+list of recommendations: 
+<UL>
+  <LI><B>CStdImage</B> If a method can work on both a CImage or CByteImage 
+  object let the method parameter be a CStdImage object, the method 
+  <TT>Erode(...)</TT> shown above is an example of this. 
+  <LI><B>Speed optimization</B> Optimize the most time consuming parts of the 
+  code. 
+  <LI><B>Extra comments</B> Write comments in the code to explain the not so 
+  obvious parts of the code. </LI></UL>
+<P>Here are two examples on how to optimize code. It is alway recommended to 
+start out with the safe functions which performes range check. When you are sure 
+the algorithm works optimization like the ones given here can be done. 
+<P>
+<DL compact>
+  <DT>1. 
+  <DD>Fast conversion from 24 b/p to 8 b/p: <PRE>for (y=0;y&lt;h;y++)
+{
+        for (x=0;x&lt;w;x++) 
+        {
+                PalValue=k_GetPixel24bp(x,y,*pSource);
+                   Histogram[(UINT8)((int)((k_PalGetRVal(PalValue)+
+                   k_PalGetGVal(PalValue)+
+                   k_PalGetBVal(PalValue))/3+0.5))]++;
+
+/********************** old slow code ******************************
+                i=k_GetRedComponent(x,y,pSource)
+                        +k_GetGreenComponent(x,y,pSource)
+                        +k_GetBlueComponent(x,y,pSource);
+                Histogram[(UINT8)(i/3)]++;
+********************************************************************/
+
+        }
+}
+</PRE>
+  <DT>2. 
+  <DD>Using a border to avoid edge problems when working with a mask (about 3 
+  times faster): <PRE>\*********************** old slow code *****************************/
+k_InitImage(&amp;Temp);
+k_AllocImage(W,H,8,&amp;Temp);
+k_SetPeriodicBorder(BorderSize,pImg); /*** setting border ***/
+
+for (y1=0;y1&lt;H;y1++)
+{
+        for (x1=0;x1&lt;W;x1++)
+        {  
+                sum=0;
+                for (y=0;y&lt;h;y++)
+                {
+                        for (x=0;x&lt;w;x++)
+                        {
+
+sum+=pImg-&gt;ppMatrix[y1-y][x1-x]*pMask-&gt;ppMatrix[y][x];
+                        }
+                }
+                Temp.ppMatrix[y1][x1]=(UINT8)sum;
+        }
+}
+
+/********************************************************************/
+
+This can be optimized to:
+
+/************************ new optimized code ************************/
+k_InitImage(&amp;Temp);
+k_AllocImage(W,H,8,&amp;Temp);
+for (y1=0;y1&lt;H;y1++)
+{
+        for (x1=0;x1&lt;W;x1++)
+        {  
+                sum=0;
+                for (y=0;y&lt;h;y++)
+                {
+                        for (x=0;x&lt;w;x++)
+                        {
+                                q=pMask-&gt;ppMatrix[y][x];
+                                if (q!=0)
+                                {  
+                                        if (x&lt;=x1)
+                                           x2=x1-x; 
+                                        else 
+                                                x2=W+x1-x;
+                                        if (y&lt;=y1)
+                                                y2=y1-y; 
+                                        else 
+                                                y2=H+y1-y;
+                                        sum+=pImg-&gt;ppMatrix[y2][x2]*q;
+                                }
+                        }
+                }
+                Temp.ppMatrix[y1][x1]=(UINT8)sum;
+        }
+}
+/*********************************************************************/
+</PRE></DD></DL>
+<P><BR>
+<HR>
+
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

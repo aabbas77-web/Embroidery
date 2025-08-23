@@ -1,0 +1,100 @@
+The registered user will receive a registration key via email, 
+after payment has been received. To delete the nag screen and 
+the watermark text over the drawing window you must use this 
+key as an argument of the vlRegistration function inside your 
+application.  
+
+Latest information about VeCAD DLL price and online registration 
+is available on the web site 
+
+http://www.kolba.com
+
+Also you can enter the registration online on the Internet at 
+
+http://shareit1.element5.com/programs.html?productid=106629. 
+
+Alternatively, you can go to 
+
+http://www.shareit.com
+
+and enter the program number there: 106629. 
+
+If you do not have access to the Internet, you can register via 
+phone, fax or postal mail. Please print out the following form, 
+and fax or mail it to:
+
+ShareIt!
+element 5 AG
+Sachsenring 69
+50677 Koeln
+Germany
+
+
+Phone: 	+49-221-2407279 
+Fax: 	+49-221-2407278
+E-Mail: 	register@shareit.com
+
+US and Canadian customers may also order by calling 1-800-903-4152. 
+(Orders only please! For any technical information about the program
+contact Oleg Kolbaskin)
+
+US check and cash orders can be sent to our US office at:
+
+ShareIt! Inc.
+
+PO Box 844
+
+Greensburg, PA 15601-0844
+
+USA
+
+Tel. 724-850-8186
+
+Fax. 724-850-8187
+
+
+Registration form for VeCAD DLL
+
+Program No.: 106629
+
+Last name: ___________________________________
+
+First name: ____________________________________
+
+Company: ____________________________________
+
+Street and #: ______________________________________
+
+City, State, postal code: ________________________________
+
+Country: _______________________________________
+
+Phone: _____________________________________
+
+Fax: ________________________________________
+
+E-Mail: ______________________________________
+
+*** Please do not forget to include your e-mail address. ***
+
+*** We will use e-mail to communicate with you. ***
+
+How would you like to receive the registration key/full version?
+
+e-mail - fax - postal mail
+
+How would you like to pay the registration fee:
+
+credit card - wire transfer - EuroCheque - cash
+
+Credit card information (if applicable)
+
+Credit card: Visa - Eurocard/Mastercard - American Express - Diners Club
+
+Card holder: ________________________________
+
+Card No.: ___________________________________ Expiration Date: ________
+
+Date / Signature: ___________________________
+
+

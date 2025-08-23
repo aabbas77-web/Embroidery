@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node53.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Adding history</TITLE>
+<META content="Adding history" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node53_files/include_all.css" rel=STYLESHEET><LINK href="node54.htm"
+rel=next><LINK href="node52.htm" rel=previous><LINK href="node51.htm"
+rel=up><LINK href="node54.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node54.htm"
+name=tex2html811><IMG align=bottom alt=next border=0 height=24 
+src="node53_files/next_motif.gif" width=37></A> <A 
+href="node51.htm"
+name=tex2html807><IMG align=bottom alt=up border=0 height=24 
+src="node53_files/up_motif.gif" width=26></A> <A 
+href="node52.htm"
+name=tex2html801><IMG align=bottom alt=previous border=0 height=24 
+src="node53_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html809><IMG align=bottom alt=contents border=0 height=24 
+src="node53_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html810><IMG align=bottom alt=index border=0 height=24 
+src="node53_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node54.htm"
+name=tex2html812>Code recommendations</A> <B>Up:</B> <A 
+href="node51.htm"
+name=tex2html808>Adding code to IPL98</A> <B>Previous:</B> <A 
+href="node52.htm"
+name=tex2html802>Code requirements</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION000122000000000000000>Adding history</A> </H2>Adding history 
+to a new function is not as easy as it seems although in some situations it is 
+straight forward. It is recommended to wait with the history untill you are 
+certain that the algorithm works in all cases. The general rules to follow when 
+adding to the history is: 
+<P>
+<UL>
+  <LI>All code regarding the history must be between two defines, the first one 
+  is <TT>#ifdef IPL_ADD_HISTORY</TT> and the last one <TT>#endif</TT>. This 
+  makes it possible for the user of the library to disable the history. 
+  <LI>Code must be added when a function or method changes something in an 
+  image. 
+  <LI>Copy the important information given in the parameters into the history, 
+  in case of <TT>CopyConvert()</TT> it is the source bit depth, destination bit 
+  depth, and the source file information. 
+  <LI>Only add to the history if the function succeeds. 
+  <LI>Always add the global char array <TT>ipl_HistoryIndent</TT> to the 
+  beginning of a new history line (read more about this below). </LI></UL>
+<P>There are several problems when adding history: 
+<P>
+<UL>
+  <LI>Only add history if the function succeeds 
+  <LI>The kernel function may copy between different internal images to 
+  calculate its output. That means you must be careful about how the history are 
+  copied. 
+  <LI>Making sure the history items are added in a cronological order. </LI></UL>
+<P>Lets look at an example to show how to avoid the problems. The following 
+shows the lines appended to a history when calling the method CopyConvert(...) 
+on a CImage object: 
+<P><PRE>CStdImage::CopyConvert() From 24 b/p to 1 b/p, source image file ...
+        k_CopyConvert() From 24 b/p to 1 b/p, source image file ...
+                k_CopyImage() Source image file info: D:/temp/circle_2.bmp
+</PRE>
+<P>The first thing to notice is the order of the functions in use and the 
+indention of lines in subrutines. Two global macros adding and removing a 
+tabulator character from a global char array is available, both macros takes 
+care of allocation and deallocation. The macros are: 
+<P>
+<UL>
+  <LI><TT>k_IplStartHistoryMacro()</TT> Adds a tablulator character to the 
+  global <BR><TT>ipl_HistoryIndent</TT> char array. 
+  <LI><TT>k_IplStopHistoryMacro()</TT> Removes a tabulator character from the 
+  global <BR><TT>ipl_HistoryIndent</TT> char array. </LI></UL>
+<P>Every time a function or method begins (after checking that no errors are 
+present) the <TT>k_IplStartHistoryMacro()</TT> macro is called just after adding 
+to the history and right before leaving a function the 
+<TT>k_IplStopHistoryMacro()</TT> is called. Each line added to the history is 
+created with the <TT>ipl_HistoryIndent</TT> array prefix. Here is how it works 
+in the <TT>CStdImage::CopyConvert()</TT> method: 
+<P><PRE>bool CImage::CopyConvert(UINT16 Bits,CStdImage&amp; SourceImage)
+{
+#ifdef IPL_ADD_HISTORY
+        /* ... adding to source and removing later (hack) */
+        TString History;
+        k_InitString(&amp;History);
+        k_SprintfString(&amp;History,"%sCStdImage::CopyConvert() From ...",
+                ipl_HistoryIndent,...);
+        SourceImage.m_History.AppendIPL(History.pChars);
+        k_EmptyString(&amp;History);
+        k_IplStartHistoryMacro();
+#endif
+        /* call kernel function */
+        bool ReturnValue=
+             k_CopyConvert(Bits,&amp;m_Image,SourceImage.GetConstTImagePtr());
+        if (ReturnValue==false)
+        {
+                TString str;
+                k_InitString(&amp;str);
+                k_AddFileAndLine(str);
+                k_ShowMessage(IPL_ERROR,&amp;str,"CImage::CopyConvert: Failed ...");
+                k_EmptyString(&amp;str);
+        }
+#ifdef IPL_ADD_HISTORY
+        if (&amp;SourceImage!=this)
+        {
+                /* remove the history just added to the source image */
+                SourceImage.m_History.RemoveLastLine();
+        }
+        /* end history appending (remove a leading '\t' character) */
+        k_IplStopHistoryMacro();
+#endif
+        return ReturnValue;
+}
+</PRE>
+<P>Also notice from the example that when creating the history string in the 
+call to <TT>k_SprintfString(...)</TT> the <TT>ipl_HistoryIndent</TT> is added as 
+a prefix to the string. 
+<P>Now to the difficult part! In the C++ part it is not possible to add the 
+history to the target ('this') object because it is emptyed in the kernel 
+function. This is solved by adding to the source instead, and the kernel 
+function takes care of copying the source history to destination. But then we 
+have to remember to remove the history from the source again before leaving 
+<TT>CopyConver()</TT>. But there is one more thing to take into consideration. 
+If the source and destination is the same we actually adds to the target image 
+in the C++ part. In that case we should not remove the line when leaving the C++ 
+method. This is a bit complex and is not an elegant way of solving the problem 
+so if anyone comes up with a better solution please let the developer of IPL98 
+know. To get more used to adding history it is highly recommended to look at 
+some of the code in the library. 
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node54.htm"
+name=tex2html811><IMG align=bottom alt=next border=0 height=24 
+src="node53_files/next_motif.gif" width=37></A> <A 
+href="node51.htm"
+name=tex2html807><IMG align=bottom alt=up border=0 height=24 
+src="node53_files/up_motif.gif" width=26></A> <A 
+href="node52.htm"
+name=tex2html801><IMG align=bottom alt=previous border=0 height=24 
+src="node53_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html809><IMG align=bottom alt=contents border=0 height=24 
+src="node53_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html810><IMG align=bottom alt=index border=0 height=24 
+src="node53_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node54.htm"
+name=tex2html812>Code recommendations</A> <B>Up:</B> <A 
+href="node51.htm"
+name=tex2html808>Adding code to IPL98</A> <B>Previous:</B> <A 
+href="node52.htm"
+name=tex2html802>Code requirements</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

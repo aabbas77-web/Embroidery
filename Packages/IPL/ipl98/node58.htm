@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node58.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Segmentation</TITLE>
+<META content=Segmentation name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node58_files/include_all.css" rel=STYLESHEET><LINK href="node59.htm"
+rel=next><LINK href="node57.htm" rel=previous><LINK href="node55.htm"
+rel=up><LINK href="node59.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node59.htm"
+name=tex2html873><IMG align=bottom alt=next border=0 height=24 
+src="node58_files/next_motif.gif" width=37></A> <A 
+href="node55.htm"
+name=tex2html869><IMG align=bottom alt=up border=0 height=24 
+src="node58_files/up_motif.gif" width=26></A> <A 
+href="node57.htm"
+name=tex2html863><IMG align=bottom alt=previous border=0 height=24 
+src="node58_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html871><IMG align=bottom alt=contents border=0 height=24 
+src="node58_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html872><IMG align=bottom alt=index border=0 height=24 
+src="node58_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node59.htm"
+name=tex2html874>Morphological operations</A> <B>Up:</B> <A 
+href="node55.htm"
+name=tex2html870>Apendix: C code from</A> <B>Previous:</B> <A 
+href="node57.htm"
+name=tex2html864>Manipulate an image in</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION000133000000000000000>&nbsp;</A> <A 
+name=ap:segmentation:ex1>&nbsp;</A> <BR>Segmentation </H2>C code corresponding 
+to the C++ code given at page&nbsp;<A 
+href="node40.html#subsec:segmentation:ex1"><IMG
+align=bottom alt=[*] border=1 src="node58_files/cross_ref_motif.gif"></A> in 
+section&nbsp;<A 
+href="node40.html#subsec:segmentation:ex1"><IMG
+align=bottom alt=[*] border=1 src="node58_files/cross_ref_motif.gif"></A>: 
+<P><PRE>void main()
+{
+    TImage Img,ImgDest; /* Images */
+    TPixelGroups PixelGroups; /* Holds information about blobs */
+    unsigned int BlobIndex;
+        unsigned int LastPos;
+    clock_t t=k_StartTimer(); /* stop watch for time elapsed */
+    T2DInt pnt;
+    unsigned int PosIndex;
+
+    k_InitGroups(&amp;PixelGroups); /* always initialise the TPixelGroups structure! */
+    k_InitImage(&amp;Img); /* always initialise the TImage structure! */
+    k_InitImage(&amp;ImgDest);
+
+    if (k_Load("c:/temp/three_segments.bmp",&amp;Img)) /* your image with 8 bits/pixel */
+    {
+       k_PrintImageInfo(&amp;Img);
+
+       /* Find the blobs in image */
+       k_DeriveBlobs(&amp;Img, &amp;PixelGroups,HIGHCOLOR,128,EIGHTCONNECTED);
+
+       /* Ask which blob pixel position (30,30) belongs to */
+       pnt.x=30;
+       pnt.y=30;
+       if(k_GetGroupWithPos(&amp;PixelGroups,&amp;BlobIndex,pnt,&amp;PosIndex)){
+          LastPos=PixelGroups.pGroups[BlobIndex].NumberOfPixels;
+          printf("Pixel at pos (%d,%d) in blob %d\n",pnt.x,pnt.y,BlobIndex);
+          printf("First pixel (%d,%d)\n",PixelGroups.pGroups[BlobIndex].pPos[0].x,
+                      PixelGroups.pGroups[BlobIndex].pPos[0].x);
+          printf("Last pixel (%d,%d)\n",PixelGroups.pGroups[BlobIndex].pPos[LastPos-1].x,
+                      PixelGroups.pGroups[BlobIndex].pPos[LastPos-1].y);
+          printf("Total pixels in blob: %d\n",
+                      PixelGroups.pGroups[BlobIndex].NumberOfPixels);
+       }
+
+       /* Remove a blob from the list of groups */
+       printf("Total groups now: %u\nRemoving one group\n",PixelGroups.NumberOfGroups);
+       k_RemoveGroup (&amp;PixelGroups,0);
+       printf("Total groups now: %d\n",PixelGroups.NumberOfGroups);
+
+       if (PixelGroups.NumberOfGroups&gt;1)
+       {
+          /* Copy blob number 1 to gray tone image and write to disk (c:/temp/test.bmp) */
+          k_AddColorsToGroups (&amp;Img,&amp;PixelGroups); /* first add colors */
+          k_CopyGroupToImage(&amp;Img.Pal,128,&amp;ImgDest,&amp;PixelGroups.pGroups[1]);
+          k_Save("c:/temp/test.bmp",&amp;ImgDest);
+          printf("Blob 1 saved as c:/temp/test.bmp\n");
+        }
+
+        k_EmptyGroups(&amp;PixelGroups); /* always free your TPixelGroup variable */
+
+        printf("Total time: %f\n",k_GetTimer(t));
+    }
+    else
+    {
+        printf("Loading failed\n");
+    }
+    if(getchar()){}
+}
+</PRE>
+<P><BR>
+<HR>
+
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

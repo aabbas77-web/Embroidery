@@ -1,0 +1,226 @@
+#include "vecres.h"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+ICON_VECAD              ICON    DISCARDABLE     "Vecad.ICO"
+ICON_VECADSM            ICON    DISCARDABLE     "VecadSm.ICO"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+MENU_MAIN MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "New",                         CM_FILE_NEW
+        MENUITEM "Open...",                     CM_FILE_OPEN
+        MENUITEM "Save",                        VC_FILE_SAVE
+        MENUITEM "Save As...",                  VC_FILE_SAVEAS
+        POPUP "Recent"
+        BEGIN
+            MENUITEM "file1",                       CM_MRU_01
+            MENUITEM "file2",                       CM_MRU_02
+            MENUITEM "file3",                       CM_MRU_03
+            MENUITEM "file4",                       CM_MRU_04
+            MENUITEM "file5",                       CM_MRU_05
+            MENUITEM "file6",                       CM_MRU_06
+            MENUITEM "file7",                       CM_MRU_07
+            MENUITEM "file8",                       CM_MRU_08
+            MENUITEM "file9",                       CM_MRU_09
+            MENUITEM "file10",                      CM_MRU_10
+            MENUITEM "file11",                      CM_MRU_11
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Close",                       VC_FILE_CLOSE
+        MENUITEM "Close All",                   VC_FILE_CLOSEALL
+        MENUITEM "List...",                     VC_FILE_LIST
+        MENUITEM SEPARATOR
+        POPUP "Import from"
+        BEGIN
+            MENUITEM "AutoCAD DXF",                 VC_IMPORT_DXF
+        END
+        POPUP "Export to"
+        BEGIN
+            MENUITEM "AutoCAD DXF",                 VC_EXPORT_DXF
+            MENUITEM "HPGL (PLT)",                  VC_EXPORT_HPGL
+            MENUITEM "Raster Image",                VC_EXPORT_BMP
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Print...",                    VC_PRINT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       CM_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               VC_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+R",               VC_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cut\tCtrl+X",                 VC_EDIT_CBCUT
+        MENUITEM "Copy\tCtrl+C",                VC_EDIT_CBCOPY
+        MENUITEM "Paste\tCtrl+V",               VC_EDIT_CBPASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Properties...",               VC_EDIT_ENTPROP
+        MENUITEM SEPARATOR
+        MENUITEM "Copy",                        VC_EDIT_COPY
+        MENUITEM "Move",                        VC_EDIT_MOVE
+        MENUITEM "Rotate",                      VC_EDIT_ROTATE
+        MENUITEM "Scale",                       VC_EDIT_SCALE
+        MENUITEM "Mirror",                      VC_EDIT_MIRROR
+        MENUITEM "Explode",                     VC_EDIT_EXPLODE
+        MENUITEM SEPARATOR
+        MENUITEM "Create Block",                VC_EDIT_CREBLOCK
+        MENUITEM SEPARATOR
+        MENUITEM "Erase",                       VC_EDIT_ERASE
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Zoom &All\tCtrl+A",           VC_ZOOM_ALL
+        MENUITEM "Zoom Window\tCtrl+W",         VC_ZOOM_WIN
+        MENUITEM "Zoom Page\tCtrl+S",           VC_ZOOM_PAGE
+        MENUITEM "Zoom Pan",                    VC_ZOOM_PAN
+        MENUITEM "Zoom In\t+",                  VC_ZOOM_IN
+        MENUITEM "Zoom Out\t-",                 VC_ZOOM_OUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page First\tHome",            VC_PAGE_FIRST
+        MENUITEM "Page Last\tEnd",              VC_PAGE_LAST
+        MENUITEM "Page Next\tPgDown",           VC_PAGE_NEXT
+        MENUITEM "Page Previous\tPgUp",         VC_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Select Page\tCtrl+P",         VC_PAGE_DLG
+        MENUITEM SEPARATOR
+        MENUITEM "Save current view...",        VC_VIEW_SAVE
+        MENUITEM "Views List...",               VC_VIEW_LIST
+    END
+    POPUP "Format"
+    BEGIN
+        MENUITEM "Page...",                     VC_FMT_PAGE
+        MENUITEM "Layer...",                    VC_FMT_LAYER
+        MENUITEM "Linetype...",                 VC_FMT_STLINE
+        MENUITEM "Text Style...",               VC_FMT_STTEXT
+        MENUITEM "Point Style...",              VC_FMT_STPOINT
+        MENUITEM "Hatch Style...",              VC_FMT_STHATCH
+        MENUITEM "Blocks...",                   VC_FMT_BLOCK
+        MENUITEM SEPARATOR
+        MENUITEM "Dimension Style...",          VC_FMT_STDIM
+        MENUITEM SEPARATOR
+        MENUITEM "Grid...",                     VC_FMT_GRID
+        MENUITEM "Object Snap...",              VC_FMT_OSNAP
+        MENUITEM "Polar Snap...",               VC_FMT_PSNAP
+        MENUITEM SEPARATOR
+        MENUITEM "Units...",                    VC_FMT_UNITS
+        MENUITEM "Private...",                  VC_FMT_PRIVATE
+        MENUITEM "Preferences...",              VC_FMT_PREFERS
+    END
+    POPUP "Draw"
+    BEGIN
+        MENUITEM "Point",                       VC_DRAW_POINT
+        MENUITEM "Line",                        VC_DRAW_LINE
+        MENUITEM "Polyline",                    VC_DRAW_POLYLINE
+        MENUITEM "Spline",                      VC_DRAW_SPLINE
+        POPUP "Circle"
+        BEGIN
+            MENUITEM "Center, Radius",              VC_DRAW_CIRC_CR
+            MENUITEM "Center, Diameter",            VC_DRAW_CIRC_CD
+            MENUITEM "2 Points",                    VC_DRAW_CIRC_2P
+            MENUITEM "3 Points",                    VC_DRAW_CIRC_3P
+        END
+        POPUP "Arc"
+        BEGIN
+            MENUITEM "Center, Start, End",          VC_DRAW_ARC_CSE
+            MENUITEM "Start, End, Middle",          VC_DRAW_ARC_SEM
+            MENUITEM "Start, Middle, End",          VC_DRAW_ARC_SME
+        END
+        MENUITEM "Ellipse",                     VC_DRAW_ELLIPSE
+        MENUITEM "Rectangle",                   VC_DRAW_RECT
+        POPUP "Dimension"
+        BEGIN
+            MENUITEM "Horizontal",                  VC_DRAW_DIM_HOR
+            MENUITEM "Vertical",                    VC_DRAW_DIM_VER
+            MENUITEM "Parallel",                    VC_DRAW_DIM_PAR
+            MENUITEM "Angular",                     VC_DRAW_DIM_ANG
+            MENUITEM "Radial",                      VC_DRAW_DIM_RAD
+            MENUITEM "Diametric",                   VC_DRAW_DIM_DIAM
+            MENUITEM "Ordinate",                    VC_DRAW_DIM_ORD
+        END
+        MENUITEM "Hatch",                       VC_DRAW_HATCH
+        MENUITEM SEPARATOR
+        MENUITEM "Text...",                     VC_INS_TEXT
+        MENUITEM "TTF Symbol...",               VC_INS_SYMBOL
+        MENUITEM "Block...",                    VC_INS_BLOCK
+        MENUITEM "Raster Image...",             VC_INS_IMAGE
+        MENUITEM "Mosaic Raster Map...",        VC_INS_RMAP
+    END
+    POPUP "Tools"
+    BEGIN
+        MENUITEM "Distance/Area...",            VC_TOOL_DIST
+        MENUITEM "Split drawing for print...",  VC_TOOL_PRNRECT
+        MENUITEM "Statistics...",               VC_TOOL_STAT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About Vecad...",             CM_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_VECAD2 ACCELERATORS MOVEABLE PURE 
+BEGIN
+    "?",            CM_APP_ABOUT,           ASCII,  ALT
+    "/",            CM_APP_ABOUT,           ASCII,  ALT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+DG_ABOUT DIALOG DISCARDABLE  0, 0, 220, 117
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CONTEXTHELP | WS_POPUP | WS_VISIBLE |
+    WS_CAPTION | WS_SYSMENU
+CAPTION "About VeCAD"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,85,96,50,14,BS_CENTER
+    CONTROL         "",-1,"Static",SS_ETCHEDFRAME,5,4,210,84
+    CTEXT           "VeCAD  version 5.1",-1,10,14,200,8,NOT WS_GROUP
+    CTEXT           "Copyright © 1997-2000,  Comandor Ltd.",-1,10,26,200,8,
+                    NOT WS_GROUP
+    CTEXT           "All Rights Reserved.",-1,8,36,200,8,NOT WS_GROUP
+    CTEXT           "WebSite: http://www.comandor.khv.ru",-1,10,50,200,8,NOT 
+                    WS_GROUP
+    CTEXT           "E-mail:  info@comandor.khv.ru",-1,10,60,200,8,NOT 
+                    WS_GROUP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    STR_APP_TITLE           "VeCAD"
+    STR_APP_TITLE2          "VeCAD - [%s], page: %d/%d  ""%s"""
+    STR_WNDTEXT             "VeCAD 5.1;"
+    STR_NONAME              "noname"
+END
+
+
+
+
+

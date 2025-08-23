@@ -1,0 +1,1 @@
+tlib.exe wmfeps_utils.lib + wmfeps_utils.obj > Result.txt

@@ -1,0 +1,54 @@
+Installation notes:
+
+To be able to use the components they have to be added 
+in the Delphi-IDE.
+
+Adding the components 
+
+Delphi 3
+1. Run Delphi 3 and select the FILE / OPEN menu item 
+2. Open the file ..\Lib\Vssdigi3.dpk and click Install. 
+3. Choose Environment options from the Tools menu.
+4. Add the directory of vcl to the library path.
+
+Delphi 4
+1. Run Delphi 4 and select the FILE / OPEN menu item 
+2. Open the file ..\Lib\Vssdigi4.dpk and click Install.
+3. Choose Environment options from the Tools menu.
+4. Add the directory of vcl to the library path.
+
+Delphi 5
+1. Run Delphi 5 and select the FILE / OPEN menu item 
+2. Open the file ..\Lib\Vssdigi5.dpk and click Install.
+3. Choose Environment options from the Tools menu.
+4. Add the directory of vcl to the library path.
+
+The Varian Led Studio pages will appear at the end of the 
+current palette.
+
+
+Installed a previous version of Varian Led Studio?
+
+Between the several releases the default VCL palette pages have been
+changed. To put all the components on the pages as they are used by
+Varian Led Studio, select COMPONENT / CONFIGURE PALETTE. In the 
+editor look for [ALL] pages en press the button <DEFAULT PAGES>.
+
+
+Installing the help file (Delphi 3)
+
+1.	Copy Vssdigi.hlp and Vssdigi.cnt to the Delphi Help directory.
+2.	Open Delphi3.cfg with a standard editor.
+3.	At the end of the file add the following line, <:Link Vssdigi.hlp>
+4.	Open Delphi3.cnt with a standard editor.
+5.	Add to the "Index section", <:Index Varian Led Studio Reference=Vssdigi.hlp>
+6.	Add to the "Include section", <:include Vssdigi.cnt>
+7.	Start Delphi.
+
+
+(Delphi 4 & 5 only)
+To add your help file to Delphi, use the OpenHelp utility located in 
+\Delphi\bin\oh.exe (or accessed using Help|Customize in the IDE). You 
+will find information in the OpenHelp.hlp file about using OpenHelp, 
+including adding your help file to the Help System.
+

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node33.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>The palette</TITLE>
+<META content="The palette" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node33_files/include_all.css" rel=STYLESHEET><LINK href="node34.htm"
+rel=next><LINK href="node32.htm" rel=previous><LINK href="node32.htm"
+rel=up><LINK href="node34.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node34.htm"
+name=tex2html566><IMG align=bottom alt=next border=0 height=24 
+src="node33_files/next_motif.gif" width=37></A> <A 
+href="node32.htm"
+name=tex2html562><IMG align=bottom alt=up border=0 height=24 
+src="node33_files/up_motif.gif" width=26></A> <A 
+href="node32.htm"
+name=tex2html556><IMG align=bottom alt=previous border=0 height=24 
+src="node33_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html564><IMG align=bottom alt=contents border=0 height=24 
+src="node33_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html565><IMG align=bottom alt=index border=0 height=24 
+src="node33_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node34.htm"
+name=tex2html567>Pixel access</A> <B>Up:</B> <A 
+href="node32.htm"
+name=tex2html563>Working with pixels</A> <B>Previous:</B> <A 
+href="node32.htm"
+name=tex2html557>Working with pixels</A> <BR><BR><!--End of Navigation Panel-->
+<H3><A name=SECTION00095100000000000000>&nbsp;</A><A name=846>&nbsp;</A> <BR>The 
+palette </H3>The palette is only present in the CStdImage class (that means 
+accessible from both CImage and CByteImage) and can be accessed through the 
+attribute <TT>m_Pal</TT> of type CPalette<A name=848>&nbsp;</A>. The CPalette 
+class contains a complete set of methods needed for manipulation of a palette. 
+When accessing a pixel value in an image with a palette a look up in the palette 
+attribute <TT>m_Pal</TT> at the returned index is neccesary to get the RGB color 
+value. The color value stored in the palette is always a UINT32 type and is 
+obtained with the method <TT>GetColor(...)</TT><A name=851>&nbsp;</A> to extract 
+each R,G and B component use the static methods <TT>GetRedVal(...)</TT><A 
+name=853>&nbsp;</A>, <TT>GetGreenVal(...)</TT><A name=855>&nbsp;</A> and 
+<TT>GetBlueVal(...)</TT><A name=857>&nbsp;</A>. Here is how to do it: 
+<P><PRE>   CImage Img1(768,512,8); // An image with a default gray palette is created
+   Img1.Flush(10); // set all pixels to palette index 10
+   UINT8 Index=Img1.GetPixel(0,0); // this is how to access pixels
+   UINT32 Color;
+   if (Img1.m_Pal.GetColor(Index,Color))
+   {
+      cout &lt;&lt; "Palette value at index " &lt;&lt; (short)Index &lt;&lt; endl;
+      cout &lt;&lt; "   Red=" &lt;&lt; (short)(CPalette::GetRedVal(Color)) &lt;&lt; endl;
+      cout &lt;&lt; "   Green=" &lt;&lt; (short)(CPalette::GetGreenVal(Color)) &lt;&lt; endl;
+      cout &lt;&lt; "   Blue=" &lt;&lt; (short)(CPalette::GetBlueVal(Color)) &lt;&lt; endl;
+   }
+   else
+   {
+      cout &lt;&lt; "Index=" &lt;&lt; Index &lt;&lt; " is out of range" &lt;&lt; endl;
+   }
+</PRE>
+<P>A default gray palette is created and the pixel values is set to 10 by the 
+<TT>Flush(...)</TT> method. The method <TT>GetPixel(...)</TT> in the second line 
+will be explained later. The Pixel value is retrieved at position (0,0) and the 
+<EM>if</EM> statement is used to check if the <TT>GetColor(...)</TT> call is out 
+of range in the palette. If it succeeds (which it should in this example) the 
+R,G and B components is extracted from the Color variable. When using the 
+streaming operator remember to convert the UINT8<A name=864>&nbsp;</A> type 
+returned by <TT>GetRedVal(...)</TT>, <TT>GetGreenVal(...)</TT> and 
+<TT>GetBlueVal(...)</TT> to an integer type. Otherwise it will be treated as a 
+character (UINT8 is defined as unsigned char). 
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node34.htm"
+name=tex2html566><IMG align=bottom alt=next border=0 height=24 
+src="node33_files/next_motif.gif" width=37></A> <A 
+href="node32.htm"
+name=tex2html562><IMG align=bottom alt=up border=0 height=24 
+src="node33_files/up_motif.gif" width=26></A> <A 
+href="node32.htm"
+name=tex2html556><IMG align=bottom alt=previous border=0 height=24 
+src="node33_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html564><IMG align=bottom alt=contents border=0 height=24 
+src="node33_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html565><IMG align=bottom alt=index border=0 height=24 
+src="node33_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node34.htm"
+name=tex2html567>Pixel access</A> <B>Up:</B> <A 
+href="node32.htm"
+name=tex2html563>Working with pixels</A> <B>Previous:</B> <A 
+href="node32.htm"
+name=tex2html557>Working with pixels</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

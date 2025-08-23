@@ -1,0 +1,140 @@
+object FormMain: TFormMain
+  Left = 180
+  Top = 119
+  Width = 696
+  Height = 471
+  Caption = 'PTC Trace V1.0'
+  Color = 14869218
+  Font.Charset = ARABIC_CHARSET
+  Font.Color = clNavy
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Splitter1: TSplitter
+    Left = 0
+    Top = 310
+    Width = 680
+    Height = 3
+    Cursor = crVSplit
+    Align = alBottom
+    AutoSnap = False
+    Color = clNavy
+    ParentColor = False
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 27
+    Width = 680
+    Height = 283
+    Align = alClient
+    BevelOuter = bvLowered
+    Color = 14869218
+    TabOrder = 0
+  end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 313
+    Width = 680
+    Height = 100
+    Align = alBottom
+    Caption = 'Messages'
+    TabOrder = 1
+    object ListBoxMessages: TListBox
+      Left = 2
+      Top = 15
+      Width = 676
+      Height = 83
+      Align = alClient
+      Color = 15532031
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ItemHeight = 13
+      ParentFont = False
+      TabOrder = 0
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 680
+    Height = 27
+    Align = alTop
+    AutoSize = True
+    Color = 14869218
+    TabOrder = 2
+    object ToolBar1: TToolBar
+      Left = 1
+      Top = 1
+      Width = 678
+      Height = 25
+      AutoSize = True
+      ButtonHeight = 21
+      ButtonWidth = 72
+      Caption = 'ToolBar1'
+      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
+      Flat = True
+      ShowCaptions = True
+      TabOrder = 0
+      object ToolButton1: TToolButton
+        Left = 0
+        Top = 0
+        Action = ARasterImage
+        Grouped = True
+        Style = tbsCheck
+      end
+      object ToolButton2: TToolButton
+        Left = 72
+        Top = 0
+        Action = AVectorImage
+        Grouped = True
+        Style = tbsCheck
+      end
+    end
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Top = 413
+    Width = 680
+    Height = 19
+    AutoHint = True
+    Color = 14869218
+    Panels = <>
+    SimplePanel = True
+  end
+  object ActionList1: TActionList
+    Left = 254
+    Top = 208
+    object ARasterImage: TAction
+      Caption = 'Raster Image'
+      Checked = True
+      Enabled = False
+      Hint = 'Show Raster Image'
+      OnExecute = ARasterImageExecute
+    end
+    object AVectorImage: TAction
+      Caption = 'Vector Image'
+      Enabled = False
+      Hint = 'Show Vector Image'
+      OnExecute = AVectorImageExecute
+    end
+  end
+  object FormTranslation1: TFormTranslation
+    Left = 254
+    Top = 135
+  end
+  object ApplicationEvents1: TApplicationEvents
+    OnActivate = ApplicationEvents1Activate
+    OnDeactivate = ApplicationEvents1Deactivate
+    OnIdle = ApplicationEvents1Idle
+    Left = 168
+    Top = 115
+  end
+end

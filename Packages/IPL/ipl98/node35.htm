@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node35.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Working with a pixelgroup</TITLE>
+<META content="Working with a pixelgroup" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node35_files/include_all.css" rel=STYLESHEET><LINK href="node37.htm"
+rel=next><LINK href="node32.htm" rel=previous><LINK href="node27.htm"
+rel=up><LINK href="node36.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node36.htm"
+name=tex2html588><IMG align=bottom alt=next border=0 height=24 
+src="node35_files/next_motif.gif" width=37></A> <A 
+href="node27.htm"
+name=tex2html584><IMG align=bottom alt=up border=0 height=24 
+src="node35_files/up_motif.gif" width=26></A> <A 
+href="node34.htm"
+name=tex2html578><IMG align=bottom alt=previous border=0 height=24 
+src="node35_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html586><IMG align=bottom alt=contents border=0 height=24 
+src="node35_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html587><IMG align=bottom alt=index border=0 height=24 
+src="node35_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node36.htm"
+name=tex2html589>Adding colors to a</A> <B>Up:</B> <A 
+href="node27.htm"
+name=tex2html585>Using IPL98 to represent</A> <B>Previous:</B> <A 
+href="node34.htm"
+name=tex2html579>Pixel access</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00096000000000000000>&nbsp;</A><A name=895>&nbsp;</A> <A 
+name=subsec:pixelgroup>&nbsp;</A> <BR>Working with a pixelgroup </H2>The 
+pixelgroup class named CPixelGroup<A name=897>&nbsp;</A> is a different way of 
+storing image information. It contains a list of positions and can optionally 
+have an associated color stored for each position. It also keeps track of the 
+positions defining the boundary rectangle of all the positions in the group. The 
+advantage of storing image information in this class is: 
+<UL>
+  <LI>Only pixel values in interest uses memory. 
+  <LI>Faster access to the releveant pixels, i.e. iterating through non 
+  interesting pixels (pixels belonging to the background) is avoided, an example 
+  is the moment algorithm found in the class CFeatures explained in 
+  section&nbsp;<A 
+  href="node44.html#subsec:featureextraction"><IMG
+  align=bottom alt=[*] border=1 src="node35_files/cross_ref_motif.gif"></A> 
+  page&nbsp;<A 
+  href="node44.html#subsec:featureextraction"><IMG
+  align=bottom alt=[*] border=1 src="node35_files/cross_ref_motif.gif"></A>. 
+  </LI></UL>The drawback is that an image cannot be shown directly from a 
+pixelgroup, it has to be converted to a CImage or CByteImage first. 
+<P>A new empty CPixelGroup can be created by using the default constructor. If 
+the programmer has an idea about the total number of positions that will be 
+stored in the group it is faster to initialize the pixelgroup with the 
+constructor CPixelGroup(InitialSize). In this way the pixelgroup can allocate 
+memory in one chunk which saves time. If the number of positions exceeds this 
+InitialSize the group will automatically expand the memory allocated. To do this 
+as fast as possible the group always allocates twice the number of positions 
+which was previously allocated. This may cause quite a lot of unused allocated 
+memory in case of groups with many positions, for instance a group with 1038 
+positions in it may have allocated 2048 positions. This extra memory allocation 
+can be freed again with the method <TT>AdjustSizeOfPositions()</TT><A 
+name=903>&nbsp;</A>, after calling this method only 1038 positions will be 
+allocated in the previous example. 
+<P>Adding and removing positions can be done in two ways. The slow methods are 
+<TT>InsertPosition(...)</TT> <A name=905>&nbsp;</A> and 
+<TT>RemovePositionSlow(...)</TT><A name=907>&nbsp;</A>, they both preserve the 
+ordering of the positions. The fast methods are <TT>AddPosition(...)</TT><A 
+name=909>&nbsp;</A> which always appends a new position at the end and 
+<TT>RemovePosition(...)</TT><A name=911>&nbsp;</A> which removes a position at a 
+given index by moving the last position in the group to that index. 
+<P><BR>
+<HR>
+<!--Table of Child-Links--><A name=CHILD_LINKS>&nbsp;</A> 
+<UL>
+  <LI><A 
+  href="node36.htm"
+  name=tex2html590>Adding colors to a pixelgroup</A> </LI></UL><!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel--><A 
+href="node36.htm"
+name=tex2html588><IMG align=bottom alt=next border=0 height=24 
+src="node35_files/next_motif.gif" width=37></A> <A 
+href="node27.htm"
+name=tex2html584><IMG align=bottom alt=up border=0 height=24 
+src="node35_files/up_motif.gif" width=26></A> <A 
+href="node34.htm"
+name=tex2html578><IMG align=bottom alt=previous border=0 height=24 
+src="node35_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html586><IMG align=bottom alt=contents border=0 height=24 
+src="node35_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html587><IMG align=bottom alt=index border=0 height=24 
+src="node35_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node36.htm"
+name=tex2html589>Adding colors to a</A> <B>Up:</B> <A 
+href="node27.htm"
+name=tex2html585>Using IPL98 to represent</A> <B>Previous:</B> <A 
+href="node34.htm"
+name=tex2html579>Pixel access</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

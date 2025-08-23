@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node50.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Camera classes and IPL98</TITLE>
+<META content="Camera classes and IPL98" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node50_files/include_all.css" rel=STYLESHEET><LINK href="node51.htm"
+rel=next><LINK href="node38.htm" rel=previous><LINK href="include_all.htm"
+rel=up><LINK href="node51.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node51.htm"
+name=tex2html772><IMG align=bottom alt=next border=0 height=24 
+src="node50_files/next_motif.gif" width=37></A> <A 
+href="include_all.htm"
+name=tex2html768><IMG align=bottom alt=up border=0 height=24 
+src="node50_files/up_motif.gif" width=26></A> <A 
+href="node49.htm"
+name=tex2html762><IMG align=bottom alt=previous border=0 height=24 
+src="node50_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html770><IMG align=bottom alt=contents border=0 height=24 
+src="node50_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html771><IMG align=bottom alt=index border=0 height=24 
+src="node50_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node51.htm"
+name=tex2html773>Adding code to IPL98</A> <B>Up:</B> <A 
+href="include_all.htm"
+name=tex2html769>Image Processing Library 98</A> <B>Previous:</B> <A 
+href="node49.htm"
+name=tex2html763>Perspective camera transformation</A> <BR><BR><!--End of Navigation Panel-->
+<H1><A name=SECTION000110000000000000000>&nbsp;</A><A name=1718>&nbsp;</A> <A 
+name=sec:camera_classes>&nbsp;</A> <BR>Camera classes and IPL98 </H1>The 
+integration of cameras and frame grabbers is not a part of IPL98 yet but are 
+being developed at the same time as this tutorial is written. More details will 
+be available at the IPL98 homepage during fall 1999. Here follows a brief 
+description of the decisions made so far. 
+<P>The purpose of the camera classes is to make a standard interface for 
+manipulating camera settings and acquiring images. The design should make it an 
+easy task to put a new camera and framegrabber on a system by changing only a 
+few lines in the code. A hierarchy of camera classes and one generic frame 
+grabber class has been designed and is shown in figure&nbsp;<A 
+href="node50.html#fig:camera_classes"><IMG
+align=bottom alt=[*] border=1 src="node50_files/cross_ref_motif.gif"></A>. 
+<P><BR>
+<DIV align=center><A name=fig:camera_classes>&nbsp;</A><A name=1725>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> The camera classes to be implemented. Some 
+  of the important methods is included to show how the system is supposed to 
+  work.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{0.8}{
+\includegraphics{/home/edr/ipl/cameras/images/camera_classes.eps}}$ --><IMG
+      align=bottom 
+      alt="\scalebox{0.8}{&#10;\includegraphics{/home/edr/ipl/cameras/images/camera_classes.eps}}"
+      border=0 height=356 src="node50_files/img37.gif" width=645> 
+  </DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P>The class CCameraGeneric<A name=1729>&nbsp;</A> will be a virtual class 
+defining a number of methods which must be implemented in the inherited classes. 
+Because all cameras do not have the same features there will be methods 
+available for testing if a given feature is available, an example is: <PRE>bool ShutterAvailable()=0;
+virtual double GetShutter();
+virtual double SetShutter();
+</PRE>Only the method <TT>ShutterAvailable()</TT> is pure virtual whereas the 
+other two methods have a <EM>dummy</EM> implementation. In that way the 
+programmer of a camera class where shutter is not available do not have to 
+implement a dummy functionality for the <TT>Get-</TT> and <TT>SetShutter</TT> 
+methods. The two classes <TT>CCameraUSB</TT><A name=1737>&nbsp;</A> and 
+<TT>CCameraFireWire</TT><A name=1739>&nbsp;</A> may be some generic classes or 
+they may be implemented directly as inherited classes from the 
+<TT>CCameraGeneric</TT>, more knowledge about this area is needed before a final 
+decision can be done here. 
+<P>The class <TT>CCameraFG</TT><A name=1742>&nbsp;</A> is a generic class for 
+all cameras working with a framegrabber. This class have an attribute of type 
+<TT>CFrameGrabberGeneric</TT> which is a generic framegrabber class from which 
+all framegrabber classes is to be inherited. The framegrabber class have a 
+method <TT>Acquire(CstdImage Img)</TT><A name=1745>&nbsp;</A> which the 
+<TT>CCameraFG</TT> class' method <TT>Acquire(CStdImage Img)</TT> uses. When 
+initializing an object inherited from the <TT>CCameraFG</TT> class a reference 
+to a CFrameGrabberGeneric object must be provided. This setup should make it 
+very easy to change framegrabber and/or camera with only a small change in the 
+code, here is an example: 
+<BLOCKQUOTE>Say we have two classes inherited from <TT>CCameraFG</TT> named 
+  <TT>CBasler1378</TT> and <TT>CSonyAX123</TT> and two framegrabber classes 
+  inherited from <TT>CFrameGrabberGeneric</TT> named <TT>CITIAMDIG</TT> and 
+  <TT>CDT3152</TT>. The programmer starts out with a setup using the Basler 
+  camera with an ITI framegrabber, setting it up in the code is done like this: <PRE>CITIAMDIG fg; // framegrabber object
+CBasler1378 camera; // create Basler camera object
+
+// the following code should not be changed when
+// using another camera or framegrabber
+camera.Initialize(fg,0); // connect the camera object with the fg
+                         // object and use port 0 on framegrabber
+// simple example setting the shutter
+if (camera.ShutterAvaiable())
+{
+   cout &lt;&lt; ``Shutter is: `` &lt;&lt; camera.GetShutter() &lt;&lt; endl;
+}
+CImage Img;
+camera.Acquire(Img); // acquire image and store it in Img
+</PRE>
+  <P>Lets assume the user now changes the Basler camera with the sony camera, 
+  the only change in code will be: <PRE>CSonyAX123 camera; // create Sony camera object
+</PRE>The <TT>CBasler1378</TT> is simply changed with <TT>CSonyAX123</TT>. 
+  Changing the framegrabber to DT is done in a similar way: <PRE>CDT3152 fg; // framegrabber object
+</PRE>The <TT>CITIAMDIG</TT> is replaced with <TT>CDT3152</TT>. No changes in 
+  the rest of the code should be neccesary. </BLOCKQUOTE>
+<P>The two methods <TT>AddCamera(PortNr, pCam)</TT> and 
+<TT>RemoveCamera(pCam)</TT> are created to take framegrabbers with more than one 
+camera port into account. The methods should be used by the method 
+<TT>Initialize(...)</TT> in the classes inherited from <TT>CCameraFG</TT>. 
+<P>The filenaming convention can be seen in figure&nbsp;<A 
+href="node50.html#fig:cam_file_structure"><IMG
+align=bottom alt=[*] border=1 src="node50_files/cross_ref_motif.gif"></A>. Each 
+camera class working with frame grabber and framegrabber class must be placed in 
+a folder named ``camera_brand_model'' and ``framegrabber_brand_model'' placed in 
+the folder <EM>camera_framegrabber</EM>. 
+<P><BR>
+<DIV align=center><A name=fig:cam_file_structure>&nbsp;</A><A 
+name=1777>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> The file structure and naming convention of 
+  the camera and framegrabber classes.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{1.0}{
+\includegraphics{/home/edr/ipl/cameras/images/file_structure.eps}}$ --><IMG
+      align=bottom 
+      alt="\scalebox{1.0}{&#10;\includegraphics{/home/edr/ipl/cameras/images/file_structure.eps}}"
+      border=0 height=155 src="node50_files/img38.gif" width=318> 
+  </DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P>More details about the design will be available in an updated version of this 
+tutorial, untill then look for information at the IPL98 homepage. 
+<HR>
+<!--Navigation Panel--><A 
+href="node51.htm"
+name=tex2html772><IMG align=bottom alt=next border=0 height=24 
+src="node50_files/next_motif.gif" width=37></A> <A 
+href="include_all.htm"
+name=tex2html768><IMG align=bottom alt=up border=0 height=24 
+src="node50_files/up_motif.gif" width=26></A> <A 
+href="node49.htm"
+name=tex2html762><IMG align=bottom alt=previous border=0 height=24 
+src="node50_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html770><IMG align=bottom alt=contents border=0 height=24 
+src="node50_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html771><IMG align=bottom alt=index border=0 height=24 
+src="node50_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node51.htm"
+name=tex2html773>Adding code to IPL98</A> <B>Up:</B> <A 
+href="include_all.htm"
+name=tex2html769>Image Processing Library 98</A> <B>Previous:</B> <A 
+href="node49.htm"
+name=tex2html763>Perspective camera transformation</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

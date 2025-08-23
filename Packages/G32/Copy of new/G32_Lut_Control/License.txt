@@ -1,0 +1,20 @@
+LUTControl
+Copyright (c) 2000 Alex Denissov
+
+License
+-------
+
+This notice may not be removed from or altered in any source distribution.
+
+LUTControl if distributed as a freeware. You are free to use LUTControl
+as part of your application for any purpose including freeware, commercial
+and shareware applications, provided some credit is given.
+ 
+This software is provided 'as-is', without warranty of any kind, either
+expressed or implied. In no event shall the author be held liable for any
+damages arising from the use of this software.
+
+
+Alex Denissov
+http://www.geocities.com/den_alex
+denisso@uwindsor.ca

@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node47.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Dilate and erode</TITLE>
+<META content="Dilate and erode" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node47_files/include_all.css" rel=STYLESHEET><LINK href="node48.htm"
+rel=next><LINK href="node46.htm" rel=previous><LINK href="node46.htm"
+rel=up><LINK href="node48.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node48.htm"
+name=tex2html740><IMG align=bottom alt=next border=0 height=24 
+src="node47_files/next_motif.gif" width=37></A> <A 
+href="node46.htm"
+name=tex2html736><IMG align=bottom alt=up border=0 height=24 
+src="node47_files/up_motif.gif" width=26></A> <A 
+href="node46.htm"
+name=tex2html730><IMG align=bottom alt=previous border=0 height=24 
+src="node47_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html738><IMG align=bottom alt=contents border=0 height=24 
+src="node47_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html739><IMG align=bottom alt=index border=0 height=24 
+src="node47_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node48.htm"
+name=tex2html741>Thinning and skeletonizing</A> <B>Up:</B> <A 
+href="node46.htm"
+name=tex2html737>Morphological operations</A> <B>Previous:</B> <A 
+href="node46.htm"
+name=tex2html731>Morphological operations</A> <BR><BR><!--End of Navigation Panel-->
+<H3><A name=SECTION000104100000000000000>&nbsp;</A><A name=1266>&nbsp;</A><A 
+name=1267>&nbsp;</A> <BR>Dilate and erode </H3>The only morphological operations 
+implemented at present is dilation and erosion, which are explained in Gonzalez 
+&amp; Woods page 518-521. Two versions of each type is available and their 
+effects are shown in figure&nbsp;<A 
+href="node47.html#fig:dilateerode"><IMG
+align=bottom alt=[*] border=1 src="node47_files/cross_ref_motif.gif"></A>: 
+<P>
+<UL>
+  <LI><TT>Dilate(...)</TT> Uses a CStdImage as the mask and the active positions 
+  are pixel values different from 0. 
+  <LI><TT>DilateFast(...)</TT><A name=1272>&nbsp;</A> A speed optimized method 
+  working with a 3*3 mask only. The mask values are given as three bit 
+  combinations with values between 0 and 7. 
+  <LI><TT>Erode(...)</TT> Uses a CStdImage as the mask and the active positions 
+  are pixel values different from 0. 
+  <LI><TT>ErodeFast(...)</TT><A name=1275>&nbsp;</A> A speed optimized method 
+  working with a 3*3 mask only. The mask values are given as three bit 
+  combinations with values between 0 and 7. </LI></UL>
+<P>Here is a complete example on how to work with the simple erode and dilate 
+operations, the result is shown in figure&nbsp;<A 
+href="node47.html#fig:dilateerode"><IMG
+align=bottom alt=[*] border=1 src="node47_files/cross_ref_motif.gif"></A>, the 
+corresponding C example can be found in the appendix at page&nbsp;<A 
+href="node59.html#ap:morphologicaloperations:ex1"><IMG
+align=bottom alt=[*] border=1 src="node47_files/cross_ref_motif.gif"></A>: <A 
+name=subsec:morphologicaloperations:ex1>&nbsp;</A><PRE>   string dty; // Holding the date, time and year
+   CTimeDate time;
+   CImage Img,ImgDest;
+   unsigned int count;
+    
+   /* create and set a 3*3 mask */
+   CImage ImgMask(3,3,1);
+   ImgMask.Flush(1);
+
+   /* load image */
+   if (Img.Load("c:/temp/doggie.bmp"))
+   {
+        CMorphology morph;
+        cout &lt;&lt; Img &lt;&lt; endl;
+
+        /* an example of using the timer and date functions */
+        cout &lt;&lt; "On a 400 MHz Pentium II this program takes"
+                " 0.83 seconds to complete" &lt;&lt; endl;
+        time.StartTimer();
+
+        /* convert to 1 b/p */
+        cout &lt;&lt; "Converting image from " &lt;&lt; Img.GetBits() &lt;&lt;
+                " b/p to 1 b/p" &lt;&lt; endl;
+        ImgDest.CopyConvert (1,Img);
+
+        /* invert image */
+        cout &lt;&lt; "Inverting image" &lt;&lt; endl;
+        ImgDest.Invert();
+
+        /* dilate */
+        cout &lt;&lt; "Dilate image 5 times" &lt;&lt; endl;
+        for(count=0; count&lt;5; count++)
+        {
+           morph.Dilate(ImgMask,ImgDest);
+           /* replace the next line with the one above to make it faster */
+           /*morph.DilateFast(ImgDest,7,7,7);*/
+        }
+
+        cout &lt;&lt; "Erode image 5 times" &lt;&lt; endl;
+        for(count=0; count&lt;5; count++)
+        {
+           morph.Erode(ImgMask,ImgDest);
+           /* replace the next line with the one above to make it faster */
+           /*morph.ErodeFast(ImgDest,7,7,7);*/
+        }
+
+        cout &lt;&lt; "Saving image as \"c:/temp/test.bmp\"" &lt;&lt; endl;
+        ImgDest.Save("c:/temp/test.bmp");
+
+        if (!time.GetDateTimeYear(dty))
+                cout &lt;&lt; "Failed reding date and time...." &lt;&lt; endl;
+        else
+                cout &lt;&lt; "This program was run at: " &lt;&lt; dty &lt;&lt; endl;
+
+        cout &lt;&lt; "Seconds elapsed: " &lt;&lt; time.GetTimer() &lt;&lt; endl;
+   }
+   else
+   {
+        cout &lt;&lt; "Loading failed" &lt;&lt; endl;
+   }
+</PRE>
+<P>Try to replace the normal <TT>Erode(...)</TT> and <TT>Dilate(...)</TT> 
+methods with the corresponding fast methods to get an idea of the decrease in 
+execution time. In figure&nbsp;<A 
+href="node47.html#fig:dilateerode"><IMG
+align=bottom alt=[*] border=1 src="node47_files/cross_ref_motif.gif"></A> the 
+results of the dilation followed by erotion can be seen. 
+<P><BR>
+<DIV align=center><A name=fig:dilateerode>&nbsp;</A><A name=1510>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> The results from dilation and erosion. 
+  rotation: <B>a)</B> Originial image (doggie.bmp) which is converted to 1 b/p 
+  and then inverted <B>b)</B> Method <TT>Dilate(...)</TT> used 5 times <B>c)</B> 
+  Method <TT>Erode(...)</TT> used 5 times.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center>
+      <TABLE align=center cellPadding=3>
+        <TBODY>
+        <TR>
+          <TD align=middle><!-- MATH: $\scalebox{.7}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/doggie.eps}}$ --><IMG
+            align=bottom 
+            alt="\scalebox{.7}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/doggie.eps}}"
+            border=0 height=168 src="node47_files/img20.gif" width=135></TD>
+          <TD align=middle><!-- MATH: $\scalebox{.7}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/dilate_5_times.ps}}$ --><IMG
+            align=bottom 
+            alt="\scalebox{.7}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/dilate_5_times.ps}}"
+            border=0 height=168 src="node47_files/img21.gif" width=135></TD>
+          <TD align=middle><!-- MATH: $\scalebox{.7}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/erode_5_times.ps}}$ --><IMG
+            align=bottom 
+            alt="\scalebox{.7}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/erode_5_times.ps}}"
+            border=0 height=168 src="node47_files/img22.htm" width=135></TD></TR>
+        <TR>
+          <TD align=middle>(a)</TD>
+          <TD align=middle>(b)</TD>
+          <TD 
+align=middle>(c)</TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node48.htm"
+name=tex2html740><IMG align=bottom alt=next border=0 height=24 
+src="node47_files/next_motif.gif" width=37></A> <A 
+href="node46.htm"
+name=tex2html736><IMG align=bottom alt=up border=0 height=24 
+src="node47_files/up_motif.gif" width=26></A> <A 
+href="node46.htm"
+name=tex2html730><IMG align=bottom alt=previous border=0 height=24 
+src="node47_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html738><IMG align=bottom alt=contents border=0 height=24 
+src="node47_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html739><IMG align=bottom alt=index border=0 height=24 
+src="node47_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node48.htm"
+name=tex2html741>Thinning and skeletonizing</A> <B>Up:</B> <A 
+href="node46.htm"
+name=tex2html737>Morphological operations</A> <B>Previous:</B> <A 
+href="node46.htm"
+name=tex2html731>Morphological operations</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

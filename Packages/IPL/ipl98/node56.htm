@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node56.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Create an image in RAM</TITLE>
+<META content="Create an image in RAM" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node56_files/include_all.css" rel=STYLESHEET><LINK href="node57.htm"
+rel=next><LINK href="node55.htm" rel=previous><LINK href="node55.htm"
+rel=up><LINK href="node57.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node57.htm"
+name=tex2html849><IMG align=bottom alt=next border=0 height=24 
+src="node56_files/next_motif.gif" width=37></A> <A 
+href="node55.htm"
+name=tex2html845><IMG align=bottom alt=up border=0 height=24 
+src="node56_files/up_motif.gif" width=26></A> <A 
+href="node55.htm"
+name=tex2html839><IMG align=bottom alt=previous border=0 height=24 
+src="node56_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html847><IMG align=bottom alt=contents border=0 height=24 
+src="node56_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html848><IMG align=bottom alt=index border=0 height=24 
+src="node56_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node57.htm"
+name=tex2html850>Manipulate an image in</A> <B>Up:</B> <A 
+href="node55.htm"
+name=tex2html846>Apendix: C code from</A> <B>Previous:</B> <A 
+href="node55.htm"
+name=tex2html840>Apendix: C code from</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION000131000000000000000>&nbsp;</A> <A 
+name=ap:createanimage:ex1>&nbsp;</A> <BR>Create an image in RAM </H2>C code 
+corresponding to the C++ code given at page&nbsp;<A 
+href="node28.html#subsec:createanimage:ex1"><IMG
+align=bottom alt=[*] border=1 src="node56_files/cross_ref_motif.gif"></A> in 
+section&nbsp;<A 
+href="node28.html#subsec:createanimage"><IMG
+align=bottom alt=[*] border=1 src="node56_files/cross_ref_motif.gif"></A>: 
+<P><PRE>#include &lt;ipl98/ipl98.h&gt;
+
+void main()
+{
+   TImage Image1; /* image structure, no memory allocated for image data */
+   TImage Image2,Image3;
+
+   TImage ByteImage1; /* In C use the same basic structure with */
+                      /* a special set of functions */
+   TImage ByteImage2,ByteImage3;
+
+   TFloatImage FloatImage1; /* image structure used for float images */
+   TFloatImage FloatImage2;
+
+   TIntImage IntImage1; /* image structure used for float images */
+   TIntImage IntImage2;
+
+   k_InitImage(&amp;Image1); /* always initialize structure before using it */
+   k_InitImage(&amp;Image2);
+   k_AllocImage(768,512,8,&amp;Image2); /* allocate image with dimensions 
+                                    /* (768,512) and 8 b/p */
+
+   k_InitImage(&amp;Image3);
+   k_CopyImage(&amp;Image3,&amp;Image2); /* copy contents of Image2 to Image3 */
+
+   k_InitImage(&amp;ByteImage1); /* always init structure before using it */
+   k_InitImage(&amp;ByteImage2);
+   kB_AllocImage(768,512,&amp;ByteImage2); /* allocate image with dimensions */
+                    /* (768,512), always 8 b/p when using a kB_ function */
+
+   kB_InitImage(&amp;ByteImage3);
+   kB_CopyImage(&amp;ByteImage2,&amp;ByteImage1); /* copy contents of ByteImage1 */
+                                          /* to ByteImage2 */
+
+   kF_InitImage(&amp;FloatImage1); /* always initialize structure before */
+                               /* using it */
+   kF_InitImage(&amp;FloatImage2);
+   kF_AllocImage(10,10,&amp;FloatImage1); /* allocate float image with */
+                                      /* dimensions (10,10) */
+   kF_CopyImage(&amp;FloatImage2,&amp;FloatImage1); /* copy contents of */
+                                          /* FloatImage1 to FloatImage2 */
+
+   kI_InitImage(&amp;IntImage1); /* always initialize structure before */
+                             /* using it */
+   kI_InitImage(&amp;IntImage2);
+   kI_AllocImage(10,10,&amp;IntImage1); /* allocate int image with */
+                                    /* dimensions (10,10) */
+   kI_CopyImage(&amp;IntImage2,&amp;IntImage1); /* copy contents of */
+                                        /* IntImage1 to IntImage2 */
+}
+</PRE>
+<P><BR>
+<HR>
+
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

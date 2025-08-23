@@ -1,0 +1,252 @@
+object FormMain: TFormMain
+  Left = 180
+  Top = 122
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'PTC Album Maker V1.0'
+  ClientHeight = 329
+  ClientWidth = 439
+  Color = 14145495
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
+  PixelsPerInch = 96
+  TextHeight = 13
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 310
+    Width = 439
+    Height = 19
+    Color = 14145495
+    Panels = <>
+    SimplePanel = False
+  end
+  object Panel6: TPanel
+    Left = 0
+    Top = 0
+    Width = 439
+    Height = 310
+    Align = alClient
+    BevelOuter = bvNone
+    Color = 14145495
+    TabOrder = 1
+    object Panel1: TPanel
+      Left = 0
+      Top = 0
+      Width = 219
+      Height = 225
+      TabOrder = 0
+      object GroupBox2: TGroupBox
+        Left = 1
+        Top = 1
+        Width = 217
+        Height = 223
+        Align = alClient
+        Caption = 'Source'
+        Color = 14145495
+        ParentColor = False
+        TabOrder = 0
+        object DirectoryListBox1: TDirectoryListBox
+          Left = 8
+          Top = 36
+          Width = 201
+          Height = 157
+          DirLabel = Label1
+          ItemHeight = 16
+          TabOrder = 0
+          OnKeyDown = FormKeyDown
+        end
+        object DriveComboBox1: TDriveComboBox
+          Left = 8
+          Top = 196
+          Width = 201
+          Height = 19
+          DirList = DirectoryListBox1
+          TabOrder = 1
+          OnKeyDown = FormKeyDown
+        end
+        object Panel2: TPanel
+          Left = 8
+          Top = 16
+          Width = 201
+          Height = 16
+          BevelOuter = bvLowered
+          TabOrder = 2
+          object Label1: TLabel
+            Left = 1
+            Top = 1
+            Width = 199
+            Height = 14
+            Align = alClient
+            Caption = 'F:\...\Embroidery\PTC_AlbumMaker'
+            Color = 14145495
+            ParentColor = False
+          end
+        end
+      end
+    end
+    object Panel3: TPanel
+      Left = 220
+      Top = 0
+      Width = 219
+      Height = 225
+      TabOrder = 1
+      object GroupBox3: TGroupBox
+        Left = 1
+        Top = 1
+        Width = 217
+        Height = 223
+        Align = alClient
+        Caption = 'Destination'
+        Color = 14145495
+        ParentColor = False
+        TabOrder = 0
+        object DirectoryListBox2: TDirectoryListBox
+          Left = 8
+          Top = 36
+          Width = 201
+          Height = 157
+          DirLabel = Label5
+          ItemHeight = 16
+          TabOrder = 0
+          OnKeyDown = FormKeyDown
+        end
+        object DriveComboBox2: TDriveComboBox
+          Left = 8
+          Top = 196
+          Width = 201
+          Height = 19
+          DirList = DirectoryListBox2
+          TabOrder = 1
+          OnKeyDown = FormKeyDown
+        end
+        object Panel4: TPanel
+          Left = 8
+          Top = 16
+          Width = 201
+          Height = 16
+          BevelOuter = bvLowered
+          TabOrder = 2
+          object Label5: TLabel
+            Left = 1
+            Top = 1
+            Width = 199
+            Height = 14
+            Align = alClient
+            Caption = 'F:\...\Embroidery\PTC_AlbumMaker'
+            Color = 14145495
+            ParentColor = False
+          end
+        end
+      end
+    end
+    object Panel5: TPanel
+      Left = 0
+      Top = 228
+      Width = 439
+      Height = 82
+      Color = 14145495
+      TabOrder = 2
+      object GroupBox1: TGroupBox
+        Left = 6
+        Top = 4
+        Width = 213
+        Height = 73
+        Caption = 'Results'
+        TabOrder = 0
+        object Label2: TLabel
+          Left = 8
+          Top = 20
+          Width = 197
+          Height = 13
+          Alignment = taCenter
+          AutoSize = False
+          Caption = 'Folders Count: 0'
+        end
+        object Label3: TLabel
+          Left = 8
+          Top = 36
+          Width = 197
+          Height = 13
+          Alignment = taCenter
+          AutoSize = False
+          Caption = 'Files Count: 0'
+        end
+        object Label4: TLabel
+          Left = 8
+          Top = 52
+          Width = 197
+          Height = 13
+          Alignment = taCenter
+          AutoSize = False
+          Caption = 'Total Size: 0'
+        end
+      end
+      object GroupBox4: TGroupBox
+        Left = 222
+        Top = 4
+        Width = 213
+        Height = 73
+        Caption = 'Start'
+        TabOrder = 1
+        object Label6: TLabel
+          Left = 8
+          Top = 27
+          Width = 116
+          Height = 13
+          Alignment = taCenter
+          AutoSize = False
+          Caption = 'Root Name:'
+        end
+        object SpeedButton1: TSpeedButton
+          Left = 84
+          Top = 13
+          Width = 39
+          Height = 22
+          Caption = 'About'
+          Flat = True
+          OnClick = SpeedButton1Click
+        end
+        object BitBtn1: TBitBtn
+          Left = 130
+          Top = 13
+          Width = 75
+          Height = 25
+          Caption = 'Make'
+          TabOrder = 0
+          OnClick = BitBtn1Click
+          OnKeyDown = FormKeyDown
+          Kind = bkOK
+        end
+        object Edit1: TEdit
+          Left = 8
+          Top = 43
+          Width = 116
+          Height = 21
+          TabOrder = 1
+          Text = 'Root'
+        end
+        object BitBtn2: TBitBtn
+          Left = 130
+          Top = 39
+          Width = 75
+          Height = 25
+          TabOrder = 2
+          OnClick = BitBtn2Click
+          Kind = bkAbort
+        end
+      end
+    end
+  end
+  object FormTranslation1: TFormTranslation
+    Left = 121
+    Top = 113
+  end
+end

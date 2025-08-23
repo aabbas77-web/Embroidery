@@ -1,0 +1,9 @@
+USEUNIT("Main.cpp");
+USEFORM("Interface.cpp", FormInterface);
+USEUNIT("..\..\Packages\VECAD52\vecad52\VECAD\api_VecApi.cpp");
+USEFORM("About.cpp", FormAbout);
+USELIB("memmgr.lib");
+//---------------------------------------------------------------------------
+This file is used by the project manager only and should be treated like the project file
+
+DllEntryPoint

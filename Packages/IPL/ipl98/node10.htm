@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node10.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Image representation in RAM</TITLE>
+<META content="Image representation in RAM" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node10_files/include_all.css" rel=STYLESHEET><LINK href="node11.htm"
+rel=next><LINK href="node9.htm" rel=previous><LINK href="node8.htm"
+rel=up><LINK href="node11.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node11.htm"
+name=tex2html271><IMG align=bottom alt=next border=0 height=24 
+src="node10_files/next_motif.gif" width=37></A> <A 
+href="node8.htm"
+name=tex2html267><IMG align=bottom alt=up border=0 height=24 
+src="node10_files/up_motif.gif" width=26></A> <A 
+href="node9.htm"
+name=tex2html261><IMG align=bottom alt=previous border=0 height=24 
+src="node10_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html269><IMG align=bottom alt=contents border=0 height=24 
+src="node10_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html270><IMG align=bottom alt=index border=0 height=24 
+src="node10_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node11.htm"
+name=tex2html272>File names and placement</A> <B>Up:</B> <A 
+href="node8.htm"
+name=tex2html268>Structure</A> <B>Previous:</B> <A 
+href="node9.htm"
+name=tex2html262>Basic types</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00062000000000000000>&nbsp;</A><A name=289>&nbsp;</A> <A 
+name=subsec:imagerepresentation>&nbsp;</A> <BR>Image representation in RAM 
+</H2>The internal memory representation of an image is optimized to be fast to 
+show on an x86 machine, figure&nbsp;<A 
+href="node10.html#fig:scanlines"><IMG
+align=bottom alt=[*] border=1 src="node10_files/cross_ref_motif.gif"></A> 
+and&nbsp;<A 
+href="node10.html#fig:imagedata"><IMG
+align=bottom alt=[*] border=1 src="node10_files/cross_ref_motif.gif"></A> show 
+how the pixels are stored in memory. The image pixels are stored in a 
+one-dimensional UINT8 array. Each scanline in this array are allways 
+zero-padded, so that each scanline ends on a 32-bit (UINT32) boundary. The 
+scanlines are stored in the array beginning with the scanline in the bottom ot 
+the image. Because of the zero-padding and the "bottom-up" storage of scanlines 
+it's then possible relatively fast to show the image on a Windows platform. All 
+information about an image is stored in the "TImage" structure. This includes 
+three "different" pointers to the image data. 
+<P><BR>
+<DIV align=center><A name=fig:scanlines>&nbsp;</A><A name=342>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> Image representation in RAM. Two scanlines 
+  are shown. The first bytes in memory is the bottom line in the image. A 
+  zero-padding follows each scanline to make every scanline a multiplum of 4 
+  byte (i.e. double word aligned). This image is without border, see 
+  figure&nbsp;<A 
+  href="node10.html#fig:imagedata"><IMG
+  align=bottom alt=[*] border=1 src="node10_files/cross_ref_motif.gif"></A> 
+  below to see how a border is placed around the image. The pointer pPixelStream 
+  is a member of the C structure TImage which contains all the information for 
+  an image. In C++ the TImage structure is an attribute in the CStdImage class 
+  and the data is accessed through the methods in the class.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{0.7}{
+\includegraphics{/home/edr/ipl/tutorial/structure/images/scanlines.eps}}$ --><IMG 
+      align=bottom 
+      alt="\scalebox{0.7}{&#10;\includegraphics{/home/edr/ipl/tutorial/structure/images/scanlines.eps}}" 
+      border=0 height=145 src="node10_files/img5.gif" width=453> 
+  </DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P>It is possible dynamically to set a variable sized border around the image. 
+This makes it a lot easier to perform certain image manipulation routines. Then 
+you do not have to worry about "edge" problems when accessing pixels near the 
+edge of the image, for example when "running" a mask over the whole image. The 
+border is included in the one-dimensional array together with the image data. 
+The drawback of a border however is, that two representations of the image data 
+are necessary, one for image analysis and one for showing the image on the 
+screen. 
+<P><BR>
+<DIV align=center><A name=fig:imagedata>&nbsp;</A><A name=305>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> The image memory in a ``visual'' form. The 
+  image is here shown with a border around it and the pointers available to the 
+  memory is also shown. They are all members of the C structure TImage which 
+  contains all the information for an image. In C++ the TImage structure is an 
+  attribute in the CStdImage class and the data is accessed throug the methods 
+  in the class. Be aware that accessing a position (x,y) in the image with the 
+  ppMatrix pointer is done with the y-position first as the example 
+  ppMatrix[y][x] in the figure shows.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{0.7}{
+\includegraphics{/home/edr/ipl/tutorial/structure/images/imagedata.eps}}$ --><IMG 
+      align=bottom 
+      alt="\scalebox{0.7}{&#10;\includegraphics{/home/edr/ipl/tutorial/structure/images/imagedata.eps}}" 
+      border=0 height=318 src="node10_files/img6.gif" width=515> 
+  </DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node11.htm"
+name=tex2html271><IMG align=bottom alt=next border=0 height=24 
+src="node10_files/next_motif.gif" width=37></A> <A 
+href="node8.htm"
+name=tex2html267><IMG align=bottom alt=up border=0 height=24 
+src="node10_files/up_motif.gif" width=26></A> <A 
+href="node9.htm"
+name=tex2html261><IMG align=bottom alt=previous border=0 height=24 
+src="node10_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html269><IMG align=bottom alt=contents border=0 height=24 
+src="node10_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html270><IMG align=bottom alt=index border=0 height=24 
+src="node10_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node11.htm"
+name=tex2html272>File names and placement</A> <B>Up:</B> <A 
+href="node8.htm"
+name=tex2html268>Structure</A> <B>Previous:</B> <A 
+href="node9.htm"
+name=tex2html262>Basic types</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

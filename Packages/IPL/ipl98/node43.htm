@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node43.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Scaling and rotation</TITLE>
+<META content="Scaling and rotation" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node43_files/include_all.css" rel=STYLESHEET><LINK href="node42.htm"
+rel=previous><LINK href="node42.htm" rel=up><LINK href="node44.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node44.htm"
+name=tex2html691><IMG align=bottom alt=next border=0 height=24 
+src="node43_files/next_motif.gif" width=37></A> <A 
+href="node42.htm"
+name=tex2html687><IMG align=bottom alt=up border=0 height=24 
+src="node43_files/up_motif.gif" width=26></A> <A 
+href="node42.htm"
+name=tex2html683><IMG align=bottom alt=previous border=0 height=24 
+src="node43_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html689><IMG align=bottom alt=contents border=0 height=24 
+src="node43_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html690><IMG align=bottom alt=index border=0 height=24 
+src="node43_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node44.htm"
+name=tex2html692>Feature extraction</A> <B>Up:</B> <A 
+href="node42.htm"
+name=tex2html688>Coordinate transformation</A> <B>Previous:</B> <A 
+href="node42.htm"
+name=tex2html684>Coordinate transformation</A> <BR><BR><!--End of Navigation Panel-->
+<H3><A name=SECTION000102100000000000000>&nbsp;</A><A name=1171>&nbsp;</A><A 
+name=1172>&nbsp;</A> <BR>Scaling and rotation </H3>Four methods are available 
+for scaling and rotation, the effect of each method is shown in figure&nbsp;<A 
+href="node43.html#fig:scalerotate"><IMG
+align=bottom alt=[*] border=1 src="node43_files/cross_ref_motif.gif"></A>: 
+<UL>
+  <LI><TT>ScaleAndRotateAuto(...)</TT><A name=1176>&nbsp;</A> Scale and rotates 
+  the image at the same time. Auto is appended because the method resizes the 
+  image so no pixels are lost. 
+  <LI><TT>ScaleAndRotateFixed(...)</TT> <A name=1178>&nbsp;</A> Same as above 
+  except the resulting image size is given as parameters. This may result in 
+  loosing some foreground pixels from the original image. 
+  <LI><TT>ScaleAuto(...)</TT><A name=1180>&nbsp;</A> Only scales the image, auto 
+  resizing of image size. 
+  <LI><TT>ScaleFixed(...)</TT><A name=1182>&nbsp;</A> As above but with 
+  resulting image size given as parameters. </LI></UL>
+<P>The following example uses all four methods and writes the results in the 
+files named: <EM>ScaleAndRotateAuto.bmp</EM>, <EM>ScaleAndRotateFixed.bmp</EM>, 
+<EM>ScaleAuto.bmp</EM> and <EM>ScaleFixed.bmp</EM>, all of them saved in 
+<EM>c:/temp/</EM>. The results are shown in figure&nbsp;<A 
+href="node43.html#fig:scalerotate"><IMG
+align=bottom alt=[*] border=1 src="node43_files/cross_ref_motif.gif"></A>. 
+<P><PRE>   CImage Img,ImgDest; // Images
+   CTimeDate Timer;
+   Timer.StartTimer(); // stop watch for time elapsed
+        
+    if (Img.Load("c:/temp/three_segments.bmp")) // your image with 8 b/p
+    {
+        cout &lt;&lt; "Image loaded:" &lt;&lt; endl &lt;&lt; Img &lt;&lt; endl;
+        CCoordinateTransform ct;
+                
+        cout &lt;&lt; endl &lt;&lt; "Using ScaleAndRotateAuto()" &lt;&lt; endl;
+        ct.ScaleAndRotateAuto(Img,ImgDest,1.2,0.8,PI/4,0);
+        cout &lt;&lt; "Image scaled by (1.2,0.8) and rotated PI/4 "
+                "and placed in ImgDest:" &lt;&lt; endl;
+        cout &lt;&lt; ImgDest &lt;&lt; endl;
+        cout &lt;&lt; "Saved as c:/temp/ScaleAndRotateAuto.bmp" &lt;&lt; endl;
+        ImgDest.Save("c:/temp/ScaleAndRotateAuto.bmp");
+
+        cout &lt;&lt; endl &lt;&lt; "Using ScaleAndRotateFixed()" &lt;&lt; endl;
+        ct.ScaleAndRotateFixed(Img,ImgDest,Img.GetWidth()/2,Img.GetHeight()/2,
+                Img.GetWidth(),Img.GetHeight(),1.2,0.8,PI/4,0);
+        cout &lt;&lt; "Image scaled by (1.2,0.8) and rotated PI/4 "
+                "and placed in ImgDest:" &lt;&lt; endl;
+        cout &lt;&lt; ImgDest &lt;&lt; endl;
+        cout &lt;&lt; "Saved as c:/temp/ScaleAndRotateFixed.bmp" &lt;&lt; endl;
+        ImgDest.Save("c:/temp/ScaleAndRotateFixed.bmp");
+
+        cout &lt;&lt; endl &lt;&lt; "Using ScaleAuto()" &lt;&lt; endl;
+        ct.ScaleAuto(Img,ImgDest,1.2,0.8,0);
+        cout &lt;&lt; "Image scaled by (1.2,0.8) and placed in ImgDest:" &lt;&lt; endl;
+        cout &lt;&lt; ImgDest &lt;&lt; endl;
+        cout &lt;&lt; "Saved as c:/temp/ScaleAuto.bmp" &lt;&lt; endl;
+        ImgDest.Save("c:/temp/ScaleAuto.bmp");
+
+        cout &lt;&lt; endl &lt;&lt; "Using ScaleFixed()" &lt;&lt; endl;
+        ct.ScaleFixed(Img,ImgDest,Img.GetWidth()/2,Img.GetHeight()/2,
+                Img.GetWidth(),Img.GetHeight(),1.2,0.8,0);
+        cout &lt;&lt; "Image scaled by (1.2,0.8) and placed in ImgDest:" &lt;&lt; endl;
+        cout &lt;&lt; ImgDest &lt;&lt; endl;
+        cout &lt;&lt; "Saved as c:/temp/ScaleFixed.bmp" &lt;&lt; endl;
+        ImgDest.Save("c:/temp/ScaleFixed.bmp");
+
+        cout &lt;&lt; "Total time: " &lt;&lt; Timer.StopTimer() &lt;&lt; endl;
+    }
+    else
+    {
+        cout &lt;&lt; "Loading failed" &lt;&lt; endl; 
+    }
+</PRE>
+<P>In figure&nbsp;<A 
+href="node43.html#fig:scalerotate"><IMG
+align=bottom alt=[*] border=1 src="node43_files/cross_ref_motif.gif"></A> the 
+result of the coordinate transformations are shown. 
+<P><BR>
+<DIV align=center><A name=fig:scalerotate>&nbsp;</A><A name=1506>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> The results from coordinate transformations 
+  with scaling and rotation: <B>a)</B> Originial image <B>b)</B> Method 
+  <TT>ScaleAndRotateAuto(...)</TT> used <B>c)</B> Method 
+  <TT>ScaleAndRotateFixed(...)</TT> used <B>d)</B> Method 
+  <TT>ScaleAuto(...)</TT> used <B>e)</B> Method <TT>ScaleFixed(...)</TT> 
+  used.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center>
+      <TABLE align=center cellPadding=3>
+        <TBODY>
+        <TR>
+          <TD align=middle>
+            <TABLE align=center cellPadding=3>
+              <TBODY>
+              <TR>
+                <TD align=middle><!-- MATH: $\scalebox{.5}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/three_segments.eps}}$ --><IMG
+                  align=bottom 
+                  alt="\scalebox{.5}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/three_segments.eps}}"
+                  border=0 height=120 src="node43_files/img13.gif" width=120></TD>
+                <TD align=middle><!-- MATH: $\scalebox{.5}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/ScaleAndRotateAuto.eps}}$ --><IMG
+                  align=bottom 
+                  alt="\scalebox{.5}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/ScaleAndRotateAuto.eps}}"
+                  border=0 height=169 src="node43_files/img14.gif" width=170></TD>
+                <TD align=middle><!-- MATH: $\scalebox{.5}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/ScaleAndRotateFixed.eps}}$ --><IMG
+                  align=bottom 
+                  alt="\scalebox{.5}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/ScaleAndRotateFixed.eps}}"
+                  border=0 height=120 src="node43_files/img15.gif" 
+              width=120></TD></TR>
+              <TR>
+                <TD align=middle>(a)</TD>
+                <TD align=middle>(b)</TD>
+                <TD align=middle>(c)</TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD align=middle>
+            <TABLE align=center cellPadding=3>
+              <TBODY>
+              <TR>
+                <TD align=middle><!-- MATH: $\scalebox{.5}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/ScaleAuto.eps}}$ --><IMG
+                  align=bottom 
+                  alt="\scalebox{.5}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/ScaleAuto.eps}}"
+                  border=0 height=96 src="node43_files/img16.gif" width=144></TD>
+                <TD align=middle><!-- MATH: $\scalebox{.5}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/ScaleFixed.eps}}$ --><IMG
+                  align=bottom 
+                  alt="\scalebox{.5}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/ScaleFixed.eps}}"
+                  border=0 height=120 src="node43_files/img17.gif" 
+              width=120></TD></TR>
+              <TR>
+                <TD align=middle>(d)</TD>
+                <TD 
+      align=middle>(e)</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node44.htm"
+name=tex2html691><IMG align=bottom alt=next border=0 height=24 
+src="node43_files/next_motif.gif" width=37></A> <A 
+href="node42.htm"
+name=tex2html687><IMG align=bottom alt=up border=0 height=24 
+src="node43_files/up_motif.gif" width=26></A> <A 
+href="node42.htm"
+name=tex2html683><IMG align=bottom alt=previous border=0 height=24 
+src="node43_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html689><IMG align=bottom alt=contents border=0 height=24 
+src="node43_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html690><IMG align=bottom alt=index border=0 height=24 
+src="node43_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node44.htm"
+name=tex2html692>Feature extraction</A> <B>Up:</B> <A 
+href="node42.htm"
+name=tex2html688>Coordinate transformation</A> <B>Previous:</B> <A 
+href="node42.htm"
+name=tex2html684>Coordinate transformation</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.05.03"/>
+    <PROJECT value="PTC_Browser.exe"/>
+    <OBJFILES value="PTC_Browser.obj Main.obj About.obj Options.obj 
+      E:\Ali\Library\Lib\Protection\skeydrv.obj ..\SPL\spl_Types.obj 
+      ..\SPL\spl_CodingLib.obj ..\SPL\spl_EmbLib.obj 
+      ..\Protection\ProtectionLib.obj"/>
+    <RESFILES value="PTC_Browser.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) Main.dfm About.dfm Options.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="JamShell.lib VCLX50.lib bcbsmp50.lib VCL50.lib"/>
+    <SPARELIBS value="VCL50.lib bcbsmp50.lib VCLX50.lib JamShell.lib"/>
+    <PACKAGES value="VCL50.bpi VCLX50.bpi bcbsmp50.bpi VCLDB50.bpi VCLADO50.bpi ibsmp50.bpi 
+      VCLBDE50.bpi VCLDBX50.bpi QRPT50.bpi TEEUI50.bpi TEEDB50.bpi TEE50.bpi 
+      DSS50.bpi TEEQR50.bpi VCLIB50.bpi VCLMID50.bpi VCLIE50.bpi INETDB50.bpi 
+      INET50.bpi NMFAST50.bpi WEBMID50.bpi bcbie50.bpi dclocx50.bpi 
+      bcb97axserver50.bpi"/>
+    <PATHCPP value=".;..\SPL;..\Protection"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="tlink32"/>
+    <USERDEFINES value="NO_WIN32_LEAN_AND_MEAN;_EMBROIDERY_;spl_Full_Version"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="PTC_Browser.cpp"/>
+    <INCLUDEPATH value="E:\Ali\Library\Lib\Protection\;..\SPL;..\Protection;..\Libs\SPL;..\Packages\ShellBrowser\bcb5\Lib;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="E:\Ali\Library\Lib\Protection\;..\SPL;..\Protection;..\Libs\SPL;..\Packages\ShellBrowser\bcb5\Lib;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-IE:\Ali\Library\Lib\Protection\. -I..\SPL -I..\Protection -I..\Libs\SPL 
+      -I..\Packages\ShellBrowser\bcb5\Lib -I$(BCB)\include -I$(BCB)\include\vcl 
+      -src_suffix cpp -DNO_WIN32_LEAN_AND_MEAN -D_EMBROIDERY_ -Dspl_Full_Version 
+      -boa"/>
+    <CFLAG1 value="-O2 -H=$(BCB)\lib\vcl50.csm -Hc -Vx -Ve -X- -a8 -b- -k- -vi -c -tW -tWM"/>
+    <PFLAGS value="-$Y- -$L- -$D- -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn"/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+  </LINKER>
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=10241
+CodePage=1256
+
+[Version Info Keys]
+CompanyName=AliSoft
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=EmbBrowser.exe
+LegalCopyright=???
+LegalTrademarks=! ! !
+OriginalFilename=EmbBrowser.exe
+ProductName=AliSoft Embroidering Browser V1.0
+ProductVersion=1.0.0.0
+Comments=Embroidery Files Browser (*.dst;*.exp;*.dsz;*.dsb;*.ksm;...)
+Programmed By=Ali Abbas
+Address=Syria - Damascus
+E-Mail=a.abbas@netcourrier.com
+
+[Excluded Packages]
+$(BCB)\Bin\dclite50.bpl=Borland Integrated Translation Environment
+
+[HistoryLists\hlIncludePath]
+Count=30
+Item0=E:\Ali\Library\Lib\Protection;..\SPL;..\Protection\;..\Libs\SPL;..\Packages\ShellBrowser\bcb5\Lib;$(BCB)\include;$(BCB)\include\vcl
+Item1=..\Protection\;..\Libs\SPL;..\Packages\ShellBrowser\bcb5\Lib;$(BCB)\include;$(BCB)\include\vcl
+Item2=E:\Ali\Library\Lib\Protection;..\Libs\SPL;..\Packages\ShellBrowser\bcb5\Lib;$(BCB)\include;$(BCB)\include\vcl
+Item3=..\Libs\SPL;..\Packages\ShellBrowser\bcb5\Lib;$(BCB)\include;$(BCB)\include\vcl
+Item4=..\Libs\SPL;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Packages\ShellBrowser\bcb5\Lib
+Item5=..\Libs\SPL;..\SPL;$(BCB)\include;$(BCB)\include\vcl;E:\Digitizer\Packages\ShellBrowser\bcb5\Lib
+Item6=..\Libs\SPL;..\SPL;$(BCB)\include;$(BCB)\include\vcl
+Item7=..\SPL;$(BCB)\include;$(BCB)\include\vcl
+Item8=$(BCB)\include;$(BCB)\include\vcl
+Item9=..\SPL;E:\Digitizer\SPL\;..\..\envision.image.lib\source;F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib\;$(BCB)\include;$(BCB)\include\vcl
+Item10=E:\Digitizer\SPL\;..\..\envision.image.lib\source;F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib\;$(BCB)\include;$(BCB)\include\vcl
+Item11=E:\Digitizer\SPL;..\..\envision.image.lib\source;F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib\;$(BCB)\include;$(BCB)\include\vcl
+Item12=..\..\envision.image.lib\source;F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib\;$(BCB)\include;$(BCB)\include\vcl
+Item13=F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib\;$(BCB)\include;$(BCB)\include\vcl
+Item14=F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib;$(BCB)\include;$(BCB)\include\vcl
+Item15=F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib;..\..\envision.image.lib\source;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\;$(BCB)\include;$(BCB)\include\vcl;E:\Information\ABCD\Programs\Components\C++Builder\dfs\
+Item16=..\..\envision.image.lib\source;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\;$(BCB)\include;$(BCB)\include\vcl;E:\Information\ABCD\Programs\Components\C++Builder\dfs\
+Item17=D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\;$(BCB)\include;$(BCB)\include\vcl;E:\Information\ABCD\Programs\Components\C++Builder\dfs\
+Item18=D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\;$(BCB)\include;$(BCB)\include\vcl;E:\Information\ABCD\Programs\Components\C++Builder\dfs\;..\..\Types;..\..\CVOPEN\cv\include;..\..\CVOPEN\otherlibs\highgui;..\..\Image\G32\new
+Item19=D:\Program Files\Borland\CBuilder5\Projects;D:\Program Files\Borland\CBuilder5\;$(BCB)\include;$(BCB)\include\vcl;E:\Information\ABCD\Programs\Components\C++Builder\dfs\;..\..\Types;..\..\CVOPEN\cv\include;..\..\CVOPEN\otherlibs\highgui;..\..\Image\G32\new
+Item20=D:\Program Files\Borland\CBuilder5\;$(BCB)\include;$(BCB)\include\vcl;E:\Information\ABCD\Programs\Components\C++Builder\dfs\;E:\Digitizer\Types;E:\Digitizer\CVOPEN\cv\include;E:\Digitizer\CVOPEN\otherlibs\highgui;E:\Digitizer\Image\G32\new
+Item21=D:\Program Files\Borland\CBuilder5\;$(BCB)\include;$(BCB)\include\vcl;E:\Information\ABCD\Programs\Components\C++Builder\dfs\
+Item22=D:\Program Files\Borland\CBuilder5;$(BCB)\include;$(BCB)\include\vcl;E:\Information\ABCD\Programs\Components\C++Builder\dfs
+Item23=D:\Program Files\Borland\CBuilder5;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item24=..;..\Types;..\SellIcons;..\image\g32\new;..\Embroidery;..\..\AGif;$(BCB)\include;$(BCB)\include\vcl
+Item25=..\..\pyramids;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item26=..\;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item27=..\Types;..\SellIcons;..\image\g32\new;..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item28=..\image\g32\new;..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item29=..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=30
+Item0=E:\Ali\Library\Lib\Protection;..\SPL;..\Protection\;..\Libs\SPL;..\Packages\ShellBrowser\bcb5\Lib;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item1=..\Protection\;..\Libs\SPL;..\Packages\ShellBrowser\bcb5\Lib;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item2=E:\Ali\Library\Lib\Protection;..\Libs\SPL;..\Packages\ShellBrowser\bcb5\Lib;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item3=..\Libs\SPL;..\Packages\ShellBrowser\bcb5\Lib;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item4=..\Libs\SPL;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Packages\ShellBrowser\bcb5\Lib
+Item5=..\Libs\SPL;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item6=$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item7=..\SPL;E:\envision.image.lib\source\;F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item8=..\SPL;E:\Digitizer\SPL\;..\..\envision.image.lib\source;F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item9=E:\Digitizer\SPL\;..\..\envision.image.lib\source;F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item10=E:\Digitizer\SPL;..\..\envision.image.lib\source;F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item11=..\..\envision.image.lib\source;F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item12=F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item13=F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item14=F:\AliSoft CD1\Sound Protector\ShellBrowser\bcb5\Lib;..\..\envision.image.lib\source;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;E:\Information\ABCD\Programs\Components\C++Builder\dfs\
+Item15=..\..\envision.image.lib\source;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;E:\Information\ABCD\Programs\Components\C++Builder\dfs\
+Item16=D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;E:\Information\ABCD\Programs\Components\C++Builder\dfs\
+Item17=D:\Program Files\Borland\CBuilder5\Projects\;..\..\Types;D:\Program Files\Borland\CBuilder5\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;E:\Information\ABCD\Programs\Components\C++Builder\dfs\
+Item18=D:\Program Files\Borland\CBuilder5\Projects;..\..\Types;D:\Program Files\Borland\CBuilder5\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;E:\Information\ABCD\Programs\Components\C++Builder\dfs\
+Item19=D:\Program Files\Borland\CBuilder5\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;E:\Information\ABCD\Programs\Components\C++Builder\dfs\
+Item20=D:\Program Files\Borland\CBuilder5\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;E:\Information\ABCD\Programs\Components\C++Builder\dfs
+Item21=D:\Program Files\Borland\CBuilder5\;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item22=D:\Program Files\Borland\CBuilder5;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item23=..;..\Types;..\SellIcons;$(BCB)\Projects\Lib;..\image\g32\new;..\Embroidery;..\..\AGif;$(BCB)\lib\obj;$(BCB)\lib
+Item24=..\..\pyramids;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item25=..\;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item26=..\Types;..\SellIcons;$(BCB)\Projects\Lib;..\image\g32\new;..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item27=$(BCB)\Projects\Lib;..\image\g32\new;..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item28=..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item29=D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=12
+Item0=NO_WIN32_LEAN_AND_MEAN;_EMBROIDERY_;spl_Full_Version
+Item1=NO_WIN32_LEAN_AND_MEAN;_EMBROIDERY_;spl_Full_Version;_PROTECTED_
+Item2=NO_WIN32_LEAN_AND_MEAN;_EMBROIDERY_;spl_Demo_Version;_DEMO_
+Item3=NO_WIN32_LEAN_AND_MEAN;_EMBROIDERY_;spl_Full_Version;_DEMO_;_DEBUG
+Item4=NO_WIN32_LEAN_AND_MEAN;_EMBROIDERY_;spl_Demo_Version;_DEMO_;_DEBUG
+Item5=NO_WIN32_LEAN_AND_MEAN;_EMBROIDERY_;spl_Full_Version;_PROTECTED_;_DEBUG
+Item6=NO_WIN32_LEAN_AND_MEAN;spl_Demo_Version
+Item7=NO_WIN32_LEAN_AND_MEAN;spl_Full_Version
+Item8=NO_WIN32_LEAN_AND_MEAN;spl_Demo_Version;_DEBUG
+Item9=NO_WIN32_LEAN_AND_MEAN;_DEBUG
+Item10=NO_WIN32_LEAN_AND_MEAN
+Item11=_DEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+  </IDEOPTIONS>
+</PROJECT>

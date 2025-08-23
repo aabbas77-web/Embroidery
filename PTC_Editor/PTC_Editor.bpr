@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.05.03"/>
+    <PROJECT value="PTC_Editor.exe"/>
+    <OBJFILES value="PTC_Editor.obj Main.obj About.obj 
+      ..\Packages\VECAD52\vecad52\VECAD\api_VecApi.obj 
+      &quot;..\Plug in\Lib\EmbPlugin.obj&quot; E:\Ali\Library\Lib\Protection\skeydrv.obj 
+      ..\SPL\spl_Types.obj ..\SPL\spl_Calligrapher.obj ..\SPL\spl_CodingLib.obj 
+      ..\SPL\spl_Contour.obj ..\SPL\spl_Digitizer.obj ..\SPL\spl_EmbFile.obj 
+      ..\SPL\spl_EmbLib.obj ..\SPL\spl_EmbOpenDialog.obj 
+      ..\SPL\spl_Embroidery.obj ..\SPL\spl_GlyphOutlines.obj 
+      ..\SPL\spl_InsertText.obj ..\SPL\spl_Layer.obj ..\SPL\spl_MultiLayer.obj 
+      ..\SPL\spl_Point.obj ..\SPL\spl_Progress.obj ..\SPL\spl_Region.obj 
+      ..\SPL\Pyramids\pyramidfilters.obj ..\SPL\Pyramids\pyramidtools.obj 
+      ..\SPL\CAD\cad_Display.obj ..\SPL\CAD\cad_EMF_Parser.obj 
+      ..\SPL\CAD\cad_Messages.obj ..\SPL\CAD\cad_Strings.obj 
+      ..\Protection\ProtectionLib.obj"/>
+    <RESFILES value="PTC_Editor.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) Main.dfm About.dfm ..\SPL\spl_EmbOpenDialog.dfm 
+      ..\SPL\spl_InsertText.dfm ..\SPL\spl_Progress.dfm 
+      ..\SPL\CAD\cad_Display.dfm ..\SPL\CAD\cad_EMF_Parser.dfm"/>
+    <LIBFILES value="memmgr.lib"/>
+    <LIBRARIES value="RealMetaFilePk.lib wmfeps_utils.lib Vclmid50.lib inet50.lib inetdb50.lib 
+      WEBMID50.lib vclbde50.lib QRPT50.lib VCLDB50.lib FormTranslation5.lib 
+      JamShell.lib ToolBar97PK.lib VCLX50.lib bcbsmp50.lib TEE50.lib VCL50.lib"/>
+    <SPARELIBS value="VCL50.lib TEE50.lib bcbsmp50.lib VCLX50.lib ToolBar97PK.lib JamShell.lib 
+      FormTranslation5.lib VCLDB50.lib QRPT50.lib vclbde50.lib WEBMID50.lib 
+      inetdb50.lib inet50.lib Vclmid50.lib wmfeps_utils.lib RealMetaFilePk.lib"/>
+    <PACKAGES value="VCL50.bpi VCLX50.bpi bcbsmp50.bpi VCLDB50.bpi VCLADO50.bpi ibsmp50.bpi 
+      VCLBDE50.bpi VCLDBX50.bpi TEEUI50.bpi TEEDB50.bpi TEE50.bpi DSS50.bpi 
+      TEEQR50.bpi VCLIB50.bpi VCLMID50.bpi VCLIE50.bpi INETDB50.bpi INET50.bpi 
+      NMFAST50.bpi WEBMID50.bpi bcbie50.bpi dclocx50.bpi bcb97axserver50.bpi 
+      QRPT50.bpi"/>
+    <PATHCPP value=".;..\Packages\VECAD52\vecad52\VECAD;..\Plug 
+      in\Lib;..\SPL;..\SPL\Pyramids;..\SPL\CAD;..\Protection"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="tlink32"/>
+    <USERDEFINES value="NO_WIN32_LEAN_AND_MEAN;spl_Full_Version;spl_EMB_EDITOR;_EMBROIDERY_"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="PTC_Editor.cpp"/>
+    <INCLUDEPATH value="E:\Ali\Library\Lib\Protection;..\Protection\;..\tformtranslation;&quot;..\Plug in\Lib&quot;;&quot;D:\Program Files\Borland\CBuilder5\Projects\&quot;;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD;..\Packages\ShellBrowser\bcb5\Lib;..\Packages\wmf2tex"/>
+    <LIBPATH value="E:\Ali\Library\Lib\Protection;..\Protection\;..\tformtranslation;&quot;..\Plug in\Lib&quot;;&quot;D:\Program Files\Borland\CBuilder5\Projects\&quot;;..\Libs\SPL;..\Libs\SPL\Pyramids;..\Libs\SPL\CAD;..\Packages\VECAD52\vecad52\VECAD;..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;&quot;..\Spline\Asef Jaafer\pyramids\pyramids&quot;;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons;..\Packages\ShellBrowser\bcb5\Lib;..\Packages\wmf2tex"/>
+    <WARNINGS value="-w-par"/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-IE:\Ali\Library\Lib\Protection -I..\Protection\. -I..\tformtranslation 
+      -I&quot;..\Plug in\Lib&quot; -I&quot;D:\Program Files\Borland\CBuilder5\Projects\.&quot; 
+      -I..\SPL\Pyramids -I..\SPL -I..\Vector\VECAD52\vecad52\VECAD -I..\SPL\CAD 
+      -I$(BCB)\include -I$(BCB)\include\vcl -I..\Libs\SPL\Pyramids 
+      -I..\Packages\VECAD52\vecad52\VECAD -I..\Packages\ToolBar97 -I..\Libs\SPL 
+      -I..\Libs\SPL\CAD -I..\Packages\ShellBrowser\bcb5\Lib 
+      -I..\Packages\wmf2tex -src_suffix cpp -DNO_WIN32_LEAN_AND_MEAN 
+      -Dspl_Full_Version -Dspl_EMB_EDITOR -D_EMBROIDERY_ -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl50.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-$Y+ -$W -$O- -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-D&quot;&quot; -S:0x1000000 -aa -Tpe -x -Gn -v"/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+  </LINKER>
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=10241
+CodePage=1256
+
+[Version Info Keys]
+CompanyName=AliSoft
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=EmbEditor.exe
+LegalCopyright=???
+LegalTrademarks=! ! !
+OriginalFilename=EmbEditor.exe
+ProductName=Embroidery Editor V1.0
+ProductVersion=1.0.0.0
+Comments=Image Files (Bitmaps, JPEGs,...) To Embroidery Files (Tajima,Melco,...) Converter
+Programmed By=Ali Abbas
+E-Mail=a.abbas@netcourrier.com
+
+[Excluded Packages]
+$(BCB)\Bin\dclite50.bpl=Borland Integrated Translation Environment
+
+[HistoryLists\hlIncludePath]
+Count=30
+Item0=..\Protection\;..\tformtranslation;..\Plug in\Lib;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD;..\Packages\ShellBrowser\bcb5\Lib;..\Packages\wmf2tex
+Item1=..\Protection;..\tformtranslation;..\Plug in\Lib;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD;..\Packages\ShellBrowser\bcb5\Lib;..\Packages\wmf2tex
+Item2=..\tformtranslation;..\Plug in\Lib;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD;..\Packages\ShellBrowser\bcb5\Lib;..\Packages\wmf2tex
+Item3=..\Plug in\Lib;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD;..\Packages\ShellBrowser\bcb5\Lib;..\Packages\wmf2tex
+Item4=..\Plug in\Lib;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD;..\Packages\ShellBrowser\bcb5\Lib;..\Packages\wmf2tex;E:\Digitizer\Plug in\Lib
+Item5=D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD;..\Packages\ShellBrowser\bcb5\Lib;..\Packages\wmf2tex
+Item6=D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD;..\Packages\ShellBrowser\bcb5\Lib;E:\Digitizer\Packages\wmf2tex
+Item7=D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD;..\Packages\ShellBrowser\bcb5\Lib
+Item8=D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD;E:\Digitizer\Packages\ShellBrowser\bcb5\Lib
+Item9=D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD
+Item10=..\Packages\TTF2Vec;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD
+Item11=..\Packages\TTF2Vec;D:\Program Files\Borland\CBuilder5\Projects;..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD
+Item12=..\SPL\Pyramids;..\SPL;..\Vector\VECAD52\vecad52\VECAD;..\SPL\CAD;$(BCB)\include;$(BCB)\include\vcl;..\Libs\SPL\Pyramids;..\Packages\VECAD52\vecad52\VECAD;..\Packages\ToolBar97;..\Libs\SPL;..\Libs\SPL\CAD
+Item13=$(BCB)\include;$(BCB)\include\vcl;E:\Digitizer\Libs\SPL\Pyramids;E:\Digitizer\Packages\VECAD52\vecad52\VECAD;E:\Digitizer\Packages\ToolBar97;E:\Digitizer\Libs\SPL;E:\Digitizer\Libs\SPL\CAD
+Item14=..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;D:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD
+Item15=..\SPL;..\SPL\CAD;..\ToolBar97;D:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD
+Item16=..\SPL\CAD;..\ToolBar97;D:\Program Files\Borland\CBuilder5\Projects;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD
+Item17=$(BCB)\include;$(BCB)\include\vcl;E:\Digitizer\Vector\VECAD52\vecad52\VECAD
+Item18=..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD;..\Image\G32\new;..\SellIcons;..\CVOPEN\cv\include;..\CVOPEN\otherlibs\highgui
+Item19=..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD;..\Image\G32\new;..\SellIcons;E:\Digitizer\CVOPEN\cv\include;E:\Digitizer\CVOPEN\otherlibs\highgui
+Item20=..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD;..\Image\G32\new;..\SellIcons
+Item21=..\Types;..\Polygon;..\DST;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD;..\Image\G32\new;..\SellIcons
+Item22=..\Types;..\Polygon;..\DST;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD;..\Image\G32\new;E:\Digitizer\SellIcons
+Item23=..\Types;..\Polygon;..\DST;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD;..\Image\G32\new
+Item24=..\Types;..\Polygon;..\DST;..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD;E:\Digitizer\Image\G32\new
+Item25=..\Types;..\Polygon;..\DST;..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD
+Item26=..\Polygon;..\DST;..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD
+Item27=..\DST;..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl;..\Vector\VECAD52\vecad52\VECAD
+Item28=D:\Program Files\Borland\CBuilder5\Projects;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl;E:\Digitizer\Vector\VECAD52\vecad52\VECAD
+Item29=D:\Program Files\Borland\CBuilder5\Projects;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=28
+Item0=..\Protection\;..\tformtranslation;..\Plug in\Lib;D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\Libs\SPL\CAD;..\Packages\VECAD52\vecad52\VECAD;..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons;..\Packages\ShellBrowser\bcb5\Lib;..\Packages\wmf2tex
+Item1=..\Protection;..\tformtranslation;..\Plug in\Lib;D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\Libs\SPL\CAD;..\Packages\VECAD52\vecad52\VECAD;..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons;..\Packages\ShellBrowser\bcb5\Lib;..\Packages\wmf2tex
+Item2=..\tformtranslation;..\Plug in\Lib;D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\Libs\SPL\CAD;..\Packages\VECAD52\vecad52\VECAD;..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons;..\Packages\ShellBrowser\bcb5\Lib;..\Packages\wmf2tex
+Item3=..\Plug in\Lib;D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\Libs\SPL\CAD;..\Packages\VECAD52\vecad52\VECAD;..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons;..\Packages\ShellBrowser\bcb5\Lib;..\Packages\wmf2tex
+Item4=D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\Libs\SPL\CAD;..\Packages\VECAD52\vecad52\VECAD;..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons;..\Packages\ShellBrowser\bcb5\Lib;E:\Digitizer\Packages\wmf2tex
+Item5=D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\Libs\SPL\CAD;..\Packages\VECAD52\vecad52\VECAD;..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons;..\Packages\ShellBrowser\bcb5\Lib
+Item6=D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\Libs\SPL\CAD;..\Packages\VECAD52\vecad52\VECAD;..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons
+Item7=..\Packages\TTF2Vec;D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\Libs\SPL\CAD;..\Packages\VECAD52\vecad52\VECAD;..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons
+Item8=..\Packages\TTF2Vec;D:\Program Files\Borland\CBuilder5\Projects;..\Libs\SPL;..\Libs\SPL\Pyramids;..\Libs\SPL\CAD;..\Packages\VECAD52\vecad52\VECAD;..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons
+Item9=..\Libs\SPL;..\Libs\SPL\Pyramids;..\Libs\SPL\CAD;..\Packages\VECAD52\vecad52\VECAD;..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons
+Item10=..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons
+Item11=..\SPL\Pyramids;..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons
+Item12=..\SPL;..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons
+Item13=..\SPL\CAD;..\ToolBar97;..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons
+Item14=..\Spline\Asef Jaafer\pyramids\pyramids;..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons
+Item15=..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new;..\SellIcons
+Item16=..\Types;..\Polygon;..\DST;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib;..\Image\G32\new
+Item17=..\Types;..\Polygon;..\DST;..\Embroidery;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib;E:\Digitizer\Image\G32\new
+Item18=..\Types;..\Polygon;..\DST;..\Embroidery;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item19=..\Polygon;..\DST;..\Embroidery;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item20=..\DST;..\Embroidery;..\Vector\VECAD52\vecad52\VECAD;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item21=D:\Program Files\Borland\CBuilder5\Projects;D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item22=D:\Program Files\Borland\CBuilder5\DST\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item23=..\DST;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item24=D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item25=D:\Program Files\Borland\CBuilder5\Projects;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item26=..\;$(BCB)\lib\obj;$(BCB)\lib
+Item27=$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=16
+Item0=NO_WIN32_LEAN_AND_MEAN;spl_Full_Version;spl_EMB_EDITOR;_EMBROIDERY_
+Item1=NO_WIN32_LEAN_AND_MEAN;_EMBROIDERY_;spl_Full_Version;spl_EMB_EDITOR;_PROTECTED_;_DEBUG
+Item2=NO_WIN32_LEAN_AND_MEAN;_EMBROIDERY_;spl_Full_Version;spl_EMB_EDITOR;_PROTECTED_
+Item3=NO_WIN32_LEAN_AND_MEAN;spl_Demo_Version;spl_EMB_EDITOR;_EMBROIDERY_
+Item4=NO_WIN32_LEAN_AND_MEAN;spl_Demo_Version;spl_EMB_EDITOR;_EMBROIDERY_;_DEBUG
+Item5=NO_WIN32_LEAN_AND_MEAN;spl_Full_Version;spl_EMB_EDITOR;_EMBROIDERY_;_DEBUG
+Item6=NO_WIN32_LEAN_AND_MEAN;spl_Full_Version;spl_EMB_EDITOR;_DEBUG
+Item7=NO_WIN32_LEAN_AND_MEAN;spl_Demo_Version;spl_EMB_EDITOR
+Item8=NO_WIN32_LEAN_AND_MEAN;spl_Demo_Version;spl_EMB_EDITOR;_DEBUG
+Item9=NO_WIN32_LEAN_AND_MEAN;spl_Full_Version;spl_EMB_EDITOR
+Item10=spl_Full_Version;spl_EMB_EDITOR
+Item11=spl_Demo_Version;spl_EMB_EDITOR
+Item12=spl_Full_Version
+Item13=spl_Demo_Version;_DEBUG
+Item14=spl_Demo_Version
+Item15=_DEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=1
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+  </IDEOPTIONS>
+</PROJECT>

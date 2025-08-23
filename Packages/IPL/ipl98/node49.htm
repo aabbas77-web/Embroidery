@@ -1,0 +1,373 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node49.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Perspective camera transformation</TITLE>
+<META content="Perspective camera transformation" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node49_files/include_all.css" rel=STYLESHEET><LINK href="node46.htm"
+rel=previous><LINK href="node38.htm" rel=up><LINK href="node50.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node50.htm"
+name=tex2html760><IMG align=bottom alt=next border=0 height=24 
+src="node49_files/next_motif.gif" width=37></A> <A 
+href="node38.htm"
+name=tex2html756><IMG align=bottom alt=up border=0 height=24 
+src="node49_files/up_motif.gif" width=26></A> <A 
+href="node48.htm"
+name=tex2html752><IMG align=bottom alt=previous border=0 height=24 
+src="node49_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html758><IMG align=bottom alt=contents border=0 height=24 
+src="node49_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html759><IMG align=bottom alt=index border=0 height=24 
+src="node49_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node50.htm"
+name=tex2html761>Camera classes and IPL98</A> <B>Up:</B> <A 
+href="node38.htm"
+name=tex2html757>Using the image algorithms</A> <B>Previous:</B> <A 
+href="node48.htm"
+name=tex2html753>Thinning and skeletonizing</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION000105000000000000000>&nbsp;</A><A name=1421>&nbsp;</A><A 
+name=1422>&nbsp;</A><A name=1423>&nbsp;</A><A name=1424>&nbsp;</A> <A 
+name=subsec:perspective>&nbsp;</A> <BR>Perspective camera transformation 
+</H2>The class CPerspective<A name=1426>&nbsp;</A> is used for calculating the 
+standard camera matrix<A name=1427>&nbsp;</A> and for 3D<A 
+href="footnode.html#foot1428"
+name=tex2html35><SUP>15</SUP></A> and 2D calculations. A description of the 
+camera model leading to the camera matrix is found in Gonzales &amp; 
+Woods&nbsp;[<A 
+href="node60.html#GonzWoods">1</A>]
+page 52-68. Additional information of the camera model and the inverse 
+perspective transformation can be found in ``Machine Vision'' by David 
+Vernon&nbsp;[<A 
+href="node60.html#vernon">4</A>].
+The methods available are: 
+<UL>
+  <LI><TT>Calibrate(...)</TT><A name=1433>&nbsp;</A><A name=1434>&nbsp;</A> 
+  Calibrates the standard camera matrix as given in Gonzalez &amp; Woods page 
+  67. At least six world coordinate points with corresponding image points<A 
+  href="footnode.html#foot1435"
+  name=tex2html36><SUP>16</SUP></A> is needed. The result is put into the C 
+  structure TCameraMatrix and each position in the matrix can be read with the 
+  method GetCamMatrix(i,j)<A name=1436>&nbsp;</A>, where (i,j) is the position 
+  starting at (1,1) in upper left corner. 
+  <LI><TT>Calc3Dto2D(...)</TT><A name=1438>&nbsp;</A> Finds the correspondance 
+  between a given 3D point in space and the 2D image point. 
+  <LI><TT>Direction(...)</TT><A name=1440>&nbsp;</A> Calculates direction from a 
+  given 2D image point through Pinhole. 
+  <LI><TT>PinHole(...)</TT><A name=1442>&nbsp;</A> Caluculates the pinhole world 
+  coordinate. </LI></UL>
+<P>The following example calculates the camera matrix from 11 measured points on 
+a calibration plate. The plate can be seen in figure&nbsp;<A 
+href="node49.html#fig:calibrationplate"><IMG
+align=bottom alt=[*] border=1 src="node49_files/cross_ref_motif.gif"></A>, and 
+the camera image of the plate is shown in figure&nbsp;<A 
+href="node49.html#fig:calibrationplatecamimage"><IMG
+align=bottom alt=[*] border=1 src="node49_files/cross_ref_motif.gif"></A>, note 
+that the reference marks have to be in at least two different depths in order to 
+calculate the camera matrix. When streaming the CPerspective class with the 
+&lt;&lt; operator<A name=1446>&nbsp;</A> to cout the calculated camera matrix is 
+shown. It is also possible to get the indexes written out using the method 
+<TT>PrintCameraMatrix(true)</TT>. The last part of the code simply shows how to 
+use the methods. 
+<P><PRE>   CTimeDate Timer;
+   CPerspective Persp;
+   CPoint3D&lt;float&gt; pnts3d[11];
+   CPoint2D&lt;float&gt; pnts2d[11];
+   Timer.StartTimer(); // stop watch for time elapsed
+   // positions in world coordinates [mm]
+   pnts3d[0]=CPoint3D&lt;float&gt;(55,65,1);
+   pnts3d[1]=CPoint3D&lt;float&gt;(269,55,1);
+   pnts3d[2]=CPoint3D&lt;float&gt;(489,68,1);
+   pnts3d[3]=CPoint3D&lt;float&gt;(163,163,122);
+   pnts3d[4]=CPoint3D&lt;float&gt;(374,160,122);
+   pnts3d[5]=CPoint3D&lt;float&gt;(225,233,122);
+   pnts3d[6]=CPoint3D&lt;float&gt;(163,268,122);
+   pnts3d[7]=CPoint3D&lt;float&gt;(373,267,122);
+   pnts3d[8]=CPoint3D&lt;float&gt;(54,375,1);
+   pnts3d[9]=CPoint3D&lt;float&gt;(266,377,1);
+   pnts3d[10]=CPoint3D&lt;float&gt;(470,378,1);
+   // CCD coordinates [pixels]
+   pnts2d[0]=CPoint2D&lt;float&gt;(91.889694,62.717804);
+   pnts2d[1]=CPoint2D&lt;float&gt;(369.633486,48.792614);
+   pnts2d[2]=CPoint2D&lt;float&gt;(660.180781,64.659289);
+   pnts2d[3]=CPoint2D&lt;float&gt;(214.531214,173.732403);
+   pnts2d[4]=CPoint2D&lt;float&gt;(521.231441,170.783393);
+   pnts2d[5]=CPoint2D&lt;float&gt;(305.030159,271.006412);
+   pnts2d[6]=CPoint2D&lt;float&gt;(215.510610,319.824717);
+   pnts2d[7]=CPoint2D&lt;float&gt;(522.741073,318.324994);
+   pnts2d[8]=CPoint2D&lt;float&gt;(96.084059,446.294712);
+   pnts2d[9]=CPoint2D&lt;float&gt;(372.837662,448.715393);
+   pnts2d[10]=CPoint2D&lt;float&gt;(639.934707,448.745004);
+   
+   Persp.Calibrate(6,pnts3d,pnts2d);
+   cout &lt;&lt; "Camera matrix calculated: " &lt;&lt; endl;
+   cout &lt;&lt; Persp &lt;&lt; endl;
+   
+   // calculating the first 3D points corresponding CCD position
+   CPoint2D&lt;FLOAT32&gt; pnt2D;
+   Persp.Calc3Dto2D(pnts3d[0], pnt2D);
+   cout &lt;&lt; endl &lt;&lt; "3D point " &lt;&lt; pnts3d[0] &lt;&lt; " in 2D CCD chip is: " &lt;&lt;
+        pnt2D &lt;&lt; endl;
+   cout &lt;&lt; "Original measured point is " &lt;&lt; pnts2d[0] &lt;&lt; endl &lt;&lt; endl;
+   
+   // finding direction vector for pnt2D
+   CPoint3D&lt;FLOAT32&gt; pnt3D;
+   Persp.Direction(pnt2D,pnt3D);
+   cout &lt;&lt; "Direction for point " &lt;&lt; pnt2D &lt;&lt; " from \n   pinhole is "
+        &lt;&lt; pnt3D &lt;&lt; endl;
+   
+   // finding pinhole world coordinate
+   Persp.PinHole(pnt3D);
+   cout &lt;&lt; endl &lt;&lt; "Pinhole world coordinate is at " &lt;&lt; pnt3D &lt;&lt; endl;
+   
+   cout &lt;&lt; endl &lt;&lt; "Total time: " &lt;&lt; Timer.StopTimer() &lt;&lt; endl;
+</PRE>
+<P><BR>
+<DIV align=center><A name=fig:calibrationplate>&nbsp;</A><A name=1455>&nbsp;</A> 
+
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> The calibration plate used in the given 
+  example. The coordinate system is shown.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{.65}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/calibrationplate.eps}}$ --><IMG
+      align=bottom 
+      alt="\scalebox{.65}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/calibrationplate.eps}}"
+      border=0 height=399 src="node49_files/img31.gif" 
+  width=532></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P><BR>
+<DIV align=center><A name=fig:calibrationplatecamimage>&nbsp;</A><A 
+name=1529>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> A camera image of the calibration plate 
+  shown in figure&nbsp;<A 
+  href="node49.html#fig:calibrationplate"><IMG
+  align=bottom alt=[*] border=1 src="node49_files/cross_ref_motif.gif"></A>. The 
+  coordinate system is shown.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{.5}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/calibrationplate_camimage.eps}}$ --><IMG
+      align=bottom 
+      alt="\scalebox{.5}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/calibrationplate_camimage.eps}}"
+      border=0 height=368 src="node49_files/img32.gif" 
+  width=491></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P>The next example shows how to write a simple program that finds the center of 
+each mark on the calibration plate. The program load the original image taken by 
+the camera and converts it to 1 b/p. The CSegmentate class is then used to 
+derive each white blob in the image with the method <TT>DeriveBlobs(...)</TT>. 
+By inspection of the binary image we know that each landmark must be a blob with 
+more than 1000 pixels. Moments are then calculated on each blob containing more 
+than 1000 pixels and the center of mass is found by: 
+<P><BR>
+<DIV align=center><A name=centerOfMass>&nbsp;</A> <!-- MATH: \begin{eqnarray}
+(\overline x,  \overline y) & = &
+(\frac{m_{10}}{m_{00}},\frac{m_{01}}{m_{00}}) 
+
+\end{eqnarray} -->
+<TABLE align=center cellPadding=0 width="100%">
+  <TBODY>
+  <TR vAlign=center>
+    <TD align=right noWrap><IMG align=middle 
+      alt="$\displaystyle (\overline x, \overline y)$" border=0 height=34 
+      src="node49_files/img33.gif" width=45></TD>
+    <TD align=middle noWrap>=</TD>
+    <TD align=left noWrap><IMG align=middle 
+      alt="$\displaystyle (\frac{m_{10}}{m_{00}},\frac{m_{01}}{m_{00}})$" 
+      border=0 height=46 src="node49_files/img34.gif" width=93></TD>
+    <TD align=right width=10>(1)</TD></TR></TBODY></TABLE></DIV><BR clear=all>
+<P></P>
+<P>In figure&nbsp;<A 
+href="node49.html#fig:calibrationplatecamimage1bp"><IMG
+align=bottom alt=[*] border=1 src="node49_files/cross_ref_motif.gif"></A> is 
+shown the binary image derived from the original in figure&nbsp;<A 
+href="node49.html#fig:calibrationplatecamimage"><IMG
+align=bottom alt=[*] border=1 src="node49_files/cross_ref_motif.gif"></A>. In 
+figure&nbsp;<A 
+href="node49.html#fig:calibrationplate_found"><IMG
+align=bottom alt=[*] border=1 src="node49_files/cross_ref_motif.gif"></A> is 
+shown the positions found for each mark. The accuracy of this method is probably 
+within two pixels, it is possible with more sophisticated methods to find the 
+center with subpixel accuracy. Here is the example code: 
+<P><PRE>   CTimeDate Timer;
+   Timer.StartTimer();
+   CImage Img;
+   if (Img.Load("c:/temp/calibrationplate.bmp"))
+   {
+      Img.CopyConvert(1,Img);
+      cout &lt;&lt; "Image after converting\n" &lt;&lt; Img &lt;&lt; endl &lt;&lt; endl;
+      Img.Save("c:/temp/test.bmp");
+   
+      CSegmentate Segm;
+      CPixelGroups Pgrps;
+      CFeatures Features;
+        
+      Segm.DeriveBlobs(Img,Pgrps,HIGHCOLOR,1,EIGHTCONNECTED);
+      cout &lt;&lt; "Pixelgroups info:" &lt;&lt; endl &lt;&lt; Pgrps &lt;&lt; endl;
+      for(int count=0; count&lt;Pgrps.GetTotalGroups(); count++)
+      {
+         CPixelGroup* pGrp=Pgrps.GetGroup(count);
+         // comment out the next line to get less information on screen
+         cout &lt;&lt; "Pixelgroup number " &lt;&lt; count &lt;&lt; " info\n" &lt;&lt; 
+                *pGrp &lt;&lt; endl;
+         // by inspection of image we know that the marks
+         // contains at least 1000 pixels, other small pixelgroups
+         // are just skipped
+        if(pGrp-&gt;GetTotalPositions()&gt;1000)
+        {
+           Features.DeriveMomentsBinary(*pGrp,2);
+           double xmean=Features.m_Moments.m10/Features.m_Moments.m00;
+           double ymean=Features.m_Moments.m01/Features.m_Moments.m00;
+           CPoint2D&lt;double&gt; pnt(xmean,ymean);
+           cout &lt;&lt; "Center of mass at " &lt;&lt; pnt &lt;&lt; endl;
+        }
+        else
+        {
+           cout &lt;&lt; "Not enough pixels - skipping" &lt;&lt; endl;
+        }
+     }
+   }
+   
+   cout &lt;&lt; endl &lt;&lt; "Total time: " &lt;&lt; Timer.StopTimer() &lt;&lt; endl;
+</PRE>
+<P><BR>
+<DIV align=center><A name=fig:calibrationplatecamimage1bp>&nbsp;</A><A 
+name=1484>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> The calibration image converted to one bit 
+  per pixel.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{.43}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/calib_binary.eps}}$ --><IMG
+      align=bottom 
+      alt="\scalebox{.43}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/calib_binary.eps}}"
+      border=0 height=396 src="node49_files/img35.gif" 
+  width=527></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P><BR>
+<DIV align=center><A name=fig:calibrationplate_found>&nbsp;</A><A 
+name=1492>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> The center of mass found for each mark shown 
+  with a cross.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{.6}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/calib_found_marks.eps}}$ --><IMG
+      align=bottom 
+      alt="\scalebox{.6}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/calib_found_marks.eps}}"
+      border=0 height=332 src="node49_files/img36.gif" 
+  width=442></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P>The center of mass found for each reference marks is: 
+<P><PRE>Center of mass at (369.288,49.1676)
+Center of mass at (91.5484,62.8519)
+Center of mass at (659.776,64.7859)
+Center of mass at (520.913,170.879)
+Center of mass at (214.196,173.837)
+Center of mass at (304.72,271.21)
+Center of mass at (522.402,318.474)
+Center of mass at (215.169,319.904)
+Center of mass at (95.7496,446.436)
+Center of mass at (372.467,448.83)
+Center of mass at (639.579,448.902)
+</PRE>
+<P>A better method is to convert the original image to gray tones (8 b/p) and 
+extract the center of mass from the gray tones. Here is the corresponding code 
+for this: 
+<P><PRE>   CTimeDate Timer;
+   Timer.StartTimer();
+   CImage Img;
+   if (Img.Load("c:/temp/calibrationplate.bmp"))
+   {
+      Img.CopyConvert(8,Img);
+      cout &lt;&lt; "Image after converting\n" &lt;&lt; Img &lt;&lt; endl &lt;&lt; endl;
+      Img.Save("c:/temp/test.bmp");
+   
+      CSegmentate Segm;
+      CPixelGroups Pgrps;
+      CFeatures Features;
+        
+      Segm.DeriveBlobs(Img,Pgrps,HIGHCOLOR,128,EIGHTCONNECTED);
+      cout &lt;&lt; "Pixelgroups info:" &lt;&lt; endl &lt;&lt; Pgrps &lt;&lt; endl;
+      for(int count=0; count&lt;Pgrps.GetTotalGroups(); count++)
+      {
+         CPixelGroup* pGrp=Pgrps.GetGroup(count);
+         // comment out the next line to get less information on screen
+         cout &lt;&lt; "Pixelgroup number " &lt;&lt; count &lt;&lt; " info\n" &lt;&lt; 
+                *pGrp &lt;&lt; endl;
+         // by inspection of image we know that the marks
+         // contains at least 1000 pixels, other small pixelgroups
+         // are just skipped
+        if(pGrp-&gt;GetTotalPositions()&gt;1000)
+        {
+           pGrp-&gt;AddColors(Img);
+           Features.DeriveMomentsGrayTone(*pGrp,0,2);
+           double xmean=Features.m_Moments.m10/Features.m_Moments.m00;
+           double ymean=Features.m_Moments.m01/Features.m_Moments.m00;
+           CPoint2D&lt;double&gt; pnt(xmean,ymean);
+           cout &lt;&lt; "Center of mass at " &lt;&lt; pnt &lt;&lt; endl;
+        }
+        else
+        {
+           cout &lt;&lt; "Not enough pixels - skipping" &lt;&lt; endl;
+        }
+     }
+   }
+   
+   cout &lt;&lt; endl &lt;&lt; "Total time: " &lt;&lt; Timer.StopTimer() &lt;&lt; endl;
+</PRE>
+<P>Compare this code with the first example and you will realize that only a few 
+changes are neccesary to get the gray tone center of mass values. Here is the 
+results from this: 
+<P><PRE>Center of mass at (369.633,48.7926)
+Center of mass at (91.8897,62.7178)
+Center of mass at (660.181,64.6593)
+Center of mass at (521.231,170.783)
+Center of mass at (214.531,173.732)
+Center of mass at (305.03,271.006)
+Center of mass at (522.741,318.325)
+Center of mass at (215.511,319.825)
+Center of mass at (96.0841,446.295)
+Center of mass at (372.838,448.715)
+Center of mass at (639.935,448.745)
+</PRE>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node50.htm"
+name=tex2html760><IMG align=bottom alt=next border=0 height=24 
+src="node49_files/next_motif.gif" width=37></A> <A 
+href="node38.htm"
+name=tex2html756><IMG align=bottom alt=up border=0 height=24 
+src="node49_files/up_motif.gif" width=26></A> <A 
+href="node48.htm"
+name=tex2html752><IMG align=bottom alt=previous border=0 height=24 
+src="node49_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html758><IMG align=bottom alt=contents border=0 height=24 
+src="node49_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html759><IMG align=bottom alt=index border=0 height=24 
+src="node49_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node50.htm"
+name=tex2html761>Camera classes and IPL98</A> <B>Up:</B> <A 
+href="node38.htm"
+name=tex2html757>Using the image algorithms</A> <B>Previous:</B> <A 
+href="node48.htm"
+name=tex2html753>Thinning and skeletonizing</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

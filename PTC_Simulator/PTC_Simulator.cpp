@@ -1,0 +1,40 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+USERES("PTC_Simulator.res");
+USEFORM("Main.cpp", FormMain);
+USEFORM("About.cpp", FormAbout);
+USEOBJ("E:\Ali\Library\Lib\Protection\skeydrv.obj");
+USEUNIT("..\SPL\spl_Types.cpp");
+USEUNIT("..\SPL\spl_CodingLib.cpp");
+USEUNIT("..\SPL\spl_Contour.cpp");
+USEUNIT("..\SPL\spl_EmbFile.cpp");
+USEUNIT("..\SPL\spl_EmbLib.cpp");
+USEFORM("..\SPL\spl_EmbOpenDialog.cpp", FormEmbOpenDialog);
+USEUNIT("..\SPL\spl_Embroidery.cpp");
+USEUNIT("..\SPL\spl_EmbSimulator.cpp");
+USEUNIT("..\SPL\spl_Point.cpp");
+USEUNIT("..\SPL\spl_Timer.cpp");
+USEUNIT("..\SPL\Pyramids\pyramidfilters.cpp");
+USEUNIT("..\SPL\Pyramids\pyramidtools.cpp");
+USEUNIT("..\Protection\ProtectionLib.cpp");
+//---------------------------------------------------------------------------
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+    try
+    {
+         Application->Initialize();
+         Application->Title = "EmbSimulator V1.0";
+         Application->CreateForm(__classid(TFormMain), &FormMain);
+                 Application->CreateForm(__classid(TFormAbout), &FormAbout);
+                 Application->CreateForm(__classid(TFormEmbOpenDialog), &FormEmbOpenDialog);
+                 Application->Run();
+    }
+    catch (Exception &exception)
+    {
+         Application->ShowException(&exception);
+    }
+    return 0;
+}
+//---------------------------------------------------------------------------

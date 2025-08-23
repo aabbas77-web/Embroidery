@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node11.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>File names and placement</TITLE>
+<META content="File names and placement" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node11_files/include_all.css" rel=STYLESHEET><LINK href="node10.htm"
+rel=previous><LINK href="node8.htm" rel=up><LINK href="node12.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node12.htm"
+name=tex2html281><IMG align=bottom alt=next border=0 height=24 
+src="node11_files/next_motif.gif" width=37></A> <A 
+href="node8.htm"
+name=tex2html277><IMG align=bottom alt=up border=0 height=24 
+src="node11_files/up_motif.gif" width=26></A> <A 
+href="node10.htm"
+name=tex2html273><IMG align=bottom alt=previous border=0 height=24 
+src="node11_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html279><IMG align=bottom alt=contents border=0 height=24 
+src="node11_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html280><IMG align=bottom alt=index border=0 height=24 
+src="node11_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node12.htm"
+name=tex2html282>Installing and compiling IPL98</A> <B>Up:</B> <A 
+href="node8.htm"
+name=tex2html278>Structure</A> <B>Previous:</B> <A 
+href="node10.htm"
+name=tex2html274>Image representation in RAM</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00063000000000000000>&nbsp;</A><A name=309>&nbsp;</A> 
+<BR>File names and placement </H2>The files belonging to IPL98 is split into 
+three folders (one of them contains several subfolders): <EM>ipl98</EM>, 
+<EM>points</EM> and <EM>time</EM>, the hierarchy of the folders can be seen in 
+figure&nbsp;<A 
+href="node11.html#fig:folders"><IMG
+align=bottom alt=[*] border=1 src="node11_files/cross_ref_motif.gif"></A>. The 
+<EM>camera</EM>-folder used to be an integrated part of IPL98 but has since 
+version 1.10 been removed. It is still higly supported but is a seperate add on 
+to the library, it is available for download at the IPL98 hompeag in the 
+<EM>Camera Classes</EM> section. The reason for moving it is that its a hardware 
+dependent area, new folders with specialized code will be added here as 
+different framegrabbers and cameras are used, read more about the camera classes 
+in section&nbsp;<A 
+href="node50.html#sec:camera_classes"><IMG
+align=bottom alt=[*] border=1 src="node11_files/cross_ref_motif.gif"></A>. The 
+folder <EM>ipl98</EM> contains both the C and C++ code for the containers and 
+image classes/functions. The <EM>points</EM> folder is C structures and C++ 
+classes giving two and three dimensional points and corresponding functions to 
+work with the points. They can be used independently of the IPL98 library. The 
+<EM>time</EM> folder contains C functions and a C++ class for using a timer and 
+can also be used without using the rest of the library<A 
+href="footnode.html#foot345"
+name=tex2html7><SUP>3</SUP></A>. Every ANSI C code is placed in folders named 
+<EM>kernel_c</EM> in the relevant folders. 
+<P>The <EM>ipl98</EM> folder contains most of the code in the library. The four 
+files needed for working with the library is placed in the folder together with 
+two folders: <EM>cpp_classes</EM> and <EM>kernel_c</EM>. The 
+<EM>cpp_classes</EM> contains all the C++ code. Here is all container classes 
+and a palette class. In the folder <EM>algorithms</EM> is all the classes 
+containing code for image proccessing algorithms. The last folder named 
+<EM>general_functions</EM> contains a file with macros used for general 
+purposes. The file names containing classes should always have the same name as 
+the class name except the leading letter ``C''. In the <EM>kernel_c</EM> folder 
+are the ANSI C code. Here the different matrix image classes is grouped into 
+folders with relevant names. The algorithms is again contained in a folder named 
+<EM>algorithms</EM>. The file names should give an idea about the contents in 
+them. 
+<P><BR>
+<DIV align=center><A name=fig:folders>&nbsp;</A><A name=347>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> The folder structure of IPL98. Note, that 
+  the camera folder is not a part of IPL98 but is a seperate add on which can be 
+  downloaded from the homepage in the <EM>Camera Classes</EM> section.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{1.0}{
+\includegraphics{/home/edr/ipl/tutorial/structure/images/folders.eps}}$ --><IMG 
+      align=bottom 
+      alt="\scalebox{1.0}{&#10;\includegraphics{/home/edr/ipl/tutorial/structure/images/folders.eps}}" 
+      border=0 height=390 src="node11_files/img7.gif" width=278> 
+  </DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node12.htm"
+name=tex2html281><IMG align=bottom alt=next border=0 height=24 
+src="node11_files/next_motif.gif" width=37></A> <A 
+href="node8.htm"
+name=tex2html277><IMG align=bottom alt=up border=0 height=24 
+src="node11_files/up_motif.gif" width=26></A> <A 
+href="node10.htm"
+name=tex2html273><IMG align=bottom alt=previous border=0 height=24 
+src="node11_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html279><IMG align=bottom alt=contents border=0 height=24 
+src="node11_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html280><IMG align=bottom alt=index border=0 height=24 
+src="node11_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node12.htm"
+name=tex2html282>Installing and compiling IPL98</A> <B>Up:</B> <A 
+href="node8.htm"
+name=tex2html278>Structure</A> <B>Previous:</B> <A 
+href="node10.htm"
+name=tex2html274>Image representation in RAM</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node13.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Hardware dependency</TITLE>
+<META content="Hardware dependency" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node13_files/include_all.css" rel=STYLESHEET><LINK href="node14.htm"
+rel=next><LINK href="node12.htm" rel=previous><LINK href="node12.htm"
+rel=up><LINK href="node14.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node14.htm"
+name=tex2html309><IMG align=bottom alt=next border=0 height=24 
+src="node13_files/next_motif.gif" width=37></A> <A 
+href="node12.htm"
+name=tex2html305><IMG align=bottom alt=up border=0 height=24 
+src="node13_files/up_motif.gif" width=26></A> <A 
+href="node12.htm"
+name=tex2html299><IMG align=bottom alt=previous border=0 height=24 
+src="node13_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html307><IMG align=bottom alt=contents border=0 height=24 
+src="node13_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html308><IMG align=bottom alt=index border=0 height=24 
+src="node13_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node14.htm"
+name=tex2html310>Using the C only</A> <B>Up:</B> <A 
+href="node12.htm"
+name=tex2html306>Installing and compiling IPL98</A> <B>Previous:</B> <A 
+href="node12.htm"
+name=tex2html300>Installing and compiling IPL98</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00071000000000000000>&nbsp;</A><A name=406>&nbsp;</A> <A 
+name=subsec:hardware>&nbsp;</A> <BR>Hardware dependency </H2>In order to fulfil 
+the desire of making a platform and hardware independent library two things must 
+be taken into consideration. The first thing to check is if your hardware is of 
+type BIG ENDIAN or LITTLE ENDIAN. The Intel x86 processors and compatible are 
+LITTLE ENDIAN types whereas most RISC processors are BIG ENDIAN, that includes 
+most (maybe all?) SGI and SUN machines. As default the library is set to use 
+LITTLE ENDIAN, ie. when using it on a x86 architecture you do not have to make 
+any changes. 
+<P>In case of a BIG ENDIAN machine you must remove the comment-signs in top of 
+the file <EM>ipl98/ipl98.h</EM>: 
+<P><PRE>     /*#define IPL_BIG_ENDIAN*/
+</PRE>
+<P>The other thing to check is the size of each simpel type declared in IPL98. 
+This is necessary due to the fact that digital images are represented with well 
+defined sizes of pixels and header information when stored in files. 
+<P>This means that the size of the types INT8, UINT8, INT16, UINT16, INT32, 
+UINT32 and FLOAT32 must be the right size. Check this by running the following 
+<EM>main</EM> program: 
+<P><PRE>     void main()
+     {
+         printf("size INT8 = %d (should be 1)\n",sizeof(INT8));
+         printf("size UINT8 = %d (should be 1)\n",sizeof(UINT8));
+         printf("size INT16 = %d (should be 2)\n",sizeof(INT16));
+         printf("size UINT16 = %d (should be 2)\n",sizeof(UINT16));
+         printf("size INT32 = %d (should be 4)\n",sizeof(INT32));
+         printf("size UINT32 = %d (should be 4)\n",sizeof(UINT32));
+         printf("size FLOAT32 = %d (should be 4)\n",sizeof(FLOAT32));
+     }
+</PRE>If the sizes are not correct you must change the type in the file 
+<EM>ipl98/kernel_c/ipl98_types.h</EM>. On most machines the default types are 
+correct so it should not be necessary to change these definitions. 
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node14.htm"
+name=tex2html309><IMG align=bottom alt=next border=0 height=24 
+src="node13_files/next_motif.gif" width=37></A> <A 
+href="node12.htm"
+name=tex2html305><IMG align=bottom alt=up border=0 height=24 
+src="node13_files/up_motif.gif" width=26></A> <A 
+href="node12.htm"
+name=tex2html299><IMG align=bottom alt=previous border=0 height=24 
+src="node13_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html307><IMG align=bottom alt=contents border=0 height=24 
+src="node13_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html308><IMG align=bottom alt=index border=0 height=24 
+src="node13_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node14.htm"
+name=tex2html310>Using the C only</A> <B>Up:</B> <A 
+href="node12.htm"
+name=tex2html306>Installing and compiling IPL98</A> <B>Previous:</B> <A 
+href="node12.htm"
+name=tex2html300>Installing and compiling IPL98</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node36.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Adding colors to a pixelgroup</TITLE>
+<META content="Adding colors to a pixelgroup" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node36_files/include_all.css" rel=STYLESHEET><LINK href="node35.htm"
+rel=previous><LINK href="node35.htm" rel=up><LINK href="node37.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node37.htm"
+name=tex2html599><IMG align=bottom alt=next border=0 height=24 
+src="node36_files/next_motif.gif" width=37></A> <A 
+href="node35.htm"
+name=tex2html595><IMG align=bottom alt=up border=0 height=24 
+src="node36_files/up_motif.gif" width=26></A> <A 
+href="node35.htm"
+name=tex2html591><IMG align=bottom alt=previous border=0 height=24 
+src="node36_files/previous_motif.gif" width=63></A> <A
+href="node1.htm"
+name=tex2html597><IMG align=bottom alt=contents border=0 height=24 
+src="node36_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html598><IMG align=bottom alt=index border=0 height=24 
+src="node36_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node37.htm"
+name=tex2html600>Container for several pixelgroups</A> <B>Up:</B> <A 
+href="node35.htm"
+name=tex2html596>Working with a pixelgroup</A> <B>Previous:</B> <A 
+href="node35.htm"
+name=tex2html592>Working with a pixelgroup</A> <BR><BR><!--End of Navigation Panel-->
+<H3><A name=SECTION00096100000000000000>Adding colors to a pixelgroup</A> 
+</H3>Adding colors are normally done by providing an image (typically the image 
+from where the positions came) in the method <TT>AddColors(const CStdImage&amp; 
+Img)</TT><A name=914>&nbsp;</A>. Colors can also be added manually with the 
+methods <TT>AllocColors()</TT> followed by calls to 
+<TT>AddPositionColor(...)</TT> or <TT>InsertPositionColor(...)</TT>. They can be 
+removed at any time by the method <TT>RemoveColors()</TT><A name=919>&nbsp;</A>. 
+To copy a pixel group to an image, two methods are available: 
+<TT>CopyToImage(const CPalette* pPalette, UINT32 BackGround,CStdImage&amp; 
+Dest)</TT><A name=921>&nbsp;</A> and <TT>AddToImage(...)</TT><A 
+name=923>&nbsp;</A>. The first allocates an images which is exactly the size of 
+the blob and plots the blob in it, whereas the latter copies the group to an 
+existing image. Using the method <TT>CopyToImage(...)</TT>, there are three 
+cases which decides the bit depth of the output image: 
+<DL compact>
+  <DT>1. 
+  <DD>No colors available (i.e. the method AddColors() has not been called), 
+  then a black and white image with 1 b/p is produced and the positions are 
+  plotted in the image according to the "Color" member of the 
+  TPixelGroup-structure. If the Color-type is undefined the default is a white 
+  background with black pixels set at the given positions. 
+  <DT>2. 
+  <DD>Colors available but no palette is given (i.e. Palette is a NULL pointer), 
+  then an image with a graytone palette is produced if the Bits pixel depth 
+  member of CPixelGroup is 1 or 8. If the pixel depts is 24 b/p an image with 24 
+  b/p without a palette is produced. 
+  <DT>3. 
+  <DD>Colors available and a palette is provided. An image with pixel depth 
+  given in CPixelGroup and the given palette is produced. The pallette must 
+  correspond with the pixel depth in the TPixelGroup, otherwise an error message 
+  will be produced. </DD></DL>Individual colors can be set and read in the 
+associated colors (if they are available, use <TT>ColorsAvailable()</TT><A 
+name=928>&nbsp;</A> to check) with the methods <TT>GetColor(...)</TT><A 
+name=930>&nbsp;</A> and <TT>SetColor(...)</TT><A name=932>&nbsp;</A>. Origo of 
+the new image is set to (-Left.x,-Top.y) which is the pixelgroups top left 
+boundary. This means that a point (x,y) in the original image will correspond to 
+the same position (x,y) in an image created from a pixelgroup, that is of course 
+only the case if the pixelgroup was derived from the original image. The 
+following example extract one blob<A 
+href="footnode.html#foot984"
+name=tex2html18><SUP>12</SUP></A> from an image and create a new image 
+consisting of that blob. Then a cross is drawn in both the original image and in 
+the blob image to show that the position values used are the same in both image. 
+Figure&nbsp;<A 
+href="node36.html#fig:pixel_group_pos"><IMG
+align=bottom alt=[*] border=1 src="node36_files/cross_ref_motif.gif"></A> shows 
+the original image and the derived blob. Here is the code used to produce the 
+images: <PRE>   CImage Img,ImgDest; // Images
+   CPixelGroups PixelGroups; // Holds information about blobs
+   CTimeDate Timer;
+   Timer.StartTimer(); // stop watch for time elapsed
+        
+    if (Img.Load("c:/temp/three_segments.bmp"))
+    {
+       cout &lt;&lt; Img &lt;&lt; endl;
+                
+       // Find the blobs in image
+       CSegmentate Segm;
+       Segm.DeriveBlobs(Img,PixelGroups,HIGHCOLOR,128,EIGHTCONNECTED);
+
+       // Copy blob number 2 to gray tone image
+       PixelGroups.AddColors(Img); // first add colors
+                CPixelGroup* pGrp=PixelGroups.GetGroup(2);
+       pGrp-&gt;CopyToImage(&amp;Img.m_Pal,128,ImgDest);
+
+       int cnt;
+       // draw rectangle in original image around blob area
+       for(cnt=pGrp-&gt;GetLeft().GetX(); cnt&lt;pGrp-&gt;GetRight().GetX(); cnt++)
+       {
+          Img.SetPixel(cnt,pGrp-&gt;GetTop().GetY(),255);
+          Img.SetPixel(cnt,pGrp-&gt;GetBottom().GetY(),255);
+       }
+       for(cnt=pGrp-&gt;GetTop().GetY(); cnt&lt;pGrp-&gt;GetBottom().GetY(); cnt++)
+       {
+          Img.SetPixel(pGrp-&gt;GetLeft().GetX(),cnt,255);
+          Img.SetPixel(pGrp-&gt;GetRight().GetX(),cnt,255);
+       }
+       // draw cross in both original image and "blob" image
+       int size=5;
+       for(cnt=230-size;cnt&lt;230+size;cnt++)
+       {
+          Img.SetPixel(cnt,220,0);
+          ImgDest.SetPixel(cnt,220,0);
+       }
+       for(cnt=220-size;cnt&lt;220+size;cnt++)
+       {
+          Img.SetPixel(230,cnt,0);
+          ImgDest.SetPixel(230,cnt,0);
+       }
+       // save original image containing edge around the blob and a cross
+       Img.Save("c:/temp/test2.bmp");
+       // save blob 2 to disk (c:/temp/test.bmp)
+       ImgDest.Save("c:/temp/test.bmp");
+       cout &lt;&lt; "Blob 2 saved as c:/temp/test.bmp" &lt;&lt; endl;
+
+       cout &lt;&lt; "Total time: " &lt;&lt; Timer.StopTimer() &lt;&lt; endl;
+    }
+    else
+    {
+       cout &lt;&lt; "Loading failed" &lt;&lt; endl; 
+    }
+</PRE>
+<P><BR>
+<DIV align=center><A name=fig:pixel_group_pos>&nbsp;</A><A name=987>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> An example of a pixelgroup having the same 
+  position values as the original image. In <B>a)</B> the original image is 
+  shown with a rectangle surrounding the area from which the blob is derived. In 
+  <B>b)</B> is shown the pixelgroup copied to a new image. The cross shown in 
+  both images is drawn with center at the same position (230,220) in both 
+  images.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center>
+      <TABLE align=center cellPadding=3>
+        <TBODY>
+        <TR>
+          <TD align=middle>
+            <TABLE align=center cellPadding=3>
+              <TBODY>
+              <TR>
+                <TD align=middle><!-- MATH: $\scalebox{.6}{
+\includegraphics{/home/edr/ipl/using_ipl98/images/pixelgroup_pos_original.eps}}$ --><IMG
+                  align=bottom 
+                  alt="\scalebox{.6}{&#10;\includegraphics{/home/edr/ipl/using_ipl98/images/pixelgroup_pos_original.eps}}"
+                  border=0 height=287 src="node36_files/img10.gif" width=287></TD>
+                <TD align=middle><!-- MATH: $\scalebox{.6}{
+\includegraphics{/home/edr/ipl/using_ipl98/images/pixelgroup_pos_blob.eps}}$ --><IMG
+                  align=bottom 
+                  alt="\scalebox{.6}{&#10;\includegraphics{/home/edr/ipl/using_ipl98/images/pixelgroup_pos_blob.eps}}"
+                  border=0 height=105 src="node36_files/img11.gif" 
+              width=120></TD></TR>
+              <TR>
+                <TD align=middle>(a)</TD>
+                <TD 
+      align=middle>(b)</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P>The streaming operator &lt;&lt; <A name=954>&nbsp;</A> and the method 
+<TT>PrintInfo(...)</TT> can be used to get information. From the &lt;&lt; 
+operator this is written: 
+<P><PRE>**************** PixelGroup info ********************
+ Positions: Top=(1,1) Bottom=(2,84) Left=(-1,19) Right=(30,12)
+ NumberOfPixels=5 AllocatedPixels=8
+</PRE>The boundary rectangle for this group is upper left (-1,1) and bottom 
+right (30,80), note that the 2D positions defining the edge is stored, that is 
+the leftmost, rightmost, uppermost and bottommost positions. If more than one 
+position defines one of the edges one are picked randomly. NumberOfPixels is the 
+total number of pixels store in the group and the Allocated pixels is the total 
+allocated memory for pixel positions, in this example the next three positions 
+will be very fast to insert but the fourth will force the group to allocate a 
+new area with room for 8 positions. With the PrintInfo(...) method the positions 
+in the group can be printed too. The first parameter must be true to get 
+positions printed and the second defines how many positions on each line. The 
+output below was produced by calling PrintInfo(true,3): 
+<P><PRE>**************** PixelGroup info ********************
+ Positions: Top=(1,1) Bottom=(2,84) Left=(-1,19) Right=(30,12)
+ NumberOfPixels=8 AllocatedPixels=8
+
+ pos 0=(1,1)  pos 1=(6,9)  pos 2=(30,12)
+ pos 3=(2,84)  pos 4=(-1,19)  pos 5=(12,34)
+ pos 6=(5,1)  pos 7=(10,48)
+</PRE>Here is a bigger example showing most of the methods explained: 
+<P><PRE>    // create an image with dimensions 10*10 and
+    // set every pixel to (x+y) for all color components
+    CImage Img(10,10,24);
+    for(int y=Img.GetMinY();y&lt;Img.GetMaxY();y++)
+    {
+            for(int x=Img.GetMinX();x&lt;Img.GetMaxX();x++)
+            {
+                    Img.SetPixelFast(x,y,CPalette::CreateRGB(x+y,x+y,x+y));
+            }
+    }
+    CPixelGroup pg; // a new pixelgroup is created
+    // add some positions
+    pg.AddPosition(2,2);
+    pg.AddPosition(9,9);
+    pg.AddPosition(2,9);
+    pg.AddPosition(5,6);
+    pg.PrintInfo(true,5);
+    
+    // inserting a position at a given place
+    // forces the group to allocate momory for a total of 8 positions
+    cout &lt;&lt; endl &lt;&lt; "inserting position at index 1 (slow method)" &lt;&lt; endl;
+    pg.InsertPosition(CPoint2D&lt;int&gt;(9,2),1);
+    cout &lt;&lt; "Now the group looks like this:" &lt;&lt; endl;
+    pg.PrintInfo(true,5);
+    
+    cout &lt;&lt; "Adjusting the allocated memory in the pixelgroup" &lt;&lt; endl;
+    pg.AdjustSizeOfPositions();
+    pg.PrintInfo(true,5);
+
+    pg.AddColors(Img);
+    if (pg.ColorsAvailable)
+    {
+            CImage Img2;
+            pg.CopyToImage(NULL,CPalette::CreateRGB(0,0,0),Img2);
+               // copy pixelgroup to new image (case 2 from
+               // documentation) with black background 
+            cout &lt;&lt; "Pixelgroup copied to a new CImage object:" &lt;&lt; endl;
+            cout &lt;&lt; Img2 &lt;&lt; endl &lt;&lt; endl;
+
+            // setting a color for the last position stored in the group
+            if (pg.SetColor(CPalette::CreateRGB(100,0,255),
+                  pg.GetTotalPositions()-1))
+            {
+               cout &lt;&lt; "Color set at index " &lt;&lt; pg.GetTotalPositions()-1
+                    &lt;&lt; " in pixelgroup" &lt;&lt; endl;
+            }
+    }
+
+    // searching for a position - index returned in "Index"
+    unsigned int Index;
+    if (pg.PosInGroup(CPoint2D&lt;UINT16&gt;(2,2),Index))
+    {
+       cout &lt;&lt; endl &lt;&lt; "Position (2,2) found in group" &lt;&lt; endl &lt;&lt; endl;
+    }
+
+    pg.Empty(); // empty the pixelgroup the same way as with a CStdImage
+    cout &lt;&lt; "Emptying the pixelgroup: " &lt;&lt; endl;
+    cout &lt;&lt; pg &lt;&lt; endl;
+</PRE>
+<P>The method <TT>PosInGroup(...)</TT><A name=963>&nbsp;</A> used at the end of 
+the example shows how to ask if a given position is present in a group. Before 
+that is shown how to manipulate a single color with the method 
+<TT>SetColor(...)</TT>. 
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node37.htm"
+name=tex2html599><IMG align=bottom alt=next border=0 height=24 
+src="node36_files/next_motif.gif" width=37></A> <A 
+href="node35.htm"
+name=tex2html595><IMG align=bottom alt=up border=0 height=24 
+src="node36_files/up_motif.gif" width=26></A> <A 
+href="node35.htm"
+name=tex2html591><IMG align=bottom alt=previous border=0 height=24 
+src="node36_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html597><IMG align=bottom alt=contents border=0 height=24 
+src="node36_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html598><IMG align=bottom alt=index border=0 height=24 
+src="node36_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node37.htm"
+name=tex2html600>Container for several pixelgroups</A> <B>Up:</B> <A 
+href="node35.htm"
+name=tex2html596>Working with a pixelgroup</A> <B>Previous:</B> <A 
+href="node35.htm"
+name=tex2html592>Working with a pixelgroup</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

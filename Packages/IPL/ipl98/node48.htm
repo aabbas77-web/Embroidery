@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node48.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Thinning and skeletonizing</TITLE>
+<META content="Thinning and skeletonizing" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node48_files/include_all.css" rel=STYLESHEET><LINK href="node47.htm"
+rel=previous><LINK href="node46.htm" rel=up><LINK href="node49.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node49.htm"
+name=tex2html750><IMG align=bottom alt=next border=0 height=24 
+src="node48_files/next_motif.gif" width=37></A> <A 
+href="node46.htm"
+name=tex2html746><IMG align=bottom alt=up border=0 height=24 
+src="node48_files/up_motif.gif" width=26></A> <A 
+href="node47.htm"
+name=tex2html742><IMG align=bottom alt=previous border=0 height=24 
+src="node48_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html748><IMG align=bottom alt=contents border=0 height=24 
+src="node48_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html749><IMG align=bottom alt=index border=0 height=24 
+src="node48_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node49.htm"
+name=tex2html751>Perspective camera transformation</A> <B>Up:</B> <A 
+href="node46.htm"
+name=tex2html747>Morphological operations</A> <B>Previous:</B> <A 
+href="node47.htm"
+name=tex2html743>Dilate and erode</A> <BR><BR><!--End of Navigation Panel-->
+<H3><A name=SECTION000104200000000000000>&nbsp;</A><A name=1305>&nbsp;</A><A 
+name=1306>&nbsp;</A> <BR>Thinning and skeletonizing </H3>Three methods are 
+available for thinning and skeletonizing an object: 
+<P>
+<UL>
+  <LI><TT>Thinning(...)</TT><A name=1309>&nbsp;</A> Reduces all black components 
+  in a binary image to single pixel wide branches and preserves the following 
+  properties: 1) Does not remove end points, 2) does not break connectedness, 
+  and 3) does not cause excessive erosion of the region. The algorithm is 
+  described in detail in Gonzales and Woods page 491-494. Note: A thinning 
+  algorithm is not the same as a medial axis transform (MAT). 
+  <LI><TT>Skeletonizing(...)</TT><A name=1311>&nbsp;</A> Transforms all black 
+  components in a binary image to a skeleton defined by the medial axis 
+  transform (MAT). Algorithm implemented with the method explained in Gonzales 
+  and Woods page 535-538. 
+  <LI><TT>SkeletonZhou(...)</TT><A name=1313>&nbsp;</A> A skeleton somewhere 
+  between the results of <TT>Thinning(...)</TT> and <TT>Skeletonizing(...)</TT> 
+  is produced. The resultning skeleton is more roboust to noise on edges, i.e. 
+  it produces less small unwanted branches arising from noise on edges. But the 
+  skeleton is closer to a real MAT compared to the Thinning() algorithm. The 
+  algorithm is explained in detail in the article "A novel single-pass thinning 
+  algorithm and an effective set of performance criteria" by C. Quek &amp; G. S. 
+  Ng. R. W. Zhou&nbsp;[<A 
+  href="node60.html#zhou">3</A>].
+  Pattern Recognition Letters, 16:1267-1275, 1995. The parameter PreserveCorners 
+  is an additional feature to the original algorithm. It prevents the algorithm 
+  from eroding corners and the result is then very close to a MAT. </LI></UL>
+<P>The first two methods mentioned is the normal thinning and skeletonizing 
+whereas <TT>SkeletonZhou</TT> is somewhere in between. Skeletonizing an object 
+according to the MAT turns out to be very difficult to implement and the method 
+<TT>Skeletonizing(...)</TT> is not always correct. In most cases it also results 
+in many small branches which needs to be pruned. The method 
+<TT>SkeletonZhou(...)</TT> does not have the problems with the branches and are 
+often a good alternative to skeletonizing. It is recommended to try all methods 
+to get an idea about the results in a given task. 
+<P>In the figures&nbsp;<A 
+href="node48.html#fig:testa"><IMG
+align=bottom alt=[*] border=1 src="node48_files/cross_ref_motif.gif"></A> to 
+&nbsp;<A 
+href="node48.html#fig:testh"><IMG
+align=bottom alt=[*] border=1 src="node48_files/cross_ref_motif.gif"></A> a 
+number of examples of each thinning/skeletonizing algorithm are shown on 
+different shapes<A 
+href="footnode.html#foot1323"
+name=tex2html30><SUP>14</SUP></A>. 
+<P><BR>
+<DIV align=center><A name=fig:testa>&nbsp;</A><A name=1512>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> From left: 1. original shape, 2. 
+  Thinning(...), 3. Skeletonizing(...), 4. SkeletonZhou(...), 5. 
+  SkeletonZhou(...) with the parameter <EM>PreserveCorners</EM> set to 
+  true.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{.5}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/testa.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testares1.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testares2.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testares3.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testares4.eps}
+  }$ --><IMG 
+      align=bottom 
+      alt="\scalebox{.5}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/...&#10;...includegraphics{/home/edr/ipl/using_algorithms/images/testares4.eps}&#10;}"
+      border=0 height=77 src="node48_files/img23.gif" 
+  width=680></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P><BR>
+<DIV align=center><A name=fig:testb>&nbsp;</A><A name=1514>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> From left: 1. original shape, 2. 
+  Thinning(...), 3. Skeletonizing(...), 4. SkeletonZhou(...), 5. 
+  SkeletonZhou(...) with the parameter <EM>PreserveCorners</EM> set to 
+  true.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{.7}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/testb.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testbres1.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testbres2.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testbres3.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testbres4.eps}
+  }$ --><IMG 
+      align=bottom 
+      alt="\scalebox{.7}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/...&#10;...includegraphics{/home/edr/ipl/using_algorithms/images/testbres4.eps}&#10;}"
+      border=0 height=95 src="node48_files/img24.gif" 
+  width=712></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P><BR>
+<DIV align=center><A name=fig:testc>&nbsp;</A><A name=1516>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> From left: 1. original shape, 2. 
+  Thinning(...), 3. Skeletonizing(...), 4. SkeletonZhou(...), 5. 
+  SkeletonZhou(...) with the parameter <EM>PreserveCorners</EM> set to 
+  true.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{.28}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/testc.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testcres1.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testcres2.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testcres3.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testcres4.eps}
+  }$ --><IMG 
+      align=bottom 
+      alt="\scalebox{.28}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images...&#10;...includegraphics{/home/edr/ipl/using_algorithms/images/testcres4.eps}&#10;}"
+      border=0 height=67 src="node48_files/img25.gif" 
+  width=686></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P><BR>
+<DIV align=center><A name=fig:testd>&nbsp;</A><A name=1518>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> From left: 1. original shape, 2. 
+  Thinning(...), 3. Skeletonizing(...), 4. SkeletonZhou(...), 5. 
+  SkeletonZhou(...) with the parameter <EM>PreserveCorners</EM> set to 
+  true.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{.6}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/testd.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testdres1.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testdres2.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testdres3.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testdres4.eps}
+  }$ --><IMG 
+      align=bottom 
+      alt="\scalebox{.6}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/...&#10;...includegraphics{/home/edr/ipl/using_algorithms/images/testdres4.eps}&#10;}"
+      border=0 height=112 src="node48_files/img26.gif" 
+  width=614></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P><BR>
+<DIV align=center><A name=fig:teste>&nbsp;</A><A name=1520>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> From left: 1. original shape, 2. 
+  Thinning(...), 3. Skeletonizing(...), 4. SkeletonZhou(...), 5. 
+  SkeletonZhou(...) with the parameter <EM>PreserveCorners</EM> set to 
+  true.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{.6}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/teste.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testeres1.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testeres2.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testeres3.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testeres4.eps}
+  }$ --><IMG 
+      align=bottom 
+      alt="\scalebox{.6}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/...&#10;...includegraphics{/home/edr/ipl/using_algorithms/images/testeres4.eps}&#10;}"
+      border=0 height=111 src="node48_files/img27.gif" 
+  width=594></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P><BR>
+<DIV align=center><A name=fig:testf>&nbsp;</A><A name=1522>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> From left: 1. original shape, 2. 
+  Thinning(...), 3. Skeletonizing(...), 4. SkeletonZhou(...), 5. 
+  SkeletonZhou(...) with the parameter <EM>PreserveCorners</EM> set to 
+  true.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{.4}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/testf.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testfres1.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testfres2.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testfres3.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testfres4.eps}
+  }$ --><IMG 
+      align=bottom 
+      alt="\scalebox{.4}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/...&#10;...includegraphics{/home/edr/ipl/using_algorithms/images/testfres4.eps}&#10;}"
+      border=0 height=61 src="node48_files/img28.gif" 
+  width=681></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P><BR>
+<DIV align=center><A name=fig:testg>&nbsp;</A><A name=1524>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> From left: 1. original shape, 2. 
+  Thinning(...), 3. Skeletonizing(...), 4. SkeletonZhou(...), 5. 
+  SkeletonZhou(...) with the parameter <EM>PreserveCorners</EM> set to 
+  true.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{.6}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/testg.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testgres1.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testgres2.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testgres3.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testgres4.eps}
+  }$ --><IMG 
+      align=bottom 
+      alt="\scalebox{.6}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images/...&#10;...includegraphics{/home/edr/ipl/using_algorithms/images/testgres4.eps}&#10;}"
+      border=0 height=91 src="node48_files/img29.gif" 
+  width=567></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P><BR>
+<DIV align=center><A name=fig:testh>&nbsp;</A><A name=1526>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> From left: 1. original shape, 2. 
+  Thinning(...), 3. Skeletonizing(...), 4. SkeletonZhou(...), 5. 
+  SkeletonZhou(...) with the parameter <EM>PreserveCorners</EM> set to 
+  true.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{.42}{
+\includegraphics{/home/edr/ipl/using_algorithms/images/testh.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testhres1.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testhres2.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testhres3.eps}
+  \includegraphics{/home/edr/ipl/using_algorithms/images/testhres4.eps}
+  }$ --><IMG 
+      align=bottom 
+      alt="\scalebox{.42}{&#10;\includegraphics{/home/edr/ipl/using_algorithms/images...&#10;...includegraphics{/home/edr/ipl/using_algorithms/images/testhres4.eps}&#10;}"
+      border=0 height=110 src="node48_files/img30.gif" 
+  width=692></DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node49.htm"
+name=tex2html750><IMG align=bottom alt=next border=0 height=24 
+src="node48_files/next_motif.gif" width=37></A> <A 
+href="node46.htm"
+name=tex2html746><IMG align=bottom alt=up border=0 height=24 
+src="node48_files/up_motif.gif" width=26></A> <A 
+href="node47.htm"
+name=tex2html742><IMG align=bottom alt=previous border=0 height=24 
+src="node48_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html748><IMG align=bottom alt=contents border=0 height=24 
+src="node48_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html749><IMG align=bottom alt=index border=0 height=24 
+src="node48_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node49.htm"
+name=tex2html751>Perspective camera transformation</A> <B>Up:</B> <A 
+href="node46.htm"
+name=tex2html747>Morphological operations</A> <B>Previous:</B> <A 
+href="node47.htm"
+name=tex2html743>Dilate and erode</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

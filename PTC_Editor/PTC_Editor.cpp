@@ -1,0 +1,68 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+USERES("PTC_Editor.res");
+USEFORM("Main.cpp", FormMain);
+USEFORM("About.cpp", FormAbout);
+USEUNIT("..\Packages\VECAD52\vecad52\VECAD\api_VecApi.cpp");
+USEUNIT("..\Plug in\Lib\EmbPlugin.cpp");
+USELIB("memmgr.lib");
+USEOBJ("E:\Ali\Library\Lib\Protection\skeydrv.obj");
+USEUNIT("..\SPL\spl_Types.cpp");
+USEUNIT("..\SPL\spl_Calligrapher.cpp");
+USEUNIT("..\SPL\spl_CodingLib.cpp");
+USEUNIT("..\SPL\spl_Contour.cpp");
+USEUNIT("..\SPL\spl_Digitizer.cpp");
+USEUNIT("..\SPL\spl_EmbFile.cpp");
+USEUNIT("..\SPL\spl_EmbLib.cpp");
+USEFORM("..\SPL\spl_EmbOpenDialog.cpp", FormEmbOpenDialog);
+USEUNIT("..\SPL\spl_Embroidery.cpp");
+USEUNIT("..\SPL\spl_GlyphOutlines.cpp");
+USEFORM("..\SPL\spl_InsertText.cpp", FormInsertText);
+USEUNIT("..\SPL\spl_Layer.cpp");
+USEUNIT("..\SPL\spl_MultiLayer.cpp");
+USEUNIT("..\SPL\spl_Point.cpp");
+USEFORM("..\SPL\spl_Progress.cpp", FormProgress);
+USEUNIT("..\SPL\spl_Region.cpp");
+USEUNIT("..\SPL\Pyramids\pyramidfilters.cpp");
+USEUNIT("..\SPL\Pyramids\pyramidtools.cpp");
+USEFORM("..\SPL\CAD\cad_Display.cpp", FormDisplay);
+USEFORM("..\SPL\CAD\cad_EMF_Parser.cpp", FormEMF_Parser);
+USEUNIT("..\SPL\CAD\cad_Messages.cpp");
+USEUNIT("..\SPL\CAD\cad_Strings.cpp");
+USEUNIT("..\Protection\ProtectionLib.cpp");
+//---------------------------------------------------------------------------
+#include "api_VecApi.h"
+//---------------------------------------------------------------------------
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+    try
+    {
+        // load vecad.dll
+        if(vlStartup()==FALSE)
+        {
+            MessageDlg("VECAD52.DLL is not found",mtError,TMsgDlgButtons()<<mbOK,0);
+            exit(0);
+        }
+        else
+        {
+            Application->Initialize();
+            Application->Title = "EmbEditor V1.0";
+            Application->CreateForm(__classid(TFormMain), &FormMain);
+                 Application->CreateForm(__classid(TFormAbout), &FormAbout);
+                 Application->CreateForm(__classid(TFormEmbOpenDialog), &FormEmbOpenDialog);
+                 Application->CreateForm(__classid(TFormInsertText), &FormInsertText);
+                 Application->CreateForm(__classid(TFormProgress), &FormProgress);
+                 Application->CreateForm(__classid(TFormDisplay), &FormDisplay);
+                 Application->CreateForm(__classid(TFormEMF_Parser), &FormEMF_Parser);
+                 Application->Run();
+        }
+    }
+    catch (Exception &exception)
+    {
+         Application->ShowException(&exception);
+    }
+    return 0;
+}
+//---------------------------------------------------------------------------

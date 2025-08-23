@@ -1,0 +1,293 @@
+****************************************************
+
+     Varian Led Studio Component Toolkit
+
+     Varian Software NL (c) 1996-1999
+     All Rights Reserved
+
+****************************************************
+
+*WHAT'S NEW IN VARIAN LED STUDIO v3.19
+
+
+General
+-------
+
+- On closing of an application TVrTimer would sometimes
+  generate an access violation if used as Thread, fixed. 
+  This also applies to other components which use TVrTimer
+  internally.
+
+- Fixed bug in transparency routine.
+
+- Some demo applications where mixed up, fixed.
+
+TVrMeter
+--------
+- Renamed "Glyph" property to "BackImage"
+
+- Added separate "Scale" property
+
+- Added "Angle" property (scale angle)
+
+- Added "Spacing" property (scale height)
+
+- Added "LabelOffsetX" property
+
+- Added "LabelOffsetY" property
+
+- Renamed "TextSteps" to "Labels"
+
+- Optimized internal coding.
+
+
+TVrCalendar
+-----------
+- Changed "Rows" type in TVrRowInt
+
+- Changed "Columns" type in TVrColInt
+
+
+TVrScope
+--------
+- Setting GridSize to zero would block the application, fixed.
+
+
+TVrLed
+------
+- Added "Glyphs" property for custom led images.
+
+- Added "DrawStyle" property
+  TVrLedDrawStyle = (dsDesign, dsCustom);
+
+TVrClock
+--------
+- Replaced OnClockTick event with three seperate events
+  OnHoursChanged, OnMinutesChanged, OnSecondsChanged.  
+
+- Previous event "OnClockTick" was triggered after each tick of
+  the embedded timer component, not depending on the actual internal 
+  system time, fixed.
+
+
+TVrAnalogClock
+--------------
+- Replaced OnChange event with three seperate events
+  OnHoursChanged, OnMinutesChanged, OnSecondsChanged.  
+
+
+TVrCounter
+----------
+- Added "OnChange" event.
+
+TVrCompass
+----------
+- Added "OnChange" event.
+
+
+--------------------------------------------------------------------------------
+3.16
+
+General
+-------
+
+- Implemented support for Delphi 5!
+
+- Modified VCL Pages, see install.txt for more info.
+
+- Moved VCL Page "Design" to "Page3".
+
+- New component TVrDemoButton (unit VrDemoButton)
+
+- New component TVrUpDown (unit VrUpDown)
+
+- New component TVrSlideShow (unit VrSlideShow)
+
+- New component TVrFormShape (unit VrFormShape)
+
+- New component TVrCompass (unit VrCompass)
+
+- Optimized VrPalette changes through faster conversion routine.
+
+TVrControl
+----------
+
+- Added function "Loading"
+
+- Added function "Designing"
+
+TVrGraphicControl
+-----------------
+
+- Added function "Loading"
+
+- Added function "Designing"
+
+TVrCheckLed
+-----------
+
+- Component is now derived from TVrCustomImageControl, 
+  before TVrCustomControl.
+
+- Implemented disabled caption when Enabled is set to false.
+
+- Updated some parts of the code.
+
+TVrAnalog
+---------
+
+- Added "TickWidth" property
+
+- Added "TickOutline" property
+
+- Added "Transparent" property
+
+TVrTimer
+--------
+
+- Moved component to new unit (TVrThreads)
+
+- Added new property TVrTimerType
+  TVrTimerType = (ttThread, ttSystem);
+  Timer component now also supports normal system timers
+
+- Added Thread Priority flag property (ttThread only)
+
+- Added SyncEvent property.
+
+TVrThread
+---------
+
+- Moved component to new unit (TVrThreads)
+
+TVrClock
+--------
+
+- Added "Threaded" property.
+
+TVrAnalogClock
+--------------
+
+- Added "Threaded" property.
+
+TVrMatrix
+---------
+
+- Added "Threaded" property.
+
+- Control is now first displayed before scrolling starts.
+
+- Added "Orientation" property
+
+TVrScanner
+----------
+
+- Added "Threaded" property.
+
+TVrBanner
+---------
+
+- Added "Threaded" property.
+
+- Control is now first displayed before scrolling starts.
+
+TVrAnimate
+----------
+
+- Added "Threaded" property.
+
+TVrShadowButton
+---------------
+
+- Added "TextAlign" property.
+
+TVrBitmapList
+-------------
+
+- Double clicking the component in design time will bring up the
+  BitmapList editor.
+
+- Updated BitmapList editor form.
+
+TVrStringList
+-------------
+
+- Double clicking the component in design time will bring up the
+  String List editor.
+
+
+--------------------------------------------------------------------------------
+3.14
+
+- New component VrCounter (unit VrDesign)
+
+- New component VrBitmapImage (unit VrDesign)
+
+- New component VrBitmapButton (unit VrDesign)
+
+- New component VrAnimate (unit VrAnimate)
+
+- New component VrThread (unit VrThread)
+
+- Added new VCL Page "Varian Design"
+  Therefore renamed old unit VrDesign to VrSystem.
+
+- Added common type TVrTickMarks, (unit VrTypes).
+  TVrTickMarks = (tmNone, tmBoth, tmBottomRight, tmTopLeft);
+  (Applies to TVrTrackBar, TVrScale)
+
+- Added common type TVrProgressStyle, (unit VrTypes).
+  TVrProgressStyle = (psBottomLeft, psTopRight);
+  (Applies to TVrGauge, TVrSlider, TVrLevelBar, TVrSwitch, TVrTrackBar)
+
+  Each control now uses the same Style type.
+
+- Moved VrDeskTop to a new VCL page "Varian Design".
+
+- Fixed streaming bug for Min and Max value properties.
+  Min values where not properly initialized after loading.
+
+
+TVrScale
+--------
+- Renamed property TickStyle to TickMarks.
+
+- Added new property "ScaleOffset".
+
+TVrHotImage
+-----------
+- Removed property TransparentColor. ColorLeave and ColorEnter are
+  used Instead to make part of the images transparent.
+
+TVrTrayIcon
+-----------
+- Added property "HideTaskBtn".
+
+- Added property "Enabled".
+
+- Now all mouse events are supported.
+
+TVrTrayGauge
+-----------
+- Added property "HideTaskBtn".
+
+- Added property "Enabled".
+
+- Now all mouse events are supported.
+
+TVrLights
+---------
+- Added two additional led types Square and Diamond
+  TVrLightsType = (ltGlassRounded, ltGlassRect, ltGlassSquare, ltGlassDiamond)
+
+TVrTrackBar
+-----------
+- Added new property "ScaleOffset".
+
+TVrIndicator
+------------
+- Added multi color led support (Palette 1..3)
+
+
+
+                          ******************

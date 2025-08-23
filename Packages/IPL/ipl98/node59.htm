@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node59.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Morphological operations</TITLE>
+<META content="Morphological operations" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node59_files/include_all.css" rel=STYLESHEET><LINK href="node58.htm"
+rel=previous><LINK href="node55.htm" rel=up><LINK href="node60.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node60.htm"
+name=tex2html883><IMG align=bottom alt=next border=0 height=24 
+src="node59_files/next_motif.gif" width=37></A> <A 
+href="node55.htm"
+name=tex2html879><IMG align=bottom alt=up border=0 height=24 
+src="node59_files/up_motif.gif" width=26></A> <A 
+href="node58.htm"
+name=tex2html875><IMG align=bottom alt=previous border=0 height=24 
+src="node59_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html881><IMG align=bottom alt=contents border=0 height=24 
+src="node59_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html882><IMG align=bottom alt=index border=0 height=24 
+src="node59_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node60.htm"
+name=tex2html884>Bibliography</A> <B>Up:</B> <A 
+href="node55.htm"
+name=tex2html880>Apendix: C code from</A> <B>Previous:</B> <A 
+href="node58.htm"
+name=tex2html876>Segmentation</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION000134000000000000000>&nbsp;</A> <A 
+name=ap:morphologicaloperations:ex1>&nbsp;</A> <BR>Morphological operations 
+</H2>C code corresponding to the C++ code given at page&nbsp;<A 
+href="node47.html#subsec:morphologicaloperations:ex1"><IMG
+align=bottom alt=[*] border=1 src="node59_files/cross_ref_motif.gif"></A> in 
+section&nbsp;<A 
+href="node47.html#subsec:morphologicaloperations:ex1"><IMG
+align=bottom alt=[*] border=1 src="node59_files/cross_ref_motif.gif"></A>: 
+<P><PRE>void main()
+{
+    char* dty=NULL; // Holding the date, time and year
+    clock_t time;
+    TImage Img,ImgDest,ImgMask;
+    unsigned int count;
+    
+    k_InitImage(&amp;Img); /* always initialise the TImage structure! */
+    k_InitImage(&amp;ImgDest);
+    k_InitImage(&amp;ImgMask);
+
+    /* set a 3*3 mask */
+    k_AllocImage (3,3,1,&amp;ImgMask);
+    k_FlushImage(1,&amp;ImgMask);
+
+    /* load image */
+    if (k_Load("c:/temp/doggie.bmp",&amp;Img))
+    {
+        k_PrintImageInfo(&amp;Img);
+        printf("\n");
+
+        /* an example of using the timer and date functions */
+        printf("On a 400 MHz Pentium II this program takes"
+               "0.83 seconds to complete\n");
+        time=k_StartTimer();
+
+        /* convert to 1 b/p */
+        printf("Converting image from %d b/p to 1 b/p\n",Img.Bits);
+        k_CopyConvert (1,&amp;ImgDest,&amp;Img);
+
+        /* invert image */
+        printf("Inverting image\n");
+        k_InvertImage(&amp;ImgDest);
+
+        /* dilate */
+        printf("Dilate image 5 times\n");
+        for(count=0; count&lt;5; count++)
+        {
+            k_Dilate(&amp;ImgMask,&amp;ImgDest);
+            /* replace the next line with the one above to make it faster */
+            /*k_DilateFast(&amp;ImgDest,7,7,7);*/
+        }
+
+        printf("Erode image 5 times\n");
+        for(count=0; count&lt;5; count++)
+        {
+            k_Erode(&amp;ImgMask,&amp;ImgDest);
+            /* replace the next line with the one above to make it faster */
+            /*k_ErodeFast(&amp;ImgDest,7,7,7);*/
+         }
+
+         printf("Saving image as \"c:/temp/test.bmp\"\n");
+         k_Save("c:/temp/test.bmp",&amp;ImgDest);
+
+         if (!k_GetDateTimeYear(&amp;dty))
+            printf("Failed reding date and time....\n");
+         else
+            printf("This program was run at: %s\n",dty);
+
+         printf("Seconds elapsed: %f\n",k_GetTimer(time));
+      }
+    else
+    {
+       printf("Loading failed\n");
+    }
+    if(getchar()){}
+}
+</PRE>
+<P><PRE></PRE>
+<P><BR>
+<HR>
+
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

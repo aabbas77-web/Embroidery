@@ -1,0 +1,94 @@
+// Complete Boolean evaluation must be turned off
+{$B-}
+
+// Sets some defines which help to decide which version of Delphi or
+// C++ Builder is used
+
+{$IFDEF VER90}
+  {$DEFINE _DELPHI}
+  {$DEFINE _DELPHI_2}
+  {$DEFINE _DELPHI_2_UP}
+  {$DEFINE _VCL_2_UP}
+{$ENDIF}
+
+{$IFDEF VER100}
+  {$DEFINE _DELPHI}
+  {$DEFINE _DELPHI_3}
+  {$DEFINE _DELPHI_2_UP}
+  {$DEFINE _DELPHI_3_UP}
+  {$DEFINE _VCL_2_UP}
+  {$DEFINE _VCL_3_UP}
+{$ENDIF}
+
+{$IFDEF VER110}
+  {$DEFINE _CPPB}
+  {$DEFINE _CPPB_3}
+  {$DEFINE _CPPB_3_UP}
+  {$DEFINE _VCL_2_UP}
+  {$DEFINE _VCL_3_UP}
+  {$DEFINE _VCL_35_UP}
+{$ENDIF}
+
+{$IFDEF VER120}
+  {$DEFINE _DELPHI}
+  {$DEFINE _DELPHI_4}
+  {$DEFINE _DELPHI_2_UP}
+  {$DEFINE _DELPHI_3_UP}
+  {$DEFINE _DELPHI_4_UP}
+  {$DEFINE _VCL_2_UP}
+  {$DEFINE _VCL_3_UP}
+  {$DEFINE _VCL_35_UP}
+  {$DEFINE _VCL_4_UP}
+{$ENDIF}
+
+{$IFDEF VER125}
+  {$DEFINE _CPPB}
+  {$DEFINE _CPPB_4}
+  {$DEFINE _CPPB_3_UP}
+  {$DEFINE _CPPB_4_UP}
+  {$DEFINE _VCL_2_UP}
+  {$DEFINE _VCL_3_UP}
+  {$DEFINE _VCL_35_UP}
+  {$DEFINE _VCL_4_UP}
+  {$DEFINE _VCL_45_UP}
+{$ENDIF}
+
+{$IFDEF VER130}
+  {$DEFINE _VCL_2_UP}
+  {$DEFINE _VCL_3_UP}
+  {$DEFINE _VCL_35_UP}
+  {$DEFINE _VCL_4_UP}
+  {$DEFINE _VCL_45_UP}
+  {$DEFINE _VCL_5_UP}
+  {$IFDEF BCB} // C++ Builder 5
+    {$DEFINE _CPPB}
+    {$DEFINE _CPPB_5}
+    {$DEFINE _CPPB_3_UP}
+    {$DEFINE _CPPB_4_UP}
+    {$DEFINE _CPPB_5_UP}
+  {$else} // Delphi 5
+    {$DEFINE _DELPHI}
+    {$DEFINE _DELPHI_5}
+    {$DEFINE _DELPHI_2_UP}
+    {$DEFINE _DELPHI_3_UP}
+    {$DEFINE _DELPHI_4_UP}
+    {$DEFINE _DELPHI_5_UP}
+  {$endif}
+{$ENDIF}
+
+{$IFDEF VER140}
+  {$DEFINE _VCL_2_UP}
+  {$DEFINE _VCL_3_UP}
+  {$DEFINE _VCL_35_UP}
+  {$DEFINE _VCL_4_UP}
+  {$DEFINE _VCL_45_UP}
+  {$DEFINE _VCL_5_UP}
+  {$DEFINE _VCL_6_UP}
+  {$DEFINE _DELPHI}
+  {$DEFINE _DELPHI_6}
+  {$DEFINE _DELPHI_2_UP}
+  {$DEFINE _DELPHI_3_UP}
+  {$DEFINE _DELPHI_4_UP}
+  {$DEFINE _DELPHI_5_UP}
+  {$DEFINE _DELPHI_6_UP}
+{$ENDIF}

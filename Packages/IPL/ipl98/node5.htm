@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0064)node5.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>IPL98 version 1.10</TITLE>
+<META content="IPL98 version 1.10" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node5_files/include_all.css" rel=STYLESHEET><LINK href="node4.htm"
+rel=previous><LINK href="node4.htm" rel=up><LINK href="node6.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node6.htm"
+name=tex2html209><IMG align=bottom alt=next border=0 height=24 
+src="node5_files/next_motif.gif" width=37></A> <A 
+href="node4.htm"
+name=tex2html205><IMG align=bottom alt=up border=0 height=24 
+src="node5_files/up_motif.gif" width=26></A> <A 
+href="node4.htm"
+name=tex2html201><IMG align=bottom alt=previous border=0 height=24 
+src="node5_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html207><IMG align=bottom alt=contents border=0 height=24 
+src="node5_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html208><IMG align=bottom alt=index border=0 height=24 
+src="node5_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node6.htm"
+name=tex2html210>Purpose of the library</A> <B>Up:</B> <A 
+href="node4.htm"
+name=tex2html206>New additions to IPL98</A> <B>Previous:</B> <A 
+href="node4.htm"
+name=tex2html202>New additions to IPL98</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00041000000000000000>IPL98 version 1.10</A> </H2>Version 1.10 
+became available the 20th of december 1999. The following features were added to 
+the container related part: 
+<UL>
+  <LI>CComplexImage<A name=141>&nbsp;</A> A new container class, contains pixels 
+  of type float represented by four bytes (FLOAT32), each position has a real 
+  and an imaginary value. Can be saved in an ASCII format including the history. 
+
+  <LI>Arithmetic methods<A name=142>&nbsp;</A> contained in all container 
+  classes: 
+  <UL>
+    <LI><TT>ApplyBias(int Bias)</TT><A name=145>&nbsp;</A> 
+    <LI><TT>ScaleIntensity(float Prefactor)</TT><A name=147>&nbsp;</A> 
+    <LI><TT>Add(CStdImage &amp;Addend)</TT><A name=149>&nbsp;</A> 
+    <LI><TT>Subtract(CStdImage &amp;Subtrahend)</TT><A name=151>&nbsp;</A> 
+    <LI><TT>Multiply(CStdImage &amp;Factor)</TT><A name=153>&nbsp;</A> </LI></UL>
+  <LI>Other methods added to the container classes: 
+  <UL>
+    <LI><TT>CopyDisplace(int dx,int dy)</TT><A name=157>&nbsp;</A> 
+    <LI><TT>CutOrZeroPad(Source)</TT><A name=159>&nbsp;</A> 
+    <LI><TT>Copy(Source)</TT><A name=161>&nbsp;</A> </LI></UL></LI></UL>
+<P>The following features are added to the algorithm part: 
+<UL>
+  <LI>CLocalOperation<A name=165>&nbsp;</A> simple transformations depending 
+  only on the single pixel values. For instance conversions between different 
+  image formats which involves scaling of values. 
+  <LI>CMaskOperation<A name=166>&nbsp;</A> simple mask and filter operations. 
+  Methods available in the class are: 
+  <UL>
+    <LI><TT>DrawHistogram(...)</TT><A name=169>&nbsp;</A><A name=170>&nbsp;</A> 
+    <LI><TT>EqualizeHistogram(...)</TT><A name=172>&nbsp;</A> 
+    <LI><TT>NonlinearCopyToByte(...)</TT><A name=174>&nbsp;</A> </LI></UL>
+  <LI>CSpectral<A name=176>&nbsp;</A><A name=177>&nbsp;</A> <A 
+  name=178>&nbsp;</A> fourier and related transforms. Methods available in the 
+  class are: 
+  <UL>
+    <LI><TT>FFTForward(CComplexImage &amp;Img)</TT> 
+    <LI><TT>FFTInverse(CComplexImage &amp;Img)</TT> </LI></UL>
+  <LI>CStatistic<A name=183>&nbsp;</A> calculates minimum, maximum, mean, 
+  standard deviation and a histogram<A name=184>&nbsp;</A> for a given image. 
+  Methods available in the class are: 
+  <UL>
+    <LI><TT>GetMean()</TT> <A name=187>&nbsp;</A> 
+    <LI><TT>GetMin()</TT> <A name=189>&nbsp;</A> 
+    <LI><TT>GetMax()</TT> <A name=191>&nbsp;</A> 
+    <LI><TT>GetStdDev()</TT> <A name=193>&nbsp;</A> 
+    <LI><TT>GetSizeOfHistogram()</TT> 
+    <LI><TT>DeriveStats(const CFloatImage&amp; Image)</TT> 
+    <LI><TT>DeriveStats(const CIntImage&amp; Image)</TT> 
+    <LI><TT>DeriveStats(const CStdImage&amp; Image)</TT> 
+    <LI><TT>DeriveStats(const CPixelGroup&amp; PixelGroup)</TT> </LI></UL></LI></UL>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node6.htm"
+name=tex2html209><IMG align=bottom alt=next border=0 height=24 
+src="node5_files/next_motif.gif" width=37></A> <A 
+href="node4.htm"
+name=tex2html205><IMG align=bottom alt=up border=0 height=24 
+src="node5_files/up_motif.gif" width=26></A> <A 
+href="node4.htm"
+name=tex2html201><IMG align=bottom alt=previous border=0 height=24 
+src="node5_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html207><IMG align=bottom alt=contents border=0 height=24 
+src="node5_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html208><IMG align=bottom alt=index border=0 height=24 
+src="node5_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node6.htm"
+name=tex2html210>Purpose of the library</A> <B>Up:</B> <A 
+href="node4.htm"
+name=tex2html206>New additions to IPL98</A> <B>Previous:</B> <A 
+href="node4.htm"
+name=tex2html202>New additions to IPL98</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

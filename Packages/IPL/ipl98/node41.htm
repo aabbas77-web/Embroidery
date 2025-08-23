@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node41.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Contour tracing</TITLE>
+<META content="Contour tracing" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node41_files/include_all.css" rel=STYLESHEET><LINK href="node40.htm"
+rel=previous><LINK href="node39.htm" rel=up><LINK href="node42.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node42.htm"
+name=tex2html668><IMG align=bottom alt=next border=0 height=24 
+src="node41_files/next_motif.gif" width=37></A> <A 
+href="node39.htm"
+name=tex2html664><IMG align=bottom alt=up border=0 height=24 
+src="node41_files/up_motif.gif" width=26></A> <A 
+href="node40.htm"
+name=tex2html660><IMG align=bottom alt=previous border=0 height=24 
+src="node41_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html666><IMG align=bottom alt=contents border=0 height=24 
+src="node41_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html667><IMG align=bottom alt=index border=0 height=24 
+src="node41_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node42.htm"
+name=tex2html669>Coordinate transformation</A> <B>Up:</B> <A 
+href="node39.htm"
+name=tex2html665>Segmentation</A> <B>Previous:</B> <A 
+href="node40.htm"
+name=tex2html661>Blob algorithm</A> <BR><BR><!--End of Navigation Panel-->
+<H3><A name=SECTION000101200000000000000>&nbsp;</A><A name=1141>&nbsp;</A> 
+<BR>Contour tracing </H3>Two methods for collecting the pixels belonging to a 
+contour is available: 
+<UL>
+  <LI><TT>FindAndFollowLowContour(CStdImage&amp; Source, CPoint2D&lt;int&gt; 
+  Start, DIRECTION SearchDirection, CONNECTIVITY Connected, CPixelGroup&amp; 
+  PixelGroup, ROTATION&amp; RotationDirection, COLORTYPE&amp; 
+  SurroundedColor)</TT><A name=1144>&nbsp;</A> 
+  <LI><TT>FindAndFollowHighContour(CStdImage&amp; Source, CPoint2D&lt;int&gt; 
+  Start, DIRECTION SearchDirection, CONNECTIVITY Connected, CPixelGroup&amp; 
+  PixelGroup, ROTATION&amp; RotationDirection, COLORTYPE&amp; 
+  SurroundedColor)</TT><A name=1146>&nbsp;</A> </LI></UL>
+<P>The algorithm used for both methods searches from a given start point 
+<EM>Start</EM> in the direction <EM>SearchDirection</EM> for an edge. The 
+<EM>SearchDirection</EM> is of type DIRECTION<A name=1151>&nbsp;</A> and can be 
+one of the values: NORTH<A name=1152>&nbsp;</A>, EAST<A name=1153>&nbsp;</A>, 
+SOUTH<A name=1154>&nbsp;</A> and WEST<A name=1155>&nbsp;</A>. The parameter 
+<EM>Connected</EM> of type CONNECTIVITY can be either EIGHTCONNECTED or 
+FOURCONNECTED. The information about the surrounding color (returned in 
+<EM>SurroundedColor</EM>) and the clockwise or anti clockwise search directions 
+(returned in <EM>RotationDirection</EM>) gives information about wether the 
+found contour is on the inner or outer edge of a figure. The 
+<EM>RotationDirection</EM> parameter of type ROTAION<A name=1160>&nbsp;</A> can 
+be one of the values: CLOCKWISE<A name=1161>&nbsp;</A> and ANTICLOCKWISE<A 
+name=1162>&nbsp;</A>. If no edge is found in the search direction the method 
+returns false. Otherwise the methods starts following this contour until it 
+eventually returns to the first found edge. The result is placed in a 
+<TT>CPixelGroup</TT> object. The example below shows how to use both methods and 
+the results are plotted in an image with red and green for each contour type and 
+saved to a file: 
+<P><PRE>    CImage Img,ImgDest; // Images
+    CPixelGroup pg1,pg2; // Holds information about the contour
+    CTimeDate Timer;
+    Timer.StartTimer(); // stop watch for time elapsed
+    
+    // load your image with 1 or 8 b/p
+    if (Img.Load("c:/temp/three_segments.bmp"))
+    {
+       cout &lt;&lt; "Image loaded:" &lt;&lt; endl &lt;&lt; Img &lt;&lt; endl;
+       COLORTYPE ColType;
+       ROTATION RotDirection;
+       CPoint2D&lt;int&gt; start(200,200); // start position to search from
+                
+       // Find a low contour in image
+       Img.SetBorder(1,0);
+       CSegmentate Segm;
+       Segm.FindAndFollowLowContour(Img,start,EAST,
+            EIGHTCONNECTED,pg1,RotDirection,ColType);
+       // Write information to cout
+       cout &lt;&lt; endl &lt;&lt; "High contour info: " &lt;&lt; endl &lt;&lt; "RotDirection=";
+       cout &lt;&lt; ((RotDirection==CLOCKWISE) ? "CLOCKWISE":"ANTICLOCKWISE");
+       cout &lt;&lt; " ColType=";
+       (ColType==HIGHCOLOR) ? cout &lt;&lt; "HIGHCOLOR" : cout &lt;&lt; "LOWCOLOR";
+       cout &lt;&lt; endl &lt;&lt; pg1 &lt;&lt; endl;
+
+       // Find the corresponding high contour in image
+       Segm.FindAndFollowHighContour(Img,start,EAST,
+            EIGHTCONNECTED,pg2,RotDirection,ColType);
+       // Write information to cout
+       cout &lt;&lt; endl &lt;&lt; "Low contour info: " &lt;&lt; endl&lt;&lt; "RotDirection=";
+       cout &lt;&lt; ((RotDirection==CLOCKWISE) ?  "CLOCKWISE":"ANTICLOCKWISE");
+       cout &lt;&lt; " ColType=";
+       (ColType==HIGHCOLOR) ? cout &lt;&lt; "HIGHCOLOR" : cout &lt;&lt; "LOWCOLOR";
+       cout &lt;&lt; endl &lt;&lt; pg2 &lt;&lt; endl;
+
+       // create image with dimensions to contain both contours
+       ImgDest=CImage(pg1.GetRight().GetX()-pg1.GetLeft().GetX()+1,
+               pg1.GetBottom().GetY()-pg1.GetTop().GetY()+1,24);
+       cout &lt;&lt; "Created image to plot in:" &lt;&lt; endl &lt;&lt; ImgDest &lt;&lt; endl;
+       unsigned int count;
+       CPoint2D&lt;int&gt; offset(pg1.GetLeft().GetX(),pg1.GetTop().GetY());
+       // plot low contour as red
+       for(count=0;count&lt;pg1.GetTotalPositions();count++)
+       {
+          ImgDest.SetPixel(pg1.GetPosition(count)-offset,
+                  CPalette::CreateRGB(255,0,0));
+       }
+       // plot high contour as green
+       for(count=0;count&lt;pg2.GetTotalPositions();count++)
+       {
+          ImgDest.SetPixel(pg2.GetPosition(count)-offset,
+                  CPalette::CreateRGB(0,255,0));
+       }
+
+       // save destination image containing both high and low contour
+       ImgDest.Save("c:/temp/test.bmp");
+       cout &lt;&lt; endl &lt;&lt; "Image with high and low contour saved "
+               "as c:/temp/test.bmp" &lt;&lt; endl;
+
+       cout &lt;&lt; "Total time: " &lt;&lt; Timer.StopTimer() &lt;&lt; endl;
+
+    }
+    else
+    {
+       cout &lt;&lt; "Loading failed" &lt;&lt; endl; 
+    }
+    if getchar(){}
+}
+</PRE>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node42.htm"
+name=tex2html668><IMG align=bottom alt=next border=0 height=24 
+src="node41_files/next_motif.gif" width=37></A> <A 
+href="node39.htm"
+name=tex2html664><IMG align=bottom alt=up border=0 height=24 
+src="node41_files/up_motif.gif" width=26></A> <A 
+href="node40.htm"
+name=tex2html660><IMG align=bottom alt=previous border=0 height=24 
+src="node41_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html666><IMG align=bottom alt=contents border=0 height=24 
+src="node41_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html667><IMG align=bottom alt=index border=0 height=24 
+src="node41_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node42.htm"
+name=tex2html669>Coordinate transformation</A> <B>Up:</B> <A 
+href="node39.htm"
+name=tex2html665>Segmentation</A> <B>Previous:</B> <A 
+href="node40.htm"
+name=tex2html661>Blob algorithm</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

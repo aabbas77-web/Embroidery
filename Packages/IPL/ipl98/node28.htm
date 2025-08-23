@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node28.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Creating an image in RAM</TITLE>
+<META content="Creating an image in RAM" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node28_files/include_all.css" rel=STYLESHEET><LINK href="node29.htm"
+rel=next><LINK href="node27.htm" rel=previous><LINK href="node27.htm"
+rel=up><LINK href="node29.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node29.htm"
+name=tex2html504><IMG align=bottom alt=next border=0 height=24 
+src="node28_files/next_motif.gif" width=37></A> <A 
+href="node27.htm"
+name=tex2html500><IMG align=bottom alt=up border=0 height=24 
+src="node28_files/up_motif.gif" width=26></A> <A 
+href="node27.htm"
+name=tex2html494><IMG align=bottom alt=previous border=0 height=24 
+src="node28_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html502><IMG align=bottom alt=contents border=0 height=24 
+src="node28_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html503><IMG align=bottom alt=index border=0 height=24 
+src="node28_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node29.htm"
+name=tex2html505>Borders</A> <B>Up:</B> <A 
+href="node27.htm"
+name=tex2html501>Using IPL98 to represent</A> <B>Previous:</B> <A 
+href="node27.htm"
+name=tex2html495>Using IPL98 to represent</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00091000000000000000>&nbsp;</A> <A 
+name=subsec:createanimage>&nbsp;</A> <BR>Creating an image in RAM </H2>There are 
+two different ways of representing image data in RAM. A class named CPixelGroup 
+keeps a list of positions constituting the pixels in interest (not belonging to 
+the background of the image) and each of these positions can optionally have a 
+color associated with it, more details about this class are given in 
+section&nbsp;<A 
+href="node35.html#subsec:pixelgroup"><IMG
+align=bottom alt=[*] border=1 src="node28_files/cross_ref_motif.gif"></A>. The 
+other classes for working with an image have an internal matrix representation 
+corresponding to how we normally think about an image. Different classes with 
+this matrix representation is available and they have both advantages and draw 
+backs. The major difference is the number of bits used to represent each pixel 
+and if it is signed or unsigned values. Here is a table of the available image 
+matrix classes: 
+<P>
+<DIV align=center>
+<TABLE border=1 cellPadding=3>
+  <TBODY>
+  <TR>
+    <TD align=left>Class name</TD>
+    <TD align=left>Pixel type</TD></TR>
+  <TR>
+    <TD align=left>CImage</TD>
+    <TD align=left>1, 8 or 24 bits per pixel unsigned</TD></TR>
+  <TR>
+    <TD align=left>CByteImage</TD>
+    <TD align=left>8 bits per pixel unsigned</TD></TR>
+  <TR>
+    <TD align=left>CIntImage</TD>
+    <TD align=left>16 bit signed integers</TD></TR>
+  <TR>
+    <TD align=left>CFloatImage</TD>
+    <TD align=left>32 bit floating point</TD></TR>
+  <TR>
+    <TD align=left>CComplexImage</TD>
+    <TD align=left>2 * 32 bit floating point</TD></TR></TBODY></TABLE></DIV>
+<P>The first thing to considder when creating a new image in RAM is the type 
+used to represent a pixel. CFloatImage (with floating point pixel values), 
+CComplexImage (with two floating points for each pixel representing the real and 
+imaginary part) and CIntImage (with signed integer values) are special classes 
+available for holding pixel values which cannot be directly interpreded as 
+colors. These classes are useable when doing internal image processing, for 
+instance subtraction of one image with another may result in negative values and 
+it is therefore desireable to put the result in a CIntImage class. The 
+CFloatImage class can for instance be useful in case of some pixel 
+transformations which results in non integer values. But normally a simple image 
+with unsigned values and in some cases a corresponding palette will be the most 
+convenient. These classes are also possible to show on screen and save to 
+standard graphics file formats. The most general image is the CImage<A 
+name=757>&nbsp;</A> class which can hold three different types of pixels, 1, 8 
+and 24 b/p<A 
+href="footnode.html#foot758"
+name=tex2html14><SUP>9</SUP></A> (only one at a time though). The number of bits 
+used to represent a pixel is called the bit depths or bits per pixel (b/p). A 
+specialisation of the CImage class is named CByteImage<A name=759>&nbsp;</A> is 
+also available. This class can only represent pixels with 8 bits. The advantage 
+of CByteImage is the speed, it is faster to access pixels and the overall 
+execution times will probably be considerately faster when working with a 
+CByteImage. If you are not sure about what types of images you will be working 
+on, it is recommended to begin with the CImage class and then at a later point 
+replace it with a CByteImage if nescassary. Because of the class hierarchy most 
+methods is common for the two classes and it is therefore an easy task to 
+replace a CImage type with a CByteImage type. When creating an image with 1 or 8 
+b/p a gray tone palette will be associated with it, read more about this in 
+section&nbsp;<A 
+href="node32.html#subsec:workingwithpixels"><IMG
+align=bottom alt=[*] border=1 src="node28_files/cross_ref_motif.gif"></A>. 
+<P>When creating an instance of a class (an object) you can choose to allocate 
+memory for the image area, copy another image into the new object or just 
+initialize the object with no image (ie. no memory allocation for image data). 
+Here is how its done in C++, the corresponding C code can be found in the 
+apendix at page&nbsp;<A 
+href="node56.html#ap:createanimage:ex1"><IMG
+align=bottom alt=[*] border=1 src="node28_files/cross_ref_motif.gif"></A>: 
+<P><A name=subsec:createanimage:ex1>&nbsp;</A><PRE>#include &lt;ipl98/ipl98_cplusplus.h&gt;
+using namespace ipl;
+
+void main()
+{
+   CImage Image1; // an empty image
+   CImage Image2(768,512,8); // image with dimensions (768,512) and 8 b/p
+   CImage Image3(Image2); // the content of Image2 is copied into Image3
+
+   CByteImage ByteImage1; // an empty image
+   CByteImage ByteImage2(768,512); // image with dimenstions (768,512),
+                          // for a CByteImage the pixel depths is 8
+   CByteImage ByteImage3(ByteImage2); // the content of ByteImage2 is
+                                      // copied into ByteImage3
+
+   CFloatImage FloatImage1(10,10); // float image with dimenstions (10,10)
+   CFloatImage FloatImage2(FloatImage1); // the content of FloatImage 1 is
+                                        // copied into FloatImage2
+
+   CIntImage IntImage1(10,10); // int image with dimenstions (10,10)
+   CIntImage IntImage2(IntImage1); // the content of IntImage 1 is
+                                        // copied into IntImage
+}
+</PRE>
+<P>As can be seen from the example above the code for each type of image is 
+almost the same. To simplify the examples given in the remaining part of this 
+chapter main focus will be put on the CImage class, converting the examples to 
+work with other image classes should be a relatively easy task. The 
+<TT>#include</TT> and <TT>using namespace</TT> precompiler directives will also 
+be excluded from the examples. Sometimes the <EM>main</EM> function name and the 
+scope will also be omitted. 
+<P>The memory allocated for the data stored in an image can be freed at any time 
+by the method <TT>Empty()</TT><A name=769>&nbsp;</A>. Note that it is not 
+necessary to empty an image when leaving a scope, this will be done by the class 
+destructor. After using this method the dimensions of an image will be set to 
+(0,0). An image can also be reallocated with different dimensions at any time 
+with the method <TT>Alloc(...)</TT> which takes care of deleting old allocated 
+image memory. To get information about an image several methods are available, 
+here is an example: 
+<P><PRE>void main()
+{
+   CImage Img(768,512,24);
+
+   // examples on accessing some specific information
+   cout &lt;&lt; "Image dimensions: Width=" &lt;&lt; Img.GetWidth() &lt;&lt; " Height=" &lt;&lt;
+      Img.GetHeight() &lt;&lt; endl; // image dimensions
+   cout &lt;&lt; "Bits per pixel (b/p): " &lt;&lt; Img.GetBits() &lt;&lt; endl; // b/p info
+   cout &lt;&lt; "Origo is set to: " &lt;&lt; Img.GetOrigo() &lt;&lt; endl; // origo info
+
+   Img.Alloc(1024,768,8);
+   // printing all relevant information for an image
+   cout &lt;&lt; endl &lt;&lt; Img &lt;&lt; endl;
+
+   // empty the image
+   cout &lt;&lt; endl &lt;&lt; "Free memory for allocated image data" &lt;&lt; endl;
+   Img.Empty();
+   cout &lt;&lt; endl &lt;&lt; Img &lt;&lt; endl;
+
+}
+</PRE>
+<P>As showed in the example specific information can be retrieved from an image. 
+It is also possible with the streaming operator <TT>&lt;&lt;</TT><A 
+name=774>&nbsp;</A> <A name=775>&nbsp;</A> <A name=776>&nbsp;</A> to get all 
+image information with just one line of code. The output from the streaming 
+operator looks like this: 
+<P><PRE>**************** Image info ********************
+ Width=768 Height=512 ByteWidth=2304 SizeImage=1179648 Bits=24
+ PalEntries=0 BorderSize=0 Origo=(0,0) Origin=RAM
+ File name: Not available File path: Not available
+</PRE>Width and height is the dimensions of the image. ByteWidth<A 
+name=779>&nbsp;</A> is the number of bytes allocated in memory for each scanline 
+including border and zero padding<A 
+href="footnode.html#foot780"
+name=tex2html15><SUP>10</SUP></A>. SizeImage<A name=781>&nbsp;</A> is the total 
+allocated memory (in bytes) for the image including border and zero padding, 
+that is 
+<!-- MATH: $Height*(ByteWidth+BorderSize*2)$ --><I>Height</I>*(<I>ByteWidth</I>+<I>BorderSize</I>*2). 
+Bits is the number of bits representing each pixel. PalEntries is the number of 
+entries in the palette, for Bits=1 it is 2, Bits=8 it is 256 and for Bits=24 it 
+is 0 (there is no palette when working with <EM>true color</EM> images). 
+BorderSize is the size of the border, Origo the origo of the coordinate system 
+used to index the positions. Origin<A name=783>&nbsp;</A> is information about 
+where the image originated from, the values are: CAMERA, DISC, RAM and EMPTY. 
+File name and File path contains the file information and are not set until a 
+<TT>Load(...)</TT> or <TT>Save(...)</TT> method have been used. 
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node29.htm"
+name=tex2html504><IMG align=bottom alt=next border=0 height=24 
+src="node28_files/next_motif.gif" width=37></A> <A 
+href="node27.htm"
+name=tex2html500><IMG align=bottom alt=up border=0 height=24 
+src="node28_files/up_motif.gif" width=26></A> <A 
+href="node27.htm"
+name=tex2html494><IMG align=bottom alt=previous border=0 height=24 
+src="node28_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html502><IMG align=bottom alt=contents border=0 height=24 
+src="node28_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html503><IMG align=bottom alt=index border=0 height=24 
+src="node28_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node29.htm"
+name=tex2html505>Borders</A> <B>Up:</B> <A 
+href="node27.htm"
+name=tex2html501>Using IPL98 to represent</A> <B>Previous:</B> <A 
+href="node27.htm"
+name=tex2html495>Using IPL98 to represent</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

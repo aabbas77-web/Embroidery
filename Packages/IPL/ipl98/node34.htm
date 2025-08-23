@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node34.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Pixel access</TITLE>
+<META content="Pixel access" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node34_files/include_all.css" rel=STYLESHEET><LINK href="node33.htm"
+rel=previous><LINK href="node32.htm" rel=up><LINK href="node35.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node35.htm"
+name=tex2html576><IMG align=bottom alt=next border=0 height=24 
+src="node34_files/next_motif.gif" width=37></A> <A 
+href="node32.htm"
+name=tex2html572><IMG align=bottom alt=up border=0 height=24 
+src="node34_files/up_motif.gif" width=26></A> <A 
+href="node33.htm"
+name=tex2html568><IMG align=bottom alt=previous border=0 height=24 
+src="node34_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html574><IMG align=bottom alt=contents border=0 height=24 
+src="node34_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html575><IMG align=bottom alt=index border=0 height=24 
+src="node34_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node35.htm"
+name=tex2html577>Working with a pixelgroup</A> <B>Up:</B> <A 
+href="node32.htm"
+name=tex2html573>Working with pixels</A> <B>Previous:</B> <A 
+href="node33.htm"
+name=tex2html569>The palette</A> <BR><BR><!--End of Navigation Panel-->
+<H3><A name=SECTION00095200000000000000>Pixel access</A> </H3>As default the 
+coordinate system is placed with origo<A name=869>&nbsp;</A> in upper left 
+corner. This can be changed by the method SetOrigo(x,y)<A name=870>&nbsp;</A> 
+and is available in the classes CImage, CIntImage and CFloatImage but not in the 
+CByteImage. Because of the possibility of changing the origo a set of methods is 
+available for range checking, they are named: GetMinX()<A name=871>&nbsp;</A>, 
+GetMinY()<A name=872>&nbsp;</A>, GetMaxX()<A name=873>&nbsp;</A> and GetMaxY()<A 
+name=874>&nbsp;</A>. It is recommended to use these methods when iterating over 
+a whole image, an example is given below. 
+<P>There are several ways of reading and setting pixel values. The most general 
+is SetPixel(x,y,Color)<A name=875>&nbsp;</A> and GetPixel(x,y)<A 
+name=876>&nbsp;</A>. These functions produces an error if the position (x,y) is 
+out of range. A faster set of methods named SetPixelFast(x,y,Color)<A 
+name=877>&nbsp;</A> and GetPixelFast(x,y)<A name=878>&nbsp;</A> is available but 
+they do not include a range check. 
+<P>Here is an example involving the most used methods: <PRE>   CImage Img1(5,255,8); // An image with a default gray palette is created
+   cout &lt;&lt; "Created image:" &lt;&lt; endl &lt;&lt; Img1 &lt;&lt; endl;
+   Img1.SetOrigo(-10,5); // setting origo to (-10,5)
+   cout &lt;&lt; "Origo set to: " &lt;&lt; Img1.GetOrigo() &lt;&lt; endl;
+   // the boundaries for the loops would be incorrect if not using 
+   // the range methods GetMinX/Y and GetMaxX/Y
+   for(unsigned int y=Img1.GetMinY();y&lt;Img1.GetMaxY();y++)
+   {
+           for(unsigned int x=Img1.GetMinX();x&lt;Img1.GetMaxX();x++)
+           {
+                   Img1.SetPixel(x,y,y); // setting each scanline to same
+                                 // color as y value
+           }
+   }
+   cout &lt;&lt; endl &lt;&lt; "working with 24 b/p" &lt;&lt; endl;
+   Img1=CImage(10,10,24);
+   Img1.Flush(CPalette::CreateRGB(10,20,30)); // set all image to
+                                              // (R,G,B)=(10,20,30)
+   // getting the R components directly from the image
+   cout &lt;&lt; "Red component at (0,0): " &lt;&lt; 
+       (short)Img1.GetRedComponent(0,0) &lt;&lt; endl;
+   Img1.SetRedComponent(0,0,100); // Setting the Red component directly
+   cout &lt;&lt; "Red component after setting it: " &lt;&lt;
+       (short)Img1.GetRedComponent(0,0) &lt;&lt; endl;
+</PRE>The example shows how to iterate over the whole image and letting IPL98 
+take care of the range problems by using the GetMinX/Y and GetMaxX/Y methods. 
+Then an example of creating an RGB-value directly from the const CPalette method 
+<TT>CreateRGB(R,G,B)</TT><A name=882>&nbsp;</A> is given. The last thing shown 
+is the <TT>SetRedComponent(...)</TT> and <TT>GetRedComponent(...)</TT> which is 
+methods used for directly accessing a single color component. 
+<P>A few simple transformations of the image have been included directly in the 
+image classes. More advanced methods is placed in the algorithm section. The 
+transformations are: 
+<DL compact>
+  <DT>1. 
+  <DD><TT>FlipHorisontal()</TT><A name=887>&nbsp;</A> Mirrors an image around 
+  the x-axis with the x-axis placed in the vertical middle of the image. 
+  <DT>2. 
+  <DD><TT>FlipVertical()</TT><A name=889>&nbsp;</A> Mirrors an image around the 
+  y-axis with the y-axis placed in the horisontal middle of the image. 
+  <DT>3. 
+  <DD><TT>Invert()</TT><A name=891>&nbsp;</A> All pixels in the image is 
+  inverted, works with all pixel depths. 
+  <DT>4. 
+  <DD><TT>Rotate90(int steps)</TT><A name=893>&nbsp;</A> Rotates the image in 
+  steps of 90 degrees, for instance two steps turns the image upside down. 
+</DD></DL>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node35.htm"
+name=tex2html576><IMG align=bottom alt=next border=0 height=24 
+src="node34_files/next_motif.gif" width=37></A> <A 
+href="node32.htm"
+name=tex2html572><IMG align=bottom alt=up border=0 height=24 
+src="node34_files/up_motif.gif" width=26></A> <A 
+href="node33.htm"
+name=tex2html568><IMG align=bottom alt=previous border=0 height=24 
+src="node34_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html574><IMG align=bottom alt=contents border=0 height=24 
+src="node34_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html575><IMG align=bottom alt=index border=0 height=24 
+src="node34_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node35.htm"
+name=tex2html577>Working with a pixelgroup</A> <B>Up:</B> <A 
+href="node32.htm"
+name=tex2html573>Working with pixels</A> <B>Previous:</B> <A 
+href="node33.htm"
+name=tex2html569>The palette</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

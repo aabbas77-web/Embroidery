@@ -1,0 +1,116 @@
+Graphics32 Change Log
+=====================
+
+
+v0.9 (9-Mar-2000)
+  First release. Version 0.9.
+
+v0.91 (10-Mar-2000)
+  Some changes in TImage32 component to reduce flicker when 
+  DoubleBuffered is turned off.
+  Fixed the multithreading example.
+
+v0.92 (16-Mar-2000)
+  Sprite scaling is added.
+  Removed Transparent and UseAlpha from TBitmap32 properties. 
+  A new property DrawMode is introduced instead.
+  Windows 95 and NT compatibility compiler directive is added. 
+  TImage32 example is updated and Win95/NT version is posted.
+  See updated documentation for details. 
+
+v0.92a (17-Mar-2000)
+  Win95/NT support bug fixed. This version emulates both 
+  bitmap transparency and bitmap alpha blending functions
+  from msimg32.dll, however this emulation is not optimized
+  and will be slower compared to msimg32.dll.
+  Some other small bugs found and destroyed.
+
+v0.93 (23-Mar-2000)
+  Added baTile mode to TImage32.BitmapAlign property.
+  Added linear transformations (See documentation). 
+  EndUpdate method of TBitmap32 now does not generate change 
+  notification. The Changed method must be called explicitly.
+  New example on linear transformation is available.
+  A few improvements in pixel and line antialiasing.
+
+v0.94 (31-Mar-2000)
+  Added a new unit for byte array mapping. A little 
+  reorganization in OnChange event generation. Fixed a bug in
+  DrawLineF/FS functions, when the last point (or part of it)
+  was not always there it was supposed to be. 
+  
+v0.95 (5-Apr-2000)
+  Added MMX optimization for pixel blending. It is also used 
+  to accelerate bilinear interpolation when performing linear 
+  transformations. Well, not a huge increase in performance,
+  but still something. Alternative non-MMX code was rearranged
+  to increase the instruction pairing. It works a bit faster 
+  now. A few bugs with color algebra were eliminated. A couple 
+  of links regarding low-level optimization is added.
+
+v0.97 (29-Apr-2000)
+  Complete redesign, no more MMX-specific code since the new
+  integer version works just as fast, no more msimg32.dll 
+  dependence. New double buffering scheme, new change 
+  notification scheme, completely redesigned overlay layers 
+  implementation, new scaling and linear trannsformation 
+  implementation. Overall speed improevement.
+
+v0.97a (1-May-2000)
+  A bug with FillRectS, FillRectTS fixed. Added a SmartResize 
+  property to TPaintBox32, it helps to reduce the amount of 
+  back-buffer reallocations when the control resizes.
+
+v0.98 (17-May-2000)
+  Delphi4 compatibility. New MMX optimization code with 
+  automatic MMX detection. A small fix in Bresenham's 
+  implementation. DrawLine* functions now have parameter 
+  controlling drawing of the last pixel. Added MoveTo*, 
+  LineTo* functions. Added text blending/antialiasing. Added 
+  polylines and polygons. DrawLineA* functions now support 
+  line opacity. Added G32Bench.xls file with performance test 
+  results. Some other small fixes. New examples.
+
+v0.98a (22-May-2000)
+  A little optimization in TBitmap32.RenderText. A bug in 
+  Intensity function fixed. Some fix-ups in PolygonTS.
+
+v0.98b (3-June-2000)
+  Just a few bug fixes.
+
+v0.98c (19-July-2000)
+  This release should be considered as beta for v0.99. 
+  It contains most of the features planned for v0.99. 
+  I release it mostly to check the C++ Builder compatibility, 
+  and keep you up-to-date with the current development state. 
+  Note, that documentation is not completely updated. DrawLine* 
+  functions are changed to Line*. Added an ability to customize 
+  bitmap blending equation. Better and faster buffering in 
+  TPaintBox32 and its descendants. Perspective transformations 
+  are now possible as well. Introduced a new TFixed fixed 
+  point data type. A new unit, implementing controls similar 
+  to scroll bars is available together with sample control 
+  showing how to implement scroll bars with TImage32. Sample 
+  control showing how to implement rubber-banding with layers 
+  is available as well. New 'X' postfix is introduced to some 
+  line drawing routines than operate directly over fixed point 
+  arguments.
+  
+v0.99 (9-September-2000)
+  New documentation is available in HTML Help format.
+  Changed unit names. Changed implementation of TImage32 and
+  layers (see docs). New TPaintBox32 does not support layers. 
+  TBitmapList32 is renamed to TBitmap32List and a little bit
+  simplified. An couple of bugs fixed in TBitmap32.SetSize. 
+  One of them could lead to resource leakage. Also fixed a
+  bug in design-time streaming. TImgView32, a new control 
+  introduced in v0.98c is improved and now it is a descendant
+  of TImage32.
+
+v0.99a (11-September-2000)
+  Updated resampling code in G32_Transforms.pas. More than 
+  2 times improvement in sfNearest resampling and sfLinear
+  resampling works up to 5 times faster.
+  
+
+See http://www.geocities.com/den_alex for updates.

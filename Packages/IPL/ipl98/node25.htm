@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node25.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>History</TITLE>
+<META content=History name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node25_files/include_all.css" rel=STYLESHEET><LINK href="node26.htm"
+rel=next><LINK href="node22.htm" rel=previous><LINK href="node17.htm"
+rel=up><LINK href="node26.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node26.htm"
+name=tex2html460><IMG align=bottom alt=next border=0 height=24 
+src="node25_files/next_motif.gif" width=37></A> <A 
+href="node17.htm"
+name=tex2html456><IMG align=bottom alt=up border=0 height=24 
+src="node25_files/up_motif.gif" width=26></A> <A 
+href="node24.htm"
+name=tex2html450><IMG align=bottom alt=previous border=0 height=24 
+src="node25_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html458><IMG align=bottom alt=contents border=0 height=24 
+src="node25_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html459><IMG align=bottom alt=index border=0 height=24 
+src="node25_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node26.htm"
+name=tex2html461>Macros for small usefull</A> <B>Up:</B> <A 
+href="node17.htm"
+name=tex2html457>General information</A> <B>Previous:</B> <A 
+href="node24.htm"
+name=tex2html451>Errors produced</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00086000000000000000>&nbsp;</A><A name=584>&nbsp;</A> 
+<BR>History </H2>When working with the image classes a history of type CText<A 
+name=585>&nbsp;</A> is present as an attribute in them and can be accessed as 
+<TT>m_History</TT><A name=587>&nbsp;</A>. Every time an algorithm is performed 
+on an image information about this is appended by the algorithm to the history 
+attribute. This history is only saved when the programmer saves an image in the 
+PGM format, see section&nbsp;<A 
+href="node30.html#subsec:saveloadshow"><IMG
+align=bottom alt=[*] border=1 src="node25_files/cross_ref_motif.gif"></A> for 
+more information. The history can also be saved manually by the method 
+<TT>Save(..)</TT> in the CText class. The history can be disabled in the 
+beginning of the file <EM>ipl98.h</EM> located in the folder <EM>ipl98/</EM> 
+which looks like this: 
+<P><PRE>/* Enable or disable adding to history from the ANSI C 
+   and C++ part of the library. To disable adding history 
+   out comment the line "#define IPL_ADD_HISTORY". */
+#define IPL_ADD_HISTORY
+</PRE>Simply outcomment the <EM>#define IPL_ADD_HISTORY</EM> line to disable the 
+history, in that case all code involving the history will not be compiled. 
+<P>Lines are added with the method <TT>Append(const string&amp; str)</TT><A 
+name=596>&nbsp;</A> or <TT>AppendIPL(const string&amp; str)</TT><A 
+name=598>&nbsp;</A>, the last mentioned adds the IPL98 version number to the 
+string before insertion. The history can never be totally emptied, the method 
+<TT>Empty()</TT> removes all lines but leaves one line with information about 
+the number of lines removed. In this way it is always possible to see if some 
+processing has been done on the image. The methods <TT>AddTime(bool 
+Value)</TT><A name=601>&nbsp;</A> and <TT>AddDate(bool Value)</TT><A 
+name=603>&nbsp;</A> can be used to disable or enable automatic appending of date 
+and time information when adding lines to the history. The following example 
+shows how the methods above may be used. In addition it show how to search 
+through the history with the methods <TT>Find(...)</TT><A name=605>&nbsp;</A> 
+and <TT>Next(...)</TT><A name=607>&nbsp;</A>. 
+<P><PRE>        CImage Img(10,10,8);
+        CCoordinateTransform ct;
+        ct.ScaleAndRotateAuto(Img,Img,2,4.7,PI/4.0,0);
+        cout &lt;&lt; Img.m_History &lt;&lt; endl;
+
+        // appending your own history
+        Img.m_History.AddTime(false); // do not add time
+        Img.m_History.AddDate(true); // add date
+        string str("my own algorithm running with x=5");
+        Img.m_History.Append(str);
+        Img.m_History.AppendIPL(str); // append it with IPL version number
+
+        cout &lt;&lt; "The history now contains " &lt;&lt; Img.m_History.TotalItems() &lt;&lt;
+                " lines:" &lt;&lt; endl;
+        cout &lt;&lt; Img.m_History &lt;&lt; endl;
+
+        cout &lt;&lt; "Searching for \"own\" in the history" &lt;&lt; endl;
+        string result;
+        if (Img.m_History.Find(string("own"),result))
+        {
+                cout &lt;&lt; "Found \"own\" in this line: " &lt;&lt; endl;
+                cout &lt;&lt; result &lt;&lt; endl;
+                cout &lt;&lt; "Searching for other occurrenses.... " &lt;&lt; endl;
+                while(Img.m_History.FindNext(result))
+                {
+                        cout &lt;&lt; "Found \"own\" in this line: " &lt;&lt; endl;
+                        cout &lt;&lt; result &lt;&lt; endl;
+                }
+        }
+        Img.m_History.Empty();
+        cout &lt;&lt; "This is how the history looks after emptying it: " &lt;&lt; endl;
+        cout &lt;&lt; Img.m_History &lt;&lt; endl;
+</PRE>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node26.htm"
+name=tex2html460><IMG align=bottom alt=next border=0 height=24 
+src="node25_files/next_motif.gif" width=37></A> <A 
+href="node17.htm"
+name=tex2html456><IMG align=bottom alt=up border=0 height=24 
+src="node25_files/up_motif.gif" width=26></A> <A 
+href="node24.htm"
+name=tex2html450><IMG align=bottom alt=previous border=0 height=24 
+src="node25_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html458><IMG align=bottom alt=contents border=0 height=24 
+src="node25_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html459><IMG align=bottom alt=index border=0 height=24 
+src="node25_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node26.htm"
+name=tex2html461>Macros for small usefull</A> <B>Up:</B> <A 
+href="node17.htm"
+name=tex2html457>General information</A> <B>Previous:</B> <A 
+href="node24.htm"
+name=tex2html451>Errors produced</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

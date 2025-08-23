@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node31.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Manipulating an image in RAM</TITLE>
+<META content="Manipulating an image in RAM" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node31_files/include_all.css" rel=STYLESHEET><LINK href="node32.htm"
+rel=next><LINK href="node30.htm" rel=previous><LINK href="node27.htm"
+rel=up><LINK href="node32.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node32.htm"
+name=tex2html540><IMG align=bottom alt=next border=0 height=24 
+src="node31_files/next_motif.gif" width=37></A> <A 
+href="node27.htm"
+name=tex2html536><IMG align=bottom alt=up border=0 height=24 
+src="node31_files/up_motif.gif" width=26></A> <A 
+href="node30.htm"
+name=tex2html530><IMG align=bottom alt=previous border=0 height=24 
+src="node31_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html538><IMG align=bottom alt=contents border=0 height=24 
+src="node31_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html539><IMG align=bottom alt=index border=0 height=24 
+src="node31_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node32.htm"
+name=tex2html541>Working with pixels</A> <B>Up:</B> <A 
+href="node27.htm"
+name=tex2html537>Using IPL98 to represent</A> <B>Previous:</B> <A 
+href="node30.htm"
+name=tex2html531>Save, load and show</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00094000000000000000>&nbsp;</A> <A 
+name=subsec:manipulateanimage>&nbsp;</A> <BR>Manipulating an image in RAM 
+</H2>One of the first things to do when programming with images is to move the 
+contents of one image object to another. In IPL98 this is done with the ``=''<A 
+name=824>&nbsp;</A> (assignment<A name=825>&nbsp;</A>) operator and is very 
+easy. Here is a simple example: <PRE>   CImage Img1(768,512,24);
+   CImage Img2;
+
+   Img2=Img1; // copy contents of Img1 to Img2
+</PRE>The assignment operator can only be used between images with the same 
+pixel depth (b/p), it is possible to copy between a CImage and a CByteImage 
+class as long as the pixel depth (b/p) is available in the destination image: <PRE>   CImage Img1(768,512,24);
+   CImage Img2(768,512,8);
+   CByteImage ByteImage;
+
+   ByteImage=Img1; // error, a CByteImage cannot contain a 24 b/p image
+   ByteImage=Img2; // OK, Img2 contains an image with 8 b/p
+
+   Img1=ByteImage; // OK to copy a CByteImage to a CImage object
+</PRE>To change the bit depths (b/p)<A name=830>&nbsp;</A> of an image another 
+method is available in both the CImage and CByteImage class: CopyConvert<A 
+name=831>&nbsp;</A>. This function takes two parameters, the first is the 
+resulting bit depths and the second is the source image which can be both a 
+CImage or CByteImage. Some information will be lost when converting to a lower 
+bit depths. Convertion from 1 to 8 b/p assumes black as 0-values and 1 as white 
+values in the source image. Convertion from 1 to 24 b/p and 8 to 24 b/p looks up 
+the palette value in the source image and sets it in the destination - hence it 
+works for both gray tones and color images. For 8 to 1 b/p a threshold of 128 is 
+used (should be used for gray tone images only). For 24 to 8 b/p the mean value 
+of the R, G and B component is used, i.e. the new image is a gray tone. For 24 
+to 1 b/p the method for 24 to 8 b/p is used followed by a thresholding with 128. 
+When using the method with a CByteImage the resulting bit depths has to be 8. 
+Here is an example of conversions, the corresponding C code can be found in the 
+apendix at page&nbsp;<A 
+href="node57.html#ap:manipulateanimage:ex1"><IMG
+align=bottom alt=[*] border=1 src="node31_files/cross_ref_motif.gif"></A>: 
+<P><A name=subsec:manipulateanimage:ex1>&nbsp;</A><PRE>   CImage Img1(768,512,24);
+   CImage Img2(768,512,8);
+   CByteImage ByteImage;
+
+   Img2.CopyConvert(1,Img1); // copy Img1 to Img2 and convert it from
+                                  // 24 b/p to 1 b/p
+   cout &lt;&lt; "Contents of Img1" &lt;&lt; endl &lt;&lt; Img1 &lt;&lt; endl &lt;&lt; endl;
+   Img1.CopyConvert(1,Img1); // convert Img1 from 24 b/p to 1 b/p this is
+                                  // a bit slower
+   cout &lt;&lt; "After converting Img1: " &lt;&lt; endl &lt;&lt; Img1 &lt;&lt; endl;
+   ByteImage.CopyConvert(8,Img1); // copy Img1 to ByteImage and convert
+                                       // to 8 b/p.
+   ByteImage.CopyConvert(1,Img1); // error, CByteImage needs 8 b/p!
+</PRE>
+<P>A method named <TT>CopySubImage</TT><A name=837>&nbsp;</A> copies an area of 
+a given image to a new image as this example shows: 
+<P><PRE>        CImage Img1(768,512,8);
+        CByteImage ByteImage;
+        ByteImage.CopySubImage(Img1,10,10,100,50); // Copy a rectangle with
+                               // dimensions (90,40) from Img1 to ByteImage
+</PRE>
+<P>When using <TT>CopySubImage(...)</TT> both the source and destination can be 
+the same image but the method will be slower because an internal copy ot the 
+image has to be allocated. 
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node32.htm"
+name=tex2html540><IMG align=bottom alt=next border=0 height=24 
+src="node31_files/next_motif.gif" width=37></A> <A 
+href="node27.htm"
+name=tex2html536><IMG align=bottom alt=up border=0 height=24 
+src="node31_files/up_motif.gif" width=26></A> <A 
+href="node30.htm"
+name=tex2html530><IMG align=bottom alt=previous border=0 height=24 
+src="node31_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html538><IMG align=bottom alt=contents border=0 height=24 
+src="node31_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html539><IMG align=bottom alt=index border=0 height=24 
+src="node31_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node32.htm"
+name=tex2html541>Working with pixels</A> <B>Up:</B> <A 
+href="node27.htm"
+name=tex2html537>Using IPL98 to represent</A> <B>Previous:</B> <A 
+href="node30.htm"
+name=tex2html531>Save, load and show</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node45.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Moments</TITLE>
+<META content=Moments name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node45_files/include_all.css" rel=STYLESHEET><LINK href="node44.htm"
+rel=previous><LINK href="node44.htm" rel=up><LINK href="node46.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node46.htm"
+name=tex2html714><IMG align=bottom alt=next border=0 height=24 
+src="node45_files/next_motif.gif" width=37></A> <A 
+href="node44.htm"
+name=tex2html710><IMG align=bottom alt=up border=0 height=24 
+src="node45_files/up_motif.gif" width=26></A> <A 
+href="node44.htm"
+name=tex2html706><IMG align=bottom alt=previous border=0 height=24 
+src="node45_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html712><IMG align=bottom alt=contents border=0 height=24 
+src="node45_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html713><IMG align=bottom alt=index border=0 height=24 
+src="node45_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node46.htm"
+name=tex2html715>Morphological operations</A> <B>Up:</B> <A 
+href="node44.htm"
+name=tex2html711>Feature extraction</A> <B>Previous:</B> <A 
+href="node44.htm"
+name=tex2html707>Feature extraction</A> <BR><BR><!--End of Navigation Panel-->
+<H3><A name=SECTION000103100000000000000>&nbsp;</A><A name=1232>&nbsp;</A> 
+<BR>Moments </H3>The following methods are available for calculating different 
+moments. They all work on a <TT>CPixelGroup</TT> object. 
+<P>
+<UL>
+  <LI><TT>DeriveMomentsGrayTone(...)</TT> <A name=1236>&nbsp;</A> The weight of 
+  each pixel is the original pixel value minus a "Background" values which is 
+  given as a parameter. The results are stored in the m_Moments attribute. This 
+  attribute structure contains memebers named <I>m</I><SUB><I>pq</I></SUB> where 
+  (p+q) is the moment order as explained in Gozales &amp; Woods page 514. The 
+  calculation is very fast, and a parameter named "MaxOrder" can be used to 
+  calculate the low order moments only, which makes the method even faster. 
+  <LI><TT>DeriveMomentsBinary(...)</TT> <A name=1239>&nbsp;</A> Calculates the 
+  same moments as <TT>DeriveMomentsGrayTone()</TT>, except that each pixel has 
+  the value 1. 
+  <LI><TT>DeriveCentralMoments()</TT> <A name=1242>&nbsp;</A> These central 
+  moments denoted <IMG align=middle alt=$\mu_{pq}$ border=0 height=30 
+  src="node45_files/img18.gif" width=29> in Gonzales &amp; Woods are derived 
+  from the simple moments calculated by <TT>DeriveMomentsBinary()</TT> or 
+  <TT>DeriveMomentsGrayTone()</TT>. If they are not derived in advance the 
+  method will cause an error. 
+  <LI><TT>DeriveCentralNormMoments()</TT> <A name=1247>&nbsp;</A> These 
+  normalized central moments denoted <IMG align=middle alt=$\eta_{pq}$ border=0 
+  height=30 src="node45_files/img19.gif" width=27> in Gonzales &amp; Woods are 
+  derived from the simple moments calculated by <TT>DeriveMomentsBinary()</TT> 
+  or <TT>DeriveMomentsGrayTone()</TT>. If they are not derived in advance the 
+  method will cause an error. 
+  <LI><TT>DeriveHuFromCentralMom()</TT><A name=1252>&nbsp;</A> A total of 13 Hu 
+  moments are calculated, only the first seven are found in Gonzalez &amp; Woods 
+  at page 516. More information is found in the article ``Visual Pattern 
+  Recognition by Moment Invariants'' by Ming-Kuei Hu&nbsp;[<A 
+  href="node60.html#HU">2</A>].
+  This method calcates Hu moments from the central moments calculated by 
+  <TT>DeriveCentralMoments()</TT>. If they are not derived in advance the method 
+  will cause an error. The result is placed in the public member m_Hu which is 
+  an array of 13 doubles. Indexing is done according to the numbering of the 
+  invariants, that is starting from number 1, index 0 is not used. 
+  <LI><TT>DeriveHuFromCentralNormMom()</TT> <A name=1256>&nbsp;</A> Same as 
+  <TT>DeriveHuFromCentrMom()</TT>, except that the source moments are now the 
+  central normalized moments. The result is placed in the public member m_Hu 
+  which is an array of 13 doubles. Indexing is done according to the numbering 
+  of the invariants, that is starting from number 1, index 0 is not used. 
+</LI></UL>
+<P>An example showing how to extract moment features: <PRE>   CImage Img; // Images
+   CTimeDate Timer;
+   Timer.StartTimer(); // stop watch for time elapsed
+        
+    if (Img.Load("c:/temp/three_segments.bmp")) // your image
+    {
+        cout &lt;&lt; "Image loaded:" &lt;&lt; endl &lt;&lt; Img &lt;&lt; endl;
+        CPixelGroups pgs;
+        CSegmentate seg;
+        CFeatures features;
+        seg.DeriveBlobs(Img,pgs,HIGHCOLOR,100,EIGHTCONNECTED);
+        // iterate through the found groups and find moments
+        for(int x=0; x&lt;pgs.GetTotalGroups(); x++)
+        {
+           if (features.DeriveMomentsBinary(*pgs.GetGroup(x),3))
+           {
+                cout &lt;&lt; endl &lt;&lt; *pgs.GetGroup(x) &lt;&lt; endl; // group info
+                cout &lt;&lt;  "Moment values found for segment " &lt;&lt; x &lt;&lt; endl;
+                cout &lt;&lt; "M00=" &lt;&lt; features.m_Moments.m00 &lt;&lt; " M10=" &lt;&lt; 
+                        features.m_Moments.m10 &lt;&lt; " M01=" &lt;&lt;
+                        features.m_Moments.m01 &lt;&lt; endl;
+                cout &lt;&lt; "M20=" &lt;&lt; features.m_Moments.m20 &lt;&lt; " M02=" &lt;&lt; 
+                        features.m_Moments.m02 &lt;&lt; " M11=" &lt;&lt; 
+                        features.m_Moments.m11 &lt;&lt; endl;
+
+                cout &lt;&lt; "Deriving central moments..." &lt;&lt; endl;
+                        features.DeriveCentralMoments();
+                cout &lt;&lt; "CM20= " &lt;&lt; features.m_CentrMom.m20 &lt;&lt; endl;
+
+                cout &lt;&lt; "Deriving central normalized moments..." &lt;&lt; endl;
+                        features.DeriveCentralNormMoments();
+                cout &lt;&lt; "CNM20= " &lt;&lt; features.m_CentrNormMom.m20 &lt;&lt; endl;
+
+                cout &lt;&lt; "Deriving Hu moments..." &lt;&lt; endl;
+                        features.DeriveHuFromCentralMom();
+                cout &lt;&lt; "Hu[0]= " &lt;&lt; features.m_Hu[0] &lt;&lt; endl;
+           }
+        }
+
+        cout &lt;&lt; endl &lt;&lt; "Total time: " &lt;&lt; Timer.StopTimer() &lt;&lt; endl;
+    }
+    else
+    {
+        cout &lt;&lt; "Loading failed" &lt;&lt; endl; 
+    }
+</PRE>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node46.htm"
+name=tex2html714><IMG align=bottom alt=next border=0 height=24 
+src="node45_files/next_motif.gif" width=37></A> <A 
+href="node44.htm"
+name=tex2html710><IMG align=bottom alt=up border=0 height=24 
+src="node45_files/up_motif.gif" width=26></A> <A 
+href="node44.htm"
+name=tex2html706><IMG align=bottom alt=previous border=0 height=24 
+src="node45_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html712><IMG align=bottom alt=contents border=0 height=24 
+src="node45_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html713><IMG align=bottom alt=index border=0 height=24 
+src="node45_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node46.htm"
+name=tex2html715>Morphological operations</A> <B>Up:</B> <A 
+href="node44.htm"
+name=tex2html711>Feature extraction</A> <B>Previous:</B> <A 
+href="node44.htm"
+name=tex2html707>Feature extraction</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

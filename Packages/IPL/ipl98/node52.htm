@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node52.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Code requirements</TITLE>
+<META content="Code requirements" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node52_files/include_all.css" rel=STYLESHEET><LINK href="node53.htm"
+rel=next><LINK href="node51.htm" rel=previous><LINK href="node51.htm"
+rel=up><LINK href="node53.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node53.htm"
+name=tex2html799><IMG align=bottom alt=next border=0 height=24 
+src="node52_files/next_motif.gif" width=37></A> <A 
+href="node51.htm"
+name=tex2html795><IMG align=bottom alt=up border=0 height=24 
+src="node52_files/up_motif.gif" width=26></A> <A 
+href="node51.htm"
+name=tex2html789><IMG align=bottom alt=previous border=0 height=24 
+src="node52_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html797><IMG align=bottom alt=contents border=0 height=24 
+src="node52_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html798><IMG align=bottom alt=index border=0 height=24 
+src="node52_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node53.htm"
+name=tex2html800>Adding history</A> <B>Up:</B> <A 
+href="node51.htm"
+name=tex2html796>Adding code to IPL98</A> <B>Previous:</B> <A 
+href="node51.htm"
+name=tex2html790>Adding code to IPL98</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION000121000000000000000>Code requirements</A> </H2>Here is a 
+list of the things that must be fulfilled in order to have the code inserted 
+into IPL98. It includes a nomenclature naming convention that also has to be 
+followed: 
+<UL>
+  <LI><B>Documentation</B> All public methods must be documentated in agreement 
+  with the DOC++<A name=1821>&nbsp;</A><A 
+  href="footnode.html#foot1822"
+  name=tex2html40><SUP>18</SUP></A> standard. Every parameter and the return 
+  value must be commented. The ``@author'' and ``@version'' options must be 
+  included. In the C code the documentation must start with ``@name'' followed 
+  by the function name. Here is an example of the C and C++ documentation for 
+  k_DeriveBlobs (in C++ DeriveBlobs found in the CSegmentate class): <PRE>/** @name k_DeriveBlobs
+        Derive blobs from image and put results in TPixelGroups. If you
+        want the original colors added to the found pixel groups call
+        the function k_AddColorsToGroups(...) found in the TPixelGroups
+        area.  
+        @param pSource The source image to derive from, nothing is
+        changed in the image.
+        @param Color The color to segmentate into blobs, values are
+        HIGHCOLOR and LOWCOLOR.
+        @param Threshold A simpel threshold value to seperate background
+        from blobs in graytone images. not used if source image is 1
+        b/p.
+        @param Connected Decide if the blobs are to be eight- or
+        fourconnected, as described in Gonzalez and Woods page 41.
+        @return False if source image given to constructor is empty or
+        not 1 b/p or 8 b/p.
+        @version 1.00
+        @author Implementation by Ivar Balslev (ivb@mip.sdu.dk) and René
+        Dencker Eriksen (edr@mip.sdu.dk) */
+    bool k_DeriveBlobs(TImage* pSource, TPixelGroups* pPixelGroups,
+                    COLORTYPE Color, UINT8 Threshold, CONNECTIVITY
+                    Connected);
+</PRE>And the corresponding C++ documentation: <PRE>        /** Derive blobs from image and put results in CPixelGroups. Old
+                data in "PixelGroups" are destroyed. If you want the
+                original colors added to the found pixel groups call the
+                method AddColors(...) found in the CPixelGroups class.
+                @param Color The color to segmentate into blobs, values
+                are HIGHCOLOR and LOWCOLOR.
+                @param Threshold A simpel threshold value to seperate
+                background from blobs in graytone images. not used if
+                source image is 1 b/p. 
+                @param Connected Decide if the blobs are to be eight- or
+                fourconnected, as described in Gonzalez and Woods page 41.
+                @return False if source image given to constructor is
+                empty or not 1 b/p or 8 b/p.
+                @version 1.00
+                @author Implementation by Ivar Balslev (ivb@mip.sdu.dk)
+                and René Dencker Eriksen (edr@mip.sdu.dk) */
+        bool DeriveBlobs(CStdImage&amp; Source, CPixelGroups&amp; PixelGroups,
+                COLORTYPE Color, UINT8 Threshold, CONNECTIVITY
+                Connected);
+</PRE>For more examples look in the header files in the library. 
+  <P></P>
+  <LI><B>Return values</B> If possible let the method return a boolean value and 
+  test all possible sources for errors. If a method needs to return some other 
+  information do it in a reference parameter. In case of ANSI C use a pointer. 
+  Here is an example: 
+  <BLOCKQUOTE>C++: Erode(const CStdImage&amp; ImgMask, CStdImage&amp; Img) C: 
+    k_Erode(const TImage* pMask, TImage* pImg) </BLOCKQUOTE>Both methods returns a 
+  boolean but and the result is placed in the parameter Img/pImg. 
+  <LI><B>Nomenclature</B><A name=1831>&nbsp;</A><A name=1832>&nbsp;</A> The 
+  following rules must be followed: 
+  <DL compact>
+    <DT>1. 
+    <DD>Functions and macros written in ANSI C begins with the prefix "k_". 
+    Examples: k_Load(...), k_NewImage(...). Macro examples: k_PalGetRVal(...), 
+    k_PalCreateRGB(...). If a function is added to a container class the prefix 
+    is ``k_'' for CImage functions, ``kB_'' for CByteImage, ``kF_'' for 
+    CFloatImage, ``kI_'' for CIntImage, ``kC_'' for CComplexImage 
+    <DT>2. 
+    <DD>Each word in multiple word names starts with upper case except in case 
+    of abstract names (x,y,cx1 etc). Examples: SearchDirection, FileName and 
+    FindAndFollowLowContour(...). 
+    <DT>3. 
+    <DD>Structures begins with a T followed by a name. Examples: TFileInfo, 
+    TImage. NB: Only use structures when programming in ANSI C. 
+    <DT>4. 
+    <DD>Type definitions (typedef) are upper case only. Examples: UINT8, INT32. 
+    Look in the file "ipl98_types.h" for more examples. NB: There is one 
+    exception from this rule: The type "bool" which is defined to comply with 
+    the C++ standard boolean type. 
+    <DT>5. 
+    <DD>Class names starts with a "C" before the actual name. Examples: 
+    CImageGeneral and CImageMatrix. 
+    <DT>6. 
+    <DD>Member variables starts with "m_". Examples: m_Pal and m_ImageInfo. 
+    <DT>7. 
+    <DD>Two Hungarian notaions must be used for variables: "p" for pointers, 
+    "fp" for file pointer. Examples: 
+    <DIV align=center>
+    <TABLE border=1 cellPadding=3>
+      <TBODY>
+      <TR>
+        <TD align=left>Declaration</TD>
+        <TD align=left>Description</TD>
+        <TD align=middle>&nbsp;</TD>
+        <TD align=middle>&nbsp;</TD></TR>
+      <TR>
+        <TD align=left>UINT8* pPixelStream</TD>
+        <TD align=left>"p" for pointer</TD>
+        <TD align=middle>&nbsp;</TD>
+        <TD align=middle>&nbsp;</TD></TR>
+      <TR>
+        <TD align=left>FILE *fp</TD>
+        <TD align=left>"fp" for file pointer</TD>
+        <TD align=middle>&nbsp;</TD>
+        <TD align=middle>&nbsp;</TD></TR>
+      <TR>
+        <TD align=left>UINT8** ppMatrix</TD>
+        <TD align=left>pointer pointer to UINT8</TD>
+        <TD align=middle>&nbsp;</TD>
+        <TD align=middle>&nbsp;</TD></TR>
+      <TR>
+        <TD align=left>UINT8** ppPixel</TD>
+        <TD align=left>member variable of type pointer pointer to UINT8</TD>
+        <TD align=middle>&nbsp;</TD>
+        <TD align=middle>&nbsp;</TD></TR></TBODY></TABLE></DIV></DD></DL>
+  <LI><B>Error messages</B> All errors must be written by use of the function 
+  k_ShowMessage(...). The error type is split in three categories: IPL_ERROR, 
+  IPL_WARNING and IPL_NORMAL. The first is used for errors in the program where 
+  it is fatal to go on. The warning is used for errors which does not 
+  necessarily spoil further execution of the program. The last error type is for 
+  future use and can be used by programmer who adds their own code to IPL98 - at 
+  the moment no functions or methods uses IPL_NORMAL. An error message must 
+  begin with the function name or in case of C++ the class name followed by to 
+  ":"-signs and then the method name. It is optional if the argument values are 
+  to be printed. In case of C++ bot the class name and method name must be 
+  given. After the function name the error message must follow. Examples: 
+  <UL>
+    <LI>From the kernel function <TT>k_AllocImage(...)</TT> where one argument 
+    value are written: <PRE>             TString str;
+             k_InitString(&amp;str);
+             k_AddFileAndLine(str);
+             k_ShowMessage(IPL_ERROR,&amp;str,"k_AllocImage() Bits=%d not 
+                                      supported",Bits);
+             k_EmptyString(&amp;str);
+             return false;
+</PRE>
+    <LI>From the method <TT>CopySubImage(...)</TT> in the CStdImage class: <PRE>             TString str;
+             k_InitString(&amp;str);
+             k_AddFileAndLine(str);
+             k_ShowMessage(IPL_ERROR,&amp;str,"CStdImage::CopySubImage: 
+                                           Failed copying subimage");
+             k_EmptyString(&amp;str);
+             return false;
+</PRE></LI></UL>The error handling in the C++ part will probably be changed in 
+  the future to take advantage of exception handling but until then this will be 
+  the method for error handling. 
+  <LI><B>Big structures</B> If a parameter is a big structure or object let the 
+  parameter be transfered as a constant reference. Here is an example: 
+  <BLOCKQUOTE>C++: Erode(const CStdImage&amp; ImgMask, CStdImage&amp; Img) 
+    <P>C: k_Erode(const TImage* pMask, TImage* pImg) </P></BLOCKQUOTE>The C++ 
+  method transfers the ImgMask parameter as a constant reference and the C 
+  function k_Erode transfers pMask as a constant pointer. </LI></UL>
+<P>If a function has a source and target image of the same type the code must 
+check if they are the same image. In that case an internal target image should 
+be created and at the end be copied to the image involved. Here is an example 
+how this is done: 
+<P><PRE>bool k_ScaleAndRotateAuto(TImage* pSource,TImage* pDest,...)
+{
+        TImage* pTarget=pDest;
+        bool CopyToSource=false;
+
+        ...
+
+        if (pDest==pSource)
+        {
+                pTarget=(TImage*) malloc(sizeof(TImage));
+                k_InitImage(pTarget);
+                CopyToSource=true;
+        }
+
+        ...
+
+        /* all the code now works on pTarget and pSource */
+
+        ...
+
+        if (CopyToSource==true)
+        {
+                k_CopyImage(pDest,pTarget);
+                k_EmptyImage(pTarget);
+                free(pTarget);
+        }
+
+        ...
+
+        return true;
+}
+</PRE>
+<P>The function checks if pDest and pSource is the same, in that case the 
+internal image pointer pTarget are set to point to an internal created image. In 
+the case of two different images pTarget is initialized to point to the pDest 
+and are not changed then. All the code operates on what pTarget points to. At 
+the end a copy is performed if an internal image were created, otherwise nothing 
+is done. 
+<P>A comprehensive test of the algorithm must be done in order to make it stable 
+in all situations. It is important to check and remove for memory leaks as even 
+small leaks can be serious if a program is running for a long time (in a 
+production it may be running for years!). 
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node53.htm"
+name=tex2html799><IMG align=bottom alt=next border=0 height=24 
+src="node52_files/next_motif.gif" width=37></A> <A 
+href="node51.htm"
+name=tex2html795><IMG align=bottom alt=up border=0 height=24 
+src="node52_files/up_motif.gif" width=26></A> <A 
+href="node51.htm"
+name=tex2html789><IMG align=bottom alt=previous border=0 height=24 
+src="node52_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html797><IMG align=bottom alt=contents border=0 height=24 
+src="node52_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html798><IMG align=bottom alt=index border=0 height=24 
+src="node52_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node53.htm"
+name=tex2html800>Adding history</A> <B>Up:</B> <A 
+href="node51.htm"
+name=tex2html796>Adding code to IPL98</A> <B>Previous:</B> <A 
+href="node51.htm"
+name=tex2html790>Adding code to IPL98</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

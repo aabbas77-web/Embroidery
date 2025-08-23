@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0064)node8.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Structure</TITLE>
+<META content=Structure name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node8_files/include_all.css" rel=STYLESHEET><LINK href="node12.htm"
+rel=next><LINK href="node6.htm" rel=previous><LINK href="include_all.htm"
+rel=up><LINK href="node9.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node9.htm"
+name=tex2html244><IMG align=bottom alt=next border=0 height=24 
+src="node8_files/next_motif.gif" width=37></A> <A 
+href="include_all.htm"
+name=tex2html240><IMG align=bottom alt=up border=0 height=24 
+src="node8_files/up_motif.gif" width=26></A> <A 
+href="node7.htm"
+name=tex2html234><IMG align=bottom alt=previous border=0 height=24 
+src="node8_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html242><IMG align=bottom alt=contents border=0 height=24 
+src="node8_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html243><IMG align=bottom alt=index border=0 height=24 
+src="node8_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node9.htm"
+name=tex2html245>Basic types</A> <B>Up:</B> <A 
+href="include_all.htm"
+name=tex2html241>Image Processing Library 98</A> <B>Previous:</B> <A 
+href="node7.htm"
+name=tex2html235>Conventions for new releases</A> <BR><BR><!--End of Navigation Panel-->
+<H1><A name=SECTION00060000000000000000>&nbsp;</A><A name=243>&nbsp;</A> <A 
+name=sec:structure>&nbsp;</A> <BR>Structure </H1>In this chapter a short 
+overview of the basic structure of IPL98 is given, this includes the 
+relationship between the C and C++ part, the class-hierarchy, basic type 
+definitions and the filenames and placement. 
+<P><BR>
+<DIV align=center><A name=fig:c_cpp_gui>&nbsp;</A><A name=249>&nbsp;</A> 
+<TABLE width="50%">
+  <CAPTION><STRONG>Figure:</STRONG> Relationship between the C and C++ part of 
+  the library. Almost everything is implemented in the C part and the C++ 
+  classes are just wrappers calling the C functions. To keep the library 
+  platform independent the GUI is not included but some are available elsewhere. 
+  The Java classes are not implemented yet but is included to show how it fits 
+  with the existing part of the C kernel. The GUI could be included directly in 
+  IPL98 for the Java part as many GUI related methods is part of the Java 
+  standard library.</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><!-- MATH: $\scalebox{0.5}{
+\includegraphics{/home/edr/ipl/tutorial/structure/images/c_cplusplus_gui.eps}}$ --><IMG 
+      align=bottom 
+      alt="\scalebox{0.5}{&#10;\includegraphics{/home/edr/ipl/tutorial/structure/images/c_cplusplus_gui.eps}}" 
+      border=0 height=339 src="node8_files/img4.gif" width=368> 
+  </DIV></TD></TR></TBODY></TABLE></DIV><BR>
+<P>IPL98 consists of a kernel implemented in C which contain almost all the code 
+in the library. The C code is implemented as object oriented as possible with 
+class attributes contained in one structure and all functions operating on it 
+contained in one file. Details about the naming convention are given in 
+section&nbsp;<A 
+href="node51.html#sec:adding_code"><IMG
+align=bottom alt=[*] border=1 src="node8_files/cross_ref_motif.gif"></A> and 
+relationship between C and C++ are given later in this sections. A C++ wrapper 
+using the kernel C function is implemented on top of it. The library is devided 
+into two logical sections for both the C and C++ part: Container classes and 
+algorithm classes as can be seen in figure&nbsp;<A 
+href="node8.html#fig:c_cpp_gui"><IMG
+align=bottom alt=[*] border=1 src="node8_files/cross_ref_motif.gif"></A>. The 
+container classes is the code needed to create or load an image in RAM and 
+accessing the image pixels and other information regarding an image, such as 
+dimensions, bit depth, origo etc. Different classes is available in this 
+section, more details about this subject can be found in chapter&nbsp;<A 
+href="node10.html#subsec:imagerepresentation"><IMG
+align=bottom alt=[*] border=1 src="node8_files/cross_ref_motif.gif"></A> on page 
+&nbsp;<A 
+href="node10.html#subsec:imagerepresentation"><IMG
+align=bottom alt=[*] border=1 src="node8_files/cross_ref_motif.gif"></A>. The 
+algorithms are contained in several classes where the classes are named after 
+the different topics in image processing. Read more about this in 
+section&nbsp;<A 
+href="node38.html#sec:using_algorithms"><IMG
+align=bottom alt=[*] border=1 src="node8_files/cross_ref_motif.gif"></A>. 
+<P>To make the library both hardware and software platform independent it was 
+decided not to have any GUI<A name=258>&nbsp;</A> <A name=259>&nbsp;</A> related 
+issues in IPL98. So to actually show an image on screen is something the user 
+must implement on its own or find information about elsewhere. Complete GUI 
+class and tutorial for using IPL98 with Visual C<A name=260>&nbsp;</A> v. 4.2 
+and newer versions can be found at the IPL98 homepage in the section IPL98 
+Exchange. A GUI for the Borland C++<A name=261>&nbsp;</A> Builder is available 
+at the same place. 
+<P>As mentioned before the library is devided into two parts: An ANSI C<A 
+name=262>&nbsp;</A> part and a ANSI/ISO C++<A name=263>&nbsp;</A> part. The C 
+part has been developed as much as possible from an object oriented view point. 
+It is therefore relatively easy to implement the C++ wrapper classes on top of 
+it. The C++ classes only calls the C functions and keeps track of the 
+information returned by these functions. Because of the limitations in C as an 
+object oriented language a few conventions is needed: 
+<DL compact>
+  <DT>1. 
+  <DD>To make it easy for the user to recognize functions belonging to IPL98 
+  every C function begins with one of the following prefixes: <EM>k_</EM> (k for 
+  kernel<A name=266>&nbsp;</A>, this includes all algorithm functions and 
+  functions related to the most general image structure), <EM>kB_</EM> (Kernel 
+  Byte image functions belonging to the byteimage functions), <EM>kF_</EM> 
+  <EM>kC_</EM> and <EM>kI_</EM> (kernel float, kernel integer and kernel complex 
+  image functions). 
+  <DT>2. 
+  <DD>If a class has some attributes the corresponding C implementation will 
+  have a structure containing the attributes. The class will then contain an 
+  attribute of a type with that structure. The class name and the structure name 
+  is the same except the structure begins with a ``T'' and the class with a 
+  ``C''. For instance the class CPixelGroup has the corresponding C structure 
+  name TPixelGroup. 
+  <DT>3. 
+  <DD>Instead of a default constructor the user must remember to call a function 
+  named k_InitStructureName(), where StructureName is the corresponding name of 
+  the structure. 
+  <DT>4. 
+  <DD>Before leaving a scope where a structure is to be destroyed the user must 
+  remember to call a function name k_EmptyStructureName(), where StructureName 
+  is the corresponding name of the structure. </DD></DL>
+<P>Here is a simple example in C++ where an image with dimensions 100 times 80 
+with true color (24 bits per pixel) is created in RAM: 
+<P><PRE>#include &lt;ipl98_cplusplus.h&gt;
+using namespace ipl;
+void main()
+{
+   CImage Img(100,80,24);
+}
+</PRE>
+<P>In ANSI C the corresponding code is; 
+<P><PRE>#include &lt;ipl98.h&gt;
+void main()
+{
+   TImage Img;
+   k_InitImage(&amp;Img);
+   k_AllocImage(100,80,24,&amp;Img);
+   k_EmptyImage(&amp;Img);
+}
+</PRE>
+<P><BR>
+<HR>
+<!--Table of Child-Links--><A name=CHILD_LINKS>&nbsp;</A> 
+<UL>
+  <LI><A href="node9.htm"
+  name=tex2html246>Basic types</A> 
+  <LI><A 
+  href="node10.htm"
+  name=tex2html247>Image representation in RAM</A> 
+  <LI><A 
+  href="node11.htm"
+  name=tex2html248>File names and placement</A> </LI></UL><!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel--><A 
+href="node9.htm"
+name=tex2html244><IMG align=bottom alt=next border=0 height=24 
+src="node8_files/next_motif.gif" width=37></A> <A 
+href="include_all.htm"
+name=tex2html240><IMG align=bottom alt=up border=0 height=24 
+src="node8_files/up_motif.gif" width=26></A> <A 
+href="node7.htm"
+name=tex2html234><IMG align=bottom alt=previous border=0 height=24 
+src="node8_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html242><IMG align=bottom alt=contents border=0 height=24 
+src="node8_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html243><IMG align=bottom alt=index border=0 height=24 
+src="node8_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node9.htm"
+name=tex2html245>Basic types</A> <B>Up:</B> <A 
+href="include_all.htm"
+name=tex2html241>Image Processing Library 98</A> <B>Previous:</B> <A 
+href="node7.htm"
+name=tex2html235>Conventions for new releases</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

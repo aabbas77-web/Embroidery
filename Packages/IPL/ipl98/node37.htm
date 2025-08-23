@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node37.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Container for several pixelgroups</TITLE>
+<META content="Container for several pixelgroups" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node37_files/include_all.css" rel=STYLESHEET><LINK href="node35.htm"
+rel=previous><LINK href="node27.htm" rel=up><LINK href="node38.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node38.htm"
+name=tex2html609><IMG align=bottom alt=next border=0 height=24 
+src="node37_files/next_motif.gif" width=37></A> <A 
+href="node27.htm"
+name=tex2html605><IMG align=bottom alt=up border=0 height=24 
+src="node37_files/up_motif.gif" width=26></A> <A 
+href="node36.htm"
+name=tex2html601><IMG align=bottom alt=previous border=0 height=24 
+src="node37_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html607><IMG align=bottom alt=contents border=0 height=24 
+src="node37_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html608><IMG align=bottom alt=index border=0 height=24 
+src="node37_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node38.htm"
+name=tex2html610>Using the image algorithms</A> <B>Up:</B> <A 
+href="node27.htm"
+name=tex2html606>Using IPL98 to represent</A> <B>Previous:</B> <A 
+href="node36.htm"
+name=tex2html602>Adding colors to a</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00097000000000000000>Container for several pixelgroups</A> 
+</H2>It is often neccesary to work with several CPixelGroup objects and for that 
+purpose a CPixelGroups containter class is available. The class works in many 
+ways as the CPixelGroup class. The default constructor starts out allocating 
+memory for 20 CPixelGroup objects and will adjust the size in the same way as 
+the CPixelGroup class does for its positions. The constructor 
+<TT>CPixelGroups(InitialSize)</TT> gives the possibility for initializing the 
+size to save time. A group can be added and removed with the slow methods 
+<TT>InsertGroupInGroups(...)</TT><A name=968>&nbsp;</A> and 
+<TT>RemoveGroupSlow(...)</TT><A name=970>&nbsp;</A> which preserves the order. 
+The fast methods are <TT>AddGroup(...)</TT><A name=972>&nbsp;</A> and 
+<TT>RemoveGroup(...)</TT><A name=974>&nbsp;</A> just as the CPixelGroups methods 
+for inserting and removing positions. A group with a specific position can be 
+found with the method <TT>GetGroupWithPos(...)</TT><A name=976>&nbsp;</A>. 
+<P>Here is a simple example on how this works: 
+<P><PRE>   CPixelGroup pg1,pg2; // define two pixel groups
+   // add some positions
+   pg1.AddPosition(2,5);
+   pg1.AddPosition(4,9);
+   pg2.AddPosition(109,901);
+   pg2.AddPosition(500,664);
+
+   CPixelGroups pgroups; // the container for the groups
+   pgroups.AddGroup(pg1);
+   pgroups.AddGroup(pg2);
+   cout &lt;&lt; pgroups &lt;&lt; endl;
+
+   // example of how to find a group with a given position
+   unsigned int GroupIndex;
+   unsigned int PosIndex;
+   if (pgroups.GetGroupWithPos(GroupIndex,CPoint2D&lt;UINT16&gt;(109,901),
+       PosIndex))
+   {
+        CPixelGroup* pPixelGroup=pgroups.GetGroup(GroupIndex);
+        cout &lt;&lt; "Group with position " &lt;&lt; pPixelGroup-&gt;GetPosition(PosIndex)
+                &lt;&lt; " found at index " &lt;&lt; GroupIndex &lt;&lt; endl &lt;&lt; endl;
+   }
+
+   pgroups.Empty(); // empty the pixelgroups the same way as with a CStdImage
+   cout &lt;&lt; "Emptying the CPixelGroups variable: " &lt;&lt; endl;
+   cout &lt;&lt; pgroups &lt;&lt; endl;
+</PRE>
+<P><BR>
+<HR>
+
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

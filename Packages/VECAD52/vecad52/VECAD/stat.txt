@@ -1,0 +1,43 @@
+File name: e:\digitizer\vector\vecad52\vecad52\vecad\vec_toolpost.vec
+VEC format version: 528
+Latest VEC format version: 534
+File size: 116448 bytes
+Width:  17.000 mm
+Height: 11.000 mm
+Xmin:   0.00 mm
+Xmax:   17.00 mm
+Ymin:   0.00 mm
+Ymax:   11.00 mm
+Redraw time: 0.023 sec
+
+---------------------------
+Pages:        1
+Layers:       9
+Line Styles:  4
+Text Styles:  7
+Hatch Styles: 1
+Dim. Styles:  1
+Point Styles: 1
+Blocks:       12
+Entities:     1636
+PolyVertexes: 61
+Text Chars:   723
+
+---------------------------
+Number of Entities by Type
+Point:     0
+Line:      1479
+Polyline:  19
+Circle:    0
+Arc:       0
+Ellipse:   0
+Text:      88
+Bitmap:    0
+Block:     6
+Hatch:     0
+Rectangle: 0
+Dim.Lin.:  0
+Dim.Ang.:  0
+Dim.Rad.:  0
+Dim.Diam.: 0
+Dim.Ord.:  0

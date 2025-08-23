@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node26.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Macros for small usefull functions</TITLE>
+<META content="Macros for small usefull functions" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node26_files/include_all.css" rel=STYLESHEET><LINK href="node25.htm"
+rel=previous><LINK href="node17.htm" rel=up><LINK href="node27.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node27.htm"
+name=tex2html470><IMG align=bottom alt=next border=0 height=24 
+src="node26_files/next_motif.gif" width=37></A> <A 
+href="node17.htm"
+name=tex2html466><IMG align=bottom alt=up border=0 height=24 
+src="node26_files/up_motif.gif" width=26></A> <A 
+href="node25.htm"
+name=tex2html462><IMG align=bottom alt=previous border=0 height=24 
+src="node26_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html468><IMG align=bottom alt=contents border=0 height=24 
+src="node26_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html469><IMG align=bottom alt=index border=0 height=24 
+src="node26_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node27.htm"
+name=tex2html471>Using IPL98 to represent</A> <B>Up:</B> <A 
+href="node17.htm"
+name=tex2html467>General information</A> <B>Previous:</B> <A 
+href="node25.htm"
+name=tex2html463>History</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00087000000000000000>&nbsp;</A><A name=611>&nbsp;</A> 
+<BR>Macros for small usefull functions </H2>Two files in the library contains 
+small functions which are usefull in many places when programming. The files are 
+<EM>ipl98/kernel_c/general_functions/ipl_general_functions_c_only.h</EM> and 
+<EM>ipl98/cpp_classes/general_functions/ipl_general_functions.h</EM>. Here 
+follows a description of the C++ macros only, they are all template based. For 
+the involved type T it is written what operator need to be implemented to make 
+the macro work with the type: 
+<P>
+<UL>
+  <LI><TT>PI</TT><A name=616>&nbsp;</A> This is simply the definition of PI ( <!-- MATH: $\sim
+3.14...$ --><IMG align=bottom alt="$\sim&#10;3.14...$" 
+  border=0 height=16 src="node26_files/img8.gif" width=68>), not a template 
+  macro. 
+  <LI><TT>PI2</TT><A name=618>&nbsp;</A> Defined as 2*PI. Not a template macro. 
+  <LI><TT>Sqr(x)</TT><A name=620>&nbsp;</A><A name=621>&nbsp;</A> Calculates the 
+  square of x (<I>x</I>*<I>x</I>). The *-operator need to work for the type of 
+  x. 
+  <LI><TT>Swap(x,y)</TT><A name=623>&nbsp;</A><A name=624>&nbsp;</A> Swaps the 
+  contents of x and y. The =-operator need to work for the type of x and y. 
+  <LI><TT>Max(x,y)</TT><A name=626>&nbsp;</A><A name=627>&nbsp;</A> Returns the 
+  greatest value of x and y. The &gt;-operator need to work for the type of x 
+  and y. 
+  <LI><TT>Min(x,y)</TT><A name=629>&nbsp;</A><A name=630>&nbsp;</A> Returns the 
+  minimum value of x and y. The &lt;-operator need to work for the type of x and 
+  y. 
+  <LI><TT>Round(x)</TT><A name=632>&nbsp;</A><A name=633>&nbsp;</A> Round x to 
+  nearest integer value. The (&lt;,+,-)-operators need to work for the type of 
+  x. 
+  <LI><TT>RoundUINT8(x)</TT><A name=635>&nbsp;</A> <A name=636>&nbsp;</A> Round 
+  x to nearest UINT8 value or if <I>x</I>&gt;255 then <I>x</I>=255. The 
+  (&lt;,&gt;,+)-operators need to work for the type of x. </LI></UL>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node27.htm"
+name=tex2html470><IMG align=bottom alt=next border=0 height=24 
+src="node26_files/next_motif.gif" width=37></A> <A 
+href="node17.htm"
+name=tex2html466><IMG align=bottom alt=up border=0 height=24 
+src="node26_files/up_motif.gif" width=26></A> <A 
+href="node25.htm"
+name=tex2html462><IMG align=bottom alt=previous border=0 height=24 
+src="node26_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html468><IMG align=bottom alt=contents border=0 height=24 
+src="node26_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html469><IMG align=bottom alt=index border=0 height=24 
+src="node26_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node27.htm"
+name=tex2html471>Using IPL98 to represent</A> <B>Up:</B> <A 
+href="node17.htm"
+name=tex2html467>General information</A> <B>Previous:</B> <A 
+href="node25.htm"
+name=tex2html463>History</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="Demo.exe"/>
+    <OBJFILES value="Demo.obj Main.obj"/>
+    <RESFILES value="Demo.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) Main.dfm"/>
+    <LIBFILES value="..\lib\ipl98d.lib ..\lib\ipl98.lib"/>
+    <LIBRARIES value="vclx.lib bcbsmp.lib vcl.lib rtl.lib"/>
+    <SPARELIBS value="rtl.lib vcl.lib bcbsmp.lib vclx.lib"/>
+    <PACKAGES value="rtl.bpi vcl.bpi vclx.bpi bcbsmp.bpi dbrtl.bpi vcldb.bpi adortl.bpi 
+      ibsmp.bpi bdertl.bpi vcldbx.bpi qrpt.bpi teeui.bpi teedb.bpi tee.bpi 
+      dss.bpi teeqr.bpi ibxpress.bpi dsnap.bpi vclie.bpi inetdb.bpi inet.bpi 
+      nmfast.bpi webdsnap.bpi bcbie.bpi dclocx.bpi bcb97axserver.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="Demo.cpp"/>
+    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms"/>
+    <LIBPATH value="..\..\..\..\Types;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\source\ipl98\cpp"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I$(BCB)\include -I$(BCB)\include\vcl -I..\source\ipl98 
+      -I..\source\ipl98\cpp -I..\source\ipl98\cpp\algorithms -src_suffix cpp 
+      -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -H=d:\PROGRA~1\BORLAND\CBUILD~2\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 
+      -b- -k -y -v -vi- -c -tW -tWM"/>
+    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="Demo.cpp" FORMNAME="" UNITNAME="Demo" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Demo.res" FORMNAME="" UNITNAME="Demo" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Main.cpp" FORMNAME="FormMain" UNITNAME="Main" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\lib\ipl98d.lib" FORMNAME="" UNITNAME="ipl98d" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\lib\ipl98.lib" FORMNAME="" UNITNAME="ipl98" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=10241
+CodePage=1256
+
+[Version Info Keys]
+CompanyName=AliSoft
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=DST.exe
+LegalCopyright=???
+LegalTrademarks=! ! !
+OriginalFilename=DST.exe
+ProductName=AliSoft Embroidering Simulator V1.0
+ProductVersion=1.0.0.0
+Comments=Embroidery Files Generator And Modifier (*.dst;*.exp;...)
+Programmed By=Ali Abbas
+
+[Excluded Packages]
+c:\program files\borland\cbuilder6\Bin\dclite60.bpl=Borland Integrated Translation Environment
+
+[HistoryLists\hlIncludePath]
+Count=27
+Item0=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms
+Item1=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms;..\..\..\..\Types;..\..\..\..\CVOPEN\cv\include;..\..\..\..\CVOPEN\otherlibs\highgui;..\..\..\..\Spline\Asef Jaafer\pyramids\pyramids;..\..\..\..\Image\G32\new
+Item2=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms;..\..\..\..\Types;..\..\..\..\CVOPEN\cv\include;..\..\..\..\CVOPEN\otherlibs\highgui;..\..\..\..\Spline\Asef Jaafer\pyramids\pyramids;E:\Digitizer\Image\G32\new
+Item3=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms;..\..\..\..\Types;..\..\..\..\CVOPEN\cv\include;..\..\..\..\CVOPEN\otherlibs\highgui;..\..\..\..\Spline\Asef Jaafer\pyramids\pyramids
+Item4=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms;E:\Digitizer\Types;E:\Digitizer\CVOPEN\cv\include;E:\Digitizer\CVOPEN\otherlibs\highgui;E:\Digitizer\Spline\Asef Jaafer\pyramids\pyramids
+Item5=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;E:\Digitizer\IPL\ipl98_v2.0_borland5.0.tar\resources\source\ipl98\cpp\algorithms
+Item6=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp
+Item7=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;E:\Digitizer\IPL\ipl98_v2.0_borland5.0.tar\resources\source\ipl98\cpp
+Item8=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98
+Item9=$(BCB)\include;$(BCB)\include\vcl;E:\Digitizer\IPL\ipl98_v2.0_borland5.0.tar\resources\source\ipl98
+Item10=$(BCB)\include;$(BCB)\include\vcl;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\CVOPEN\cv\include\;D:\Program Files\Borland\CBuilder5\CVOPEN\otherlibs\highgui\;D:\Program Files\Borland\CBuilder5\Image\G32\new\;D:\Program Files\Borland\CBuilder5\Spline\Asef Jaafer\pyramids\pyramids\;D:\SDL Component Suite Professional v6.0 for Delphi 6\CPPSources\
+Item11=$(BCB)\include;$(BCB)\include\vcl;..\Types;..\CVOPEN\cv\include;..\CVOPEN\otherlibs\highgui;..\Image\G32\new;..\Spline\Asef Jaafer\pyramids\pyramids;D:\SDL Component Suite Professional v6.0 for Delphi 6\CPPSources\
+Item12=$(BCB)\include;$(BCB)\include\vcl;..\Types;..\CVOPEN\cv\include;..\CVOPEN\otherlibs\highgui;..\Image\G32\new;..\Spline\Asef Jaafer\pyramids\pyramids;D:\SDL Component Suite Professional v6.0 for Delphi 6\CPPSources
+Item13=$(BCB)\include;$(BCB)\include\vcl;..\Types;..\CVOPEN\cv\include;..\CVOPEN\otherlibs\highgui;..\Image\G32\new;..\Spline\Asef Jaafer\pyramids\pyramids
+Item14=d:\sdl component suite professional v6.0 for delphi 6\sources;$(BCB)\include;$(BCB)\include\vcl;..\Types;..\CVOPEN\cv\include;..\CVOPEN\otherlibs\highgui;..\Image\G32\new;..\Spline\Asef Jaafer\pyramids\pyramids
+Item15=$(BCB)\include;$(BCB)\include\vcl;E:\Digitizer\Types;E:\Digitizer\CVOPEN\cv\include;E:\Digitizer\CVOPEN\otherlibs\highgui;E:\Digitizer\Image\G32\new;E:\Digitizer\Spline\Asef Jaafer\pyramids\pyramids
+Item16=D:\Program Files\Borland\CBuilder5;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item17=..;..\Types;..\SellIcons;..\image\g32\new;..\Embroidery;..\..\AGif;$(BCB)\include;$(BCB)\include\vcl
+Item18=..\..\pyramids;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item19=..\;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item20=..\Types;..\SellIcons;..\image\g32\new;..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item21=..\image\g32\new;..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item22=..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item23=D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item24=D:\Program Files\Borland\CBuilder5\Projects;D:\Program Files\Borland\AGif\;$(BCB)\include;$(BCB)\include\vcl
+Item25=..\;$(BCB)\include;$(BCB)\include\vcl
+Item26=$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=21
+Item0=..\..\..\..\Types;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\source\ipl98\cpp
+Item1=$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\source\ipl98\cpp
+Item2=$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;E:\Digitizer\IPL\ipl98_v2.0_borland5.0.tar\resources\source\ipl98\cpp
+Item3=D:\Program Files\Borland\CBuilder5\Types\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\SDL Component Suite Professional v6.0 for Delphi 6\CPPSources\
+Item4=..\Types;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\SDL Component Suite Professional v6.0 for Delphi 6\CPPSources\
+Item5=..\Types;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\SDL Component Suite Professional v6.0 for Delphi 6\CPPSources
+Item6=..\Types;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item7=d:\sdl component suite professional v6.0 for delphi 6\sources;..\Types;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item8=$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item9=D:\Program Files\Borland\CBuilder5\;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item10=D:\Program Files\Borland\CBuilder5;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item11=..;..\Types;..\SellIcons;$(BCB)\Projects\Lib;..\image\g32\new;..\Embroidery;..\..\AGif;$(BCB)\lib\obj;$(BCB)\lib
+Item12=..\..\pyramids;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item13=..\;D:\Program Files\Borland\CBuilder5\Types\;D:\Program Files\Borland\CBuilder5\SellIcons\;$(BCB)\Projects\Lib;D:\Program Files\Borland\CBuilder5\image\g32\new\;D:\Program Files\Borland\CBuilder5\Embroidery\;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item14=..\Types;..\SellIcons;$(BCB)\Projects\Lib;..\image\g32\new;..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item15=$(BCB)\Projects\Lib;..\image\g32\new;..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item16=..\Embroidery;D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item17=D:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item18=D:\Program Files\Borland\CBuilder5\Projects;D:\Program Files\Borland\AGif\;$(BCB)\lib\obj;$(BCB)\lib
+Item19=..\;$(BCB)\lib\obj;$(BCB)\lib
+Item20=$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+  </IDEOPTIONS>
+</PROJECT>

@@ -1,0 +1,49 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: VeCAD - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x419 /fo"Debug/Vecad.res" /d "_DEBUG" "E:\Digitizer\Vector\VECAD52\vecad52\VECAD\Vecad.rc"" 
+Creating temporary file "C:\WINME\TEMP\RSPD271.TMP" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/vc_vecad_Vecad.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\Digitizer\Vector\VECAD52\vecad52\VECAD\Config.cpp"
+"E:\Digitizer\Vector\VECAD52\vecad52\VECAD\DgAbout.cpp"
+"E:\Digitizer\Vector\VECAD52\vecad52\VECAD\DwgProc.cpp"
+"E:\Digitizer\Vector\VECAD52\vecad52\VECAD\ExtApp.cpp"
+"E:\Digitizer\Vector\VECAD52\vecad52\VECAD\mru.cpp"
+"E:\Digitizer\Vector\VECAD52\vecad52\VECAD\Vecad.cpp"
+]
+Creating command line "cl.exe @C:\WINME\TEMP\RSPD271.TMP" 
+Creating temporary file "C:\WINME\TEMP\RSPD272.TMP" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/vc_vecad_Vecad.pdb" /debug /machine:I386 /out:"Debug/vc_vecad_Vecad.exe" /pdbtype:sept 
+.\Debug\Config.obj
+.\Debug\DgAbout.obj
+.\Debug\DwgProc.obj
+.\Debug\ExtApp.obj
+.\Debug\mru.obj
+.\Debug\Vecad.obj
+.\Debug\Vecad.res
+..\..\..\Api\vecad52.lib
+]
+Creating command line "link.exe @C:\WINME\TEMP\RSPD272.TMP"
+<h3>Output Window</h3>
+Compiling resources...
+
+
+RC : fatal error RC1110 : could not open E:\Digitizer\Vector\VECAD52\vecad52\VECAD\Vecad.rc
+
+
+Error executing rc.exe.
+
+
+
+<h3>Results</h3>
+vc_vecad_Vecad.exe - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,88 @@
+package Vssdigi4;
+
+{$R *.RES}
+{$ALIGN ON}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $00400000}
+{$DESCRIPTION 'Varian Led Studio Component Toolkit'}
+{$DESIGNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  vcl40;
+
+contains
+  VrBlotter in 'VrBlotter.pas',
+  VrClasses in 'VrClasses.pas',
+  VrSpectrum in 'VrSpectrum.pas',
+  VrGradient in 'VrGradient.pas',
+  VrRaster in 'VrRaster.pas',
+  VrMatrix in 'VrMatrix.pas',
+  VrGauge in 'VrGauge.pas',
+  VrArrow in 'VrArrow.pas',
+  VrLeds in 'VrLeds.pas',
+  VrLights in 'VrLights.pas',
+  VrSysUtils in 'VrSysUtils.pas',
+  VrCheckLed in 'VrCheckLed.pas',
+  VrJoypad in 'VrJoypad.pas',
+  VrScanner in 'VrScanner.pas',
+  VrLcd in 'VrLcd.pas',
+  VrAnalog in 'VrAnalog.pas',
+  VrDigit in 'VrDigit.pas',
+  VrImageLed in 'VrImageLed.pas',
+  VrLabel in 'VrLabel.pas',
+  VrMeter in 'VrMeter.pas',
+  VrNavigator in 'VrNavigator.pas',
+  VrScope in 'VrScope.pas',
+  VrSpinner in 'VrSpinner.pas',
+  VrTrayGauge in 'VrTrayGauge.pas',
+  VrPaletteDlg in 'VrPaletteDlg.pas' {VrPaletteDlg},
+  VrScale in 'VrScale.pas',
+  VrBorder in 'VrBorder.pas',
+  VrCalendar in 'VrCalendar.pas',
+  VrReg in 'VrReg.pas',
+  VrConst in 'VrConst.pas',
+  VrProgressBar in 'VrProgressBar.pas',
+  VrShadow in 'VrShadow.pas',
+  VrShareWin in 'VrShareWin.pas' {Form_VrShare},
+  VrHyperLink in 'VrHyperLink.pas',
+  VrBanner in 'VrBanner.pas',
+  VrControls in 'VrControls.pas',
+  VrDeskTop in 'VrDeskTop.pas',
+  VrSlider in 'VrSlider.pas',
+  VrTrackBar in 'VrTrackBar.pas',
+  VrSwitch in 'VrSwitch.pas',
+  VrSystem in 'VrSystem.pas',
+  VrBitmapsDlg in 'VrBitmapsDlg.pas' {VrBitmapListDialog},
+  VrPropEdit in 'VrPropEdit.pas',
+  VrHotImage in 'VrHotImage.pas',
+  VrTypes in 'VrTypes.pas',
+  VrLevelBar in 'VrLevelBar.pas',
+  VrDesign in 'VrDesign.pas',
+  VrAnimate in 'VrAnimate.pas',
+  VrDemoButton in 'VrDemoButton.pas',
+  VrUpDown in 'VrUpDown.pas',
+  VrThreads in 'VrThreads.pas',
+  VrSlideShow in 'VrSlideShow.pas',
+  VrFormShape in 'VrFormShape.pas',
+  VrCompass in 'VrCompass.pas';
+
+end.

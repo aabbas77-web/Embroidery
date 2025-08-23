@@ -1,0 +1,31 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+USERES("PTC_Browser.res");
+USEFORM("Main.cpp", FormMain);
+USEFORM("About.cpp", FormAbout);
+USEFORM("Options.cpp", FormOptions);
+USEOBJ("E:\Ali\Library\Lib\Protection\skeydrv.obj");
+USEUNIT("..\SPL\spl_Types.cpp");
+USEUNIT("..\SPL\spl_CodingLib.cpp");
+USEUNIT("..\SPL\spl_EmbLib.cpp");
+//---------------------------------------------------------------------------
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+    try
+    {
+         Application->Initialize();
+         Application->Title = "Embroidery Browser V1.0";
+         Application->CreateForm(__classid(TFormMain), &FormMain);
+                 Application->CreateForm(__classid(TFormAbout), &FormAbout);
+                 Application->CreateForm(__classid(TFormOptions), &FormOptions);
+                 Application->Run();
+    }
+    catch (Exception &exception)
+    {
+         Application->ShowException(&exception);
+    }
+    return 0;
+}
+//---------------------------------------------------------------------------

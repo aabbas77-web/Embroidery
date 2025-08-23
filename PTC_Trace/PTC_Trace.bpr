@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.05.03"/>
+    <PROJECT value="PTC_Trace.exe"/>
+    <OBJFILES value="PTC_Trace.obj About.obj ..\Packages\GraphicEx\GraphicEx.obj Main.obj 
+      ..\Packages\GraphicEx\GraphicCompression.obj 
+      ..\Packages\Envision.Image.Lib\Envision\Sources\ENWMFGR.obj 
+      ..\Packages\Envision.Image.Lib\Envision\Sources\ENBMPGR.obj 
+      ..\Packages\Envision.Image.Lib\Envision\Sources\ENDCXGR.obj 
+      ..\Packages\Envision.Image.Lib\Envision\Sources\ENJPGGR.obj 
+      ..\Packages\Envision.Image.Lib\Envision\Sources\ENPCXGR.obj 
+      ..\Packages\Envision.Image.Lib\Envision\Sources\ENPNGGR.obj 
+      ..\Packages\Envision.Image.Lib\Envision\Sources\ENTGAGR.obj 
+      ..\Packages\Envision.Image.Lib\Envision\Sources\ENTIFGR.obj 
+      E:\Ali\Library\Lib\Protection\skeydrv.obj ..\SPL\spl_VectorImage.obj 
+      ..\SPL\spl_CodingLib.obj ..\SPL\spl_ColorQuantizer.obj 
+      ..\SPL\spl_Contour.obj ..\SPL\spl_DigitizeDialog.obj 
+      ..\SPL\spl_Digitizer.obj ..\SPL\spl_EmbFile.obj ..\SPL\spl_EmbLib.obj 
+      ..\SPL\spl_EmbParams.obj ..\SPL\spl_Embroidery.obj 
+      ..\SPL\spl_FloodFill.obj ..\SPL\spl_Image.obj 
+      ..\SPL\spl_ImageProcessing.obj ..\SPL\spl_ImportImage.obj 
+      ..\SPL\spl_Layer.obj ..\SPL\spl_Monochrome.obj ..\SPL\spl_MultiLayer.obj 
+      ..\SPL\spl_ObjectParams.obj ..\SPL\spl_PathFinder.obj ..\SPL\spl_Point.obj 
+      ..\SPL\spl_RasterImage.obj ..\SPL\spl_Region.obj ..\SPL\spl_Resize.obj 
+      ..\SPL\spl_Types.obj ..\SPL\Pyramids\pyramidfilters.obj 
+      ..\SPL\Pyramids\pyramidtools.obj ..\Protection\ProtectionLib.obj"/>
+    <RESFILES value="PTC_Trace.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) About.dfm Main.dfm ..\SPL\spl_VectorImage.dfm 
+      ..\SPL\spl_DigitizeDialog.dfm ..\SPL\spl_EmbParams.dfm 
+      ..\SPL\spl_ImportImage.dfm ..\SPL\spl_Monochrome.dfm 
+      ..\SPL\spl_ObjectParams.dfm ..\SPL\spl_RasterImage.dfm ..\SPL\spl_Resize.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="En_C5.lib Vclmid50.lib inet50.lib inetdb50.lib WEBMID50.lib vclbde50.lib 
+      QRPT50.lib VCLDB50.lib FormTranslation5.lib GraphicExPk.lib VCLJPG50.lib 
+      VCLX50.lib bcbsmp50.lib VCL50.lib"/>
+    <SPARELIBS value="VCL50.lib bcbsmp50.lib VCLX50.lib VCLJPG50.lib GraphicExPk.lib 
+      FormTranslation5.lib VCLDB50.lib QRPT50.lib vclbde50.lib WEBMID50.lib 
+      inetdb50.lib inet50.lib Vclmid50.lib En_C5.lib"/>
+    <PACKAGES value="VCL50.bpi VCLX50.bpi bcbsmp50.bpi VCLDB50.bpi VCLADO50.bpi ibsmp50.bpi 
+      VCLBDE50.bpi VCLDBX50.bpi QRPT50.bpi TEEUI50.bpi TEEDB50.bpi TEE50.bpi 
+      DSS50.bpi TEEQR50.bpi VCLIB50.bpi VCLMID50.bpi VCLIE50.bpi INETDB50.bpi 
+      INET50.bpi NMFAST50.bpi WEBMID50.bpi bcbie50.bpi dclocx50.bpi 
+      bcb97axserver50.bpi"/>
+    <PATHCPP value=".;..\Packages\GraphicEx;..\Packages\Envision.Image.Lib\Envision\Sources;..\SPL;..\SPL\Pyramids;..\Protection"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="tlink32"/>
+    <USERDEFINES value="_EMBROIDERY_;_EMB_TRACE_;spl_Full_Version"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="PTC_Trace.cpp"/>
+    <INCLUDEPATH value="..\Protection;E:\Ali\Library\Lib\Protection\;..\tformtranslation;..\Libs\SPL\CAD;&quot;D:\Program Files\Borland\CBuilder5\Projects\&quot;;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Packages\Envision.Image.Lib\Envision\Sources;..\Packages\GraphicEx"/>
+    <LIBPATH value="..\Protection;E:\Ali\Library\Lib\Protection\;..\tformtranslation;..\Libs\SPL\CAD;&quot;D:\Program Files\Borland\CBuilder5\Projects\&quot;;..\Packages\Envision.Image.Lib\Envision\Sources;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\Protection -IE:\Ali\Library\Lib\Protection\. -I..\tformtranslation 
+      -I..\Libs\SPL\CAD -I&quot;D:\Program Files\Borland\CBuilder5\Projects\.&quot; 
+      -I..\Libs\SPL -I..\Libs\SPL\Pyramids -I..\SPL\Pyramids -I..\SPL 
+      -I$(BCB)\include -I$(BCB)\include\vcl 
+      -I..\Packages\Envision.Image.Lib\Envision\Sources -I..\Packages\GraphicEx 
+      -src_suffix cpp -D_EMBROIDERY_ -D_EMB_TRACE_ -Dspl_Full_Version -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl50.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-$Y+ -$W -$O- -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-D&quot;&quot; -H:0x1000000 -S:0x1000000 -aa -Tpe -x -Gn -v"/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+  </LINKER>
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=10241
+CodePage=1256
+
+[Version Info Keys]
+CompanyName=AliSoft
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=EmbTrace.exe
+LegalCopyright=???
+LegalTrademarks=! ! !
+OriginalFilename=EmbTrace.exe
+ProductName=AliSoft Embroidering Trace V1.0
+ProductVersion=1.0.0.0
+Comments=Convert Image Files (*.bmp;*.jp?;...) To Embroidery Files (Tajima *.ds?;Melco *.exp;Pfaff *.ksm;...)
+Programmed By=Ali Abbas
+E-Mail=a.abbas@netcourrier.com
+
+[HistoryLists\hlIncludePath]
+Count=30
+Item0=..\Protection;E:\Ali\Library\Lib\Protection\;..\tformtranslation;..\Libs\SPL\CAD;D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Packages\Envision.Image.Lib\Envision\Sources;..\Packages\GraphicEx
+Item1=E:\Ali\Library\Lib\Protection\;..\tformtranslation;..\Libs\SPL\CAD;D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Packages\Envision.Image.Lib\Envision\Sources;..\Packages\GraphicEx
+Item2=E:\Ali\Library\Lib\Protection;..\tformtranslation;..\Libs\SPL\CAD;D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Packages\Envision.Image.Lib\Envision\Sources;..\Packages\GraphicEx
+Item3=..\tformtranslation;..\Libs\SPL\CAD;D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Packages\Envision.Image.Lib\Envision\Sources;..\Packages\GraphicEx
+Item4=..\Libs\SPL\CAD;D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Packages\Envision.Image.Lib\Envision\Sources;..\Packages\GraphicEx
+Item5=D:\Program Files\Borland\CBuilder5\Projects\;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Packages\Envision.Image.Lib\Envision\Sources;..\Packages\GraphicEx
+Item6=D:\Program Files\Borland\CBuilder5\Projects;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Packages\Envision.Image.Lib\Envision\Sources;..\Packages\GraphicEx
+Item7=..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Packages\Envision.Image.Lib\Envision\Sources;..\Packages\GraphicEx
+Item8=..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Packages\Envision.Image.Lib\Envision\Sources;E:\Digitizer\Packages\GraphicEx
+Item9=..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Packages\Envision.Image.Lib\Envision\Sources
+Item10=..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;E:\Digitizer\Packages\Envision.Image.Lib\Envision\Sources
+Item11=..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl
+Item12=$(BCB)\include;$(BCB)\include\vcl
+Item13=..\GraphicEx;..\Envision.Image.Lib\Envision\Sources;..\Envision.Image.Lib;..\Envision.Image.Lib\source;..\SeedFill;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Envision.Image.Lib\CBuilder
+Item14=..\Envision.Image.Lib\Envision\Sources;..\Envision.Image.Lib;..\Envision.Image.Lib\source;..\SeedFill;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Envision.Image.Lib\CBuilder
+Item15=..\SeedFill;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\Envision.Image.Lib\CBuilder
+Item16=..\SeedFill;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl;E:\Digitizer\Envision.Image.Lib\CBuilder
+Item17=..\SeedFill;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl
+Item18=D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl
+Item19=D:\Program Files\Borland\CBuilder5\Projects;..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl
+Item20=..\SPL\Pyramids;..\SPL;$(BCB)\include;$(BCB)\include\vcl
+Item21=..\SPL;$(BCB)\include;$(BCB)\include\vcl
+Item22=..\SPL;$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms;E:\Types\;E:\CVOPEN\cv\include\;E:\CVOPEN\otherlibs\highgui\;E:\Spline\Asef Jaafer\pyramids\pyramids\;E:\Image\G32\new\;..\IPL\ipl98_v2.0_borland5.0.tar\resources\source
+Item23=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms;E:\Types\;E:\CVOPEN\cv\include\;E:\CVOPEN\otherlibs\highgui\;E:\Spline\Asef Jaafer\pyramids\pyramids\;E:\Image\G32\new\;..\IPL\ipl98_v2.0_borland5.0.tar\resources\source
+Item24=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms;E:\Types\;E:\CVOPEN\cv\include\;E:\CVOPEN\otherlibs\highgui\;E:\Spline\Asef Jaafer\pyramids\pyramids\;E:\Image\G32\new\;..\IPL\ipl98_v2.0_borland5.0.tar\resources\source\ipl98
+Item25=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms;..\..\..\..\Types;..\..\..\..\CVOPEN\cv\include;..\..\..\..\CVOPEN\otherlibs\highgui;..\..\..\..\Spline\Asef Jaafer\pyramids\pyramids;..\..\..\..\Image\G32\new;E:\Digitizer\IPL\ipl98_v2.0_borland5.0.tar\resources\source\ipl98
+Item26=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms;..\..\..\..\Types;..\..\..\..\CVOPEN\cv\include;..\..\..\..\CVOPEN\otherlibs\highgui;..\..\..\..\Spline\Asef Jaafer\pyramids\pyramids;..\..\..\..\Image\G32\new
+Item27=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms;..\..\..\..\Types;..\..\..\..\CVOPEN\cv\include;..\..\..\..\CVOPEN\otherlibs\highgui;..\..\..\..\Spline\Asef Jaafer\pyramids\pyramids;E:\Digitizer\Image\G32\new
+Item28=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms;..\..\..\..\Types;..\..\..\..\CVOPEN\cv\include;..\..\..\..\CVOPEN\otherlibs\highgui;..\..\..\..\Spline\Asef Jaafer\pyramids\pyramids
+Item29=$(BCB)\include;$(BCB)\include\vcl;..\source\ipl98;..\source\ipl98\cpp;..\source\ipl98\cpp\algorithms;E:\Digitizer\Types;E:\Digitizer\CVOPEN\cv\include;E:\Digitizer\CVOPEN\otherlibs\highgui;E:\Digitizer\Spline\Asef Jaafer\pyramids\pyramids
+
+[HistoryLists\hlLibraryPath]
+Count=30
+Item0=..\Protection;E:\Ali\Library\Lib\Protection\;..\tformtranslation;..\Libs\SPL\CAD;D:\Program Files\Borland\CBuilder5\Projects\;..\Packages\Envision.Image.Lib\Envision\Sources;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item1=E:\Ali\Library\Lib\Protection\;..\tformtranslation;..\Libs\SPL\CAD;D:\Program Files\Borland\CBuilder5\Projects\;..\Packages\Envision.Image.Lib\Envision\Sources;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item2=E:\Ali\Library\Lib\Protection;..\tformtranslation;..\Libs\SPL\CAD;D:\Program Files\Borland\CBuilder5\Projects\;..\Packages\Envision.Image.Lib\Envision\Sources;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item3=..\tformtranslation;..\Libs\SPL\CAD;D:\Program Files\Borland\CBuilder5\Projects\;..\Packages\Envision.Image.Lib\Envision\Sources;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item4=..\Libs\SPL\CAD;D:\Program Files\Borland\CBuilder5\Projects\;..\Packages\Envision.Image.Lib\Envision\Sources;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item5=D:\Program Files\Borland\CBuilder5\Projects\;..\Packages\Envision.Image.Lib\Envision\Sources;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item6=D:\Program Files\Borland\CBuilder5\Projects;..\Packages\Envision.Image.Lib\Envision\Sources;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item7=..\Packages\Envision.Image.Lib\Envision\Sources;..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item8=..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item9=..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Packages\Envision.Image.Lib\Envision\Sources
+Item10=..\Libs\SPL;..\Libs\SPL\Pyramids;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;E:\Digitizer\Packages\Envision.Image.Lib\Envision\Sources
+Item11=$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item12=..\GraphicEx;..\Envision.Image.Lib\Envision\Sources;..\Envision.Image.Lib;..\SeedFill;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Envision.Image.Lib\source
+Item13=..\Envision.Image.Lib\Envision\Sources;..\Envision.Image.Lib;..\SeedFill;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Envision.Image.Lib\source
+Item14=..\SeedFill;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;E:\Digitizer\Envision.Image.Lib\source
+Item15=..\SeedFill;D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item16=D:\Program Files\Borland\CBuilder5\Projects\;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item17=D:\Program Files\Borland\CBuilder5\Projects;..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item18=..\SPL\Pyramids;..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item19=..\SPL;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item20=..\SPL;E:\Types\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\source\ipl98\cpp
+Item21=E:\Types\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\source\ipl98\cpp
+Item22=..\..\..\..\Types;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\source\ipl98\cpp
+Item23=$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\source\ipl98\cpp
+Item24=$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;E:\Digitizer\IPL\ipl98_v2.0_borland5.0.tar\resources\source\ipl98\cpp
+Item25=D:\Program Files\Borland\CBuilder5\Types\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\SDL Component Suite Professional v6.0 for Delphi 6\CPPSources\
+Item26=..\Types;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\SDL Component Suite Professional v6.0 for Delphi 6\CPPSources\
+Item27=..\Types;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\SDL Component Suite Professional v6.0 for Delphi 6\CPPSources
+Item28=..\Types;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item29=d:\sdl component suite professional v6.0 for delphi 6\sources;..\Types;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=15
+Item0=_EMBROIDERY_;_EMB_TRACE_;spl_Full_Version
+Item1=_EMBROIDERY_;_EMB_TRACE_;spl_Demo_Version;_DEMO_;_DEBUG
+Item2=_EMBROIDERY_;_EMB_TRACE_;spl_Demo_Version;_DEMO_
+Item3=_EMB_TRACE_;spl_Demo_Version
+Item4=_EMBROIDERY_;_EMB_TRACE_;spl_Full_Version;_PROTECTED_
+Item5=_EMB_TRACE_;spl_Demo_Version;_DEMO_
+Item6=_EMB_TRACE_;spl_Demo_Version;_DEBUG
+Item7=_EMB_TRACE_;spl_Full_Version
+Item8=_EMB_TRACE_;spl_Full_Version;_DEBUG
+Item9=spl_Full_Version;_DEBUG
+Item10=spl_Demo_Version;_DEBUG
+Item11=spl_Demo_Version
+Item12=spl_Full_Version
+Item13=_DEBUG
+Item14=_DEBUG;SPL_CPPB_5
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=1
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

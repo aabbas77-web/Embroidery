@@ -1,0 +1,107 @@
+-------
+5.2.27, 10-June-2002
+Fixed bugs:
+- when create a hatch if select a hatch entity the program fails
+- can't undo a moving bulge grip of polyline 
+
+-------
+5.2.26, 27-May-2002
+Fixed bugs:
+- when use vlExecute( VC_INS_IMAGE ) to insert a raster image at one position, it adds an addtional one in point 0,0.
+- if copy from another drawing an entities drawn with a multiline style not already
+defined inside the current drawing, the system crashes.
+
+-------
+5.2.25, 21-May-2002
+Fixed bugs:
+- "Access violation error" during DXF import.
+
+-------
+5.2.24, 03-Dec-2001
+Fixed bugs:
+- sometimes can't set arrows for arc, line, polyline via the properties dialog.
+- don't work the field "Number of copies" in the "Print" dialog.
+- printing area is not rotated when print the rotated print rectangle.
+- layers combobox in the toolbar is not actualised after programmically added layers.
+Added:
+- the list of rectangles in the "Print rectangles" dialog allows multiply selection (useful for delete commend).
+- string VS_DEL_PRNRECT ("Are you sure to delete %d rectangles?") for the "Print rectangles" dialog.
+
+-------
+5.2.23, 29-Nov-2001
+Fixed bugs:
+- wrong identifiers for strings VS_FILTER_... , VS_CC_SELBYPOLYLINE , VS_CC_SELBYPOLYGON
+
+-------
+5.2.22, 25-Nov-2001
+Fixed bugs:
+- export to DXF don't keep font name for text style
+
+-------
+5.2.21, 17-Nov-2001
+Fixed bugs:
+- again memory leak during export to raster image.
+- invalid DXF export file if any layer name has spaces. Now replaced by _ symbol
+- changing VD_STTEXT_BYLINES and VD_STTEXT_FILLED don't affect text appearance
+Added:
+- export to DXF color triangles and rectangles (as "SOLID" entity)
+
+-------
+5.2.20, 14-Nov-2001
+Fixed bugs:
+- memory leak during export to raster image.
+
+-------
+5.2.19, 02-Nov-2001
+Fixed bugs:
+- memory leak with custom export.
+- don't update entity limits when change its properties programmatically.
+
+-------
+5.2.18, 23-Oct-2001
+Fixed bugs:
+- can't close polyline if start and end point are not equal.
+- VD_DWG_BLACKWHITE don't apply to blocks insertions.
+
+-------
+5.2.17, 08-Oct-2001
+Fixed bugs:
+- vlFileLoadMem and vlFileSaveMem don't clear VD_DWG_ISDIRTY property.
+- VD_DWG_ISDIRTY don't set to true when changing drawing's properties programmatically.
+Added:
+- property VD_DWG_NOINDICATOR (integer) to on/off the process indicator
+
+-------
+5.2.16, 01-Oct-2001
+Fixed bugs:
+- vlFileSaveMem returns wrong number of bytes.
+- "Flood area" don't work in some cases.
+
+-------
+5.2.15, 27-Sept-2001
+Fixed bugs:
+- lines are invisible in "Line styles" dialog and toolbar combobox when 
+  window background is set to black.
+- can't set VD_POLY_R property programmatically.
+
+
+-------
+5.2.14, 21-Sept-2001
+Fixed bugs:
+- wrong action of "Add", "Insert", "Delete" menu commands in polyline 
+  vertex table
+- the VD_DWG_BLACKWHITE don't affect filled objects
+Other changes:
+- length of page name is increased to 100 characters
+- added strings VS_TT_FMT_LAYOUT, VS_TT_FMT_STDIM (toolbar tooltips)
+
+
+
+-------
+5.2.13, 19-Sept-2001
+fixed bugs:
+- Import DXF: "polyface mesh" are not right imported
+- Changing VD_DWG_COLSELOBJ programatically has no effect
+- wrong block are used when assign block to points styles programmatically
+added function:
+- vlNavUpdade, to update drawing's view in "Navigator" window

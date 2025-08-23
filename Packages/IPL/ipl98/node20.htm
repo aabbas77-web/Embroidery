@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node20.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Two and three dimensional points</TITLE>
+<META content="Two and three dimensional points" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node20_files/include_all.css" rel=STYLESHEET><LINK href="node21.htm"
+rel=next><LINK href="node19.htm" rel=previous><LINK href="node17.htm"
+rel=up><LINK href="node21.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node21.htm"
+name=tex2html400><IMG align=bottom alt=next border=0 height=24 
+src="node20_files/next_motif.gif" width=37></A> <A 
+href="node17.htm"
+name=tex2html396><IMG align=bottom alt=up border=0 height=24 
+src="node20_files/up_motif.gif" width=26></A> <A 
+href="node19.htm"
+name=tex2html390><IMG align=bottom alt=previous border=0 height=24 
+src="node20_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html398><IMG align=bottom alt=contents border=0 height=24 
+src="node20_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html399><IMG align=bottom alt=index border=0 height=24 
+src="node20_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node21.htm"
+name=tex2html401>Timer and date</A> <B>Up:</B> <A 
+href="node17.htm"
+name=tex2html397>General information</A> <B>Previous:</B> <A 
+href="node19.htm"
+name=tex2html391>The streaming operator &lt;&lt;</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00083000000000000000>&nbsp;</A><A name=513>&nbsp;</A><A 
+name=514>&nbsp;</A><A name=515>&nbsp;</A> <BR>Two and three dimensional points 
+</H2>The two template classes CPoint2D&lt;T&gt; and CPoint3D&lt;T&gt; is 
+available for working with two or three dimensional points. The type T defines 
+what type is to be used for the given point and can be any simple type such as 
+short, float or integer, additional information about template classes can be 
+found in standard C++ programming books. It is the goal of IPL98 to have all 
+methods which takes a 2D point as parameter implemented in two versions: One 
+taking a CPoint2D&lt;T&gt; and one taking two simpel types x,y. And of course 
+the same case with 3D points. This is not yet fulfilled but will hopefully be 
+soon. This means the programmer can choose to work with the CPoint2D and 
+CPoint3D classes which often gives a more nice looking code or work with the 
+simpel types which in some cases gives faster execution of the code. An example 
+of a double implementation of a method is: 
+<P><PRE>GetPixel(const CPoint2D&lt;int&gt;&amp; Pos)
+GetPixel(int x,int y)
+</PRE>
+<P>The first method works with a CPoint2D integer type and the second takes two 
+simple types which constitudes a 2D point. Many operators are overloaded for the 
+point classes, here is an example with the CPoint2D class used with integer 
+position values giving an idea of how to work with points: 
+<P><PRE>   CPoint2D&lt;int&gt; p1; // default constructor - integer point set to (0,0)
+   CPoint2D&lt;int&gt; p2(3,5); // integer point initialises to (3,5)
+   CPoint2D&lt;int&gt; p3(p2); // using the copy constructor to initialise p3=p2
+
+   p1=CPoint2D&lt;int&gt;(24,8); // using assignment operator and
+                           // constructor on right side
+   p1=p3; // using the assignment operator
+   cout &lt;&lt; "p1=" &lt;&lt; p1 &lt;&lt; endl &lt;&lt; endl; // streaming of a CPoint2D
+
+   p1 += (p2 + CPoint2D&lt;int&gt;(10,10)); // += and + operator
+
+   cout &lt;&lt; "Distance between " &lt;&lt; p2 &lt;&lt; " and " &lt;&lt; p1 &lt;&lt; " is "
+        &lt;&lt; p2.GetDist(p1) &lt;&lt; endl; // using the GetDist method
+</PRE>
+<P>The CPoint2D and CPoint3D classes are only avaiable in the C++ part of the 
+library, in C there are only the simple types T2DInt, T2DFloat, T3DInt and 
+T3DFloat and no functions is available for working directly with these types 
+like the example given above. 
+<P>Since version 1.40 of IPL98, we have added template conversions to the two 
+point classes. It was a problem working with different types of points and not 
+being able to convert the types on the fly. For instance working with both 
+<EM>float</EM> and <EM>double</EM> types caused the problem. Here are some 
+examples on how that works: 
+<P><PRE>void Test(const CPoint2D&lt;int&gt;&amp; P)
+{
+        // value in P is (3,7) since PFLOAT32 has been truncated by the casting
+        cout &lt;&lt; "in Test():" &lt;&lt; P &lt;&lt; endl;
+}
+
+void Test2(CPoint2D&lt;int&gt;&amp; P)
+{
+        cout &lt;&lt; "Does nothing" &lt;&lt; endl;
+}
+
+CPoint2D&lt;int&gt; Test3()
+{
+        return CPoint2D&lt;int&gt;(2,3);
+}
+
+int main()
+{
+  CPoint2D&lt;double&gt; Pdouble(1.8,2.8);
+  CPoint2D&lt;FLOAT32&gt; PFLOAT32((FLOAT32)3.7,(FLOAT32)4.9);
+  CPoint2D&lt;UINT16&gt; PUINT16(1,1);
+
+  Test(PFLOAT32); // make an on the fly copy of PFLOAT32 object
+                  // converted to an int - new feature!
+
+  Test2(PFLOAT32); // error, cannot make a copy since it is by 
+                   // reference and type not the same
+
+  PFLOAT32=Test3(); // ok, but normally produces a warning - 
+                    // new feature!
+
+  PUINT16 += PFLOAT32; // ok, but normally produces a warning
+                       // - the user must be aware if the convertion
+                       // gives loss of data - new feature!
+  PFLOAT32 = PUINT16;  // ok - no problem going from UINT16 to 
+                       // FLOAT32 - new feature!
+  
+  PUINT16 = (UINT16)4*PUINT16; // ok, uses the friend function for
+                               // operator *
+
+  PFLOAT32 = 4 * Pdouble; // error, cannot make a TEMPLATE based 
+                          // friend operator on *
+  return 0;
+}
+</PRE>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node21.htm"
+name=tex2html400><IMG align=bottom alt=next border=0 height=24 
+src="node20_files/next_motif.gif" width=37></A> <A 
+href="node17.htm"
+name=tex2html396><IMG align=bottom alt=up border=0 height=24 
+src="node20_files/up_motif.gif" width=26></A> <A 
+href="node19.htm"
+name=tex2html390><IMG align=bottom alt=previous border=0 height=24 
+src="node20_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html398><IMG align=bottom alt=contents border=0 height=24 
+src="node20_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html399><IMG align=bottom alt=index border=0 height=24 
+src="node20_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node21.htm"
+name=tex2html401>Timer and date</A> <B>Up:</B> <A 
+href="node17.htm"
+name=tex2html397>General information</A> <B>Previous:</B> <A 
+href="node19.htm"
+name=tex2html391>The streaming operator &lt;&lt;</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

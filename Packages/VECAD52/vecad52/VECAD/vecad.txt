@@ -1,0 +1,24 @@
+
+VeCAD 
+Version 5.2.26, May 27, 2002
+
+VeCAD is a full 2D CAD system furnished not only with an 
+executable program, but also with a complete API functions 
+Library. It can be used as multi-purposes drafting tool or 
+as a basement for your own specialized drawing applications.
+The library is realized as run-time Windows 32 bit DLL and 
+can be used with applications written on the popular Visual
+IDE languages such as Visual Basic, Delphi, C++ Builder and 
+Visual C++. 
+
+For more information on VeCAD or any other products contact
+the web site www.kolba.com
+
+email: ok@kolba.com
+
+
+***********************************************************
+
+Please include this notice when redistributing vecad52.dll
+
+

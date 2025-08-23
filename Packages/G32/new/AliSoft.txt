@@ -1,0 +1,7 @@
+Use Advanced Find and Replace Program For:(F:\AliSoft CD1\Advanced Find & Replace 1.4)
+Replace:
+'TPoint = Windows.TPoint;'	By	''
+'TRect = Windows.TRect;'	By	''
+'TDragState'			By	'TDragState32'
+' Rect('			By	' Rect32('
+' Point('			By	' Point32('

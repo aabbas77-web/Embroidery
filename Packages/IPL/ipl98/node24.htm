@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node24.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Errors produced</TITLE>
+<META content="Errors produced" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node24_files/include_all.css" rel=STYLESHEET><LINK href="node23.htm"
+rel=previous><LINK href="node22.htm" rel=up><LINK href="node25.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node25.htm"
+name=tex2html448><IMG align=bottom alt=next border=0 height=24 
+src="node24_files/next_motif.gif" width=37></A> <A 
+href="node22.htm"
+name=tex2html444><IMG align=bottom alt=up border=0 height=24 
+src="node24_files/up_motif.gif" width=26></A> <A 
+href="node23.htm"
+name=tex2html440><IMG align=bottom alt=previous border=0 height=24 
+src="node24_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html446><IMG align=bottom alt=contents border=0 height=24 
+src="node24_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html447><IMG align=bottom alt=index border=0 height=24 
+src="node24_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node25.htm"
+name=tex2html449>History</A> <B>Up:</B> <A 
+href="node22.htm"
+name=tex2html445>Error handling</A> <B>Previous:</B> <A 
+href="node23.htm"
+name=tex2html441>Return values</A> <BR><BR><!--End of Navigation Panel-->
+<H3><A name=SECTION00085200000000000000>Errors produced</A> </H3>Error or 
+warning messages are produced for all functions and methods if an operation for 
+some reason is impossible. Only exception from this rule is a few optimized 
+functions and methods where no error checking is done to speed up the execution 
+time, for instance the <TT>GetPixelFast(...)</TT> which does not validate if the 
+given position is inside the image dimensions. An error message should result in 
+a false return value from the function/method. Warning messages are intended for 
+situations where the function/method can still proceed but the user probably 
+wanted something else to happen. Warning messages may or may not result in a 
+false return value. 
+<P>In some cases it is desireable to turn of warnings and/or errors. This can be 
+done in the beginning of the file <EM>ipl98.h</EM> located in the folder 
+<EM>ipl98/</EM> which looks like this: 
+<P><PRE>/* ipl98.h, all ansi c functions
+   to be used for c programs only
+
+   Version 1.01, Last updated 25/5/99 by edr */
+
+/* Define IPL_BIG_ENDIAN on Sparc machines (f.ex. SGI and SUN) */
+/*#define IPL_BIG_ENDIAN*/
+
+/* Enable or disable messages produced by IPL98 */
+/*#define DISABLE_IPL_ERROR*/
+/*#define DISABLE_IPL_WARNING*/
+/*#define DISABLE_IPL_NORMAL*/
+...
+...
+</PRE>
+<P>To disable errors simply remove the comment tokens <CODE>/*</CODE> and 
+<CODE>*/</CODE> at the line defining DISABLE_IPL_ERROR<A name=564>&nbsp;</A><A 
+name=565>&nbsp;</A>. Do the same thing for warnings at the next line. The 
+DISABLE_IPL_NORMAL<A name=566>&nbsp;</A> definition is not used yet. 
+<P>An example of the error/warning messages produced by IPL98 is shown in this 
+example: 
+<P><PRE>        CImage Img(10,10,24);
+        CImage Img2;
+        Img2.CopySubImage(Img,0,0,10,20); // wrong dimension
+</PRE>This program tries to copy a subimage from the original image with 
+dimension 10 times 10 but the subimage dimension is out of range. The resulting 
+error message looks like this<A 
+href="footnode.html#foot638"
+name=tex2html11><SUP>7</SUP></A>: 
+<P><PRE>IPL_ERROR: k_CopySubImage() Illegal clipping rectangel
+(d:\home\edr\resources\source\ipl98\kernel_c\image\kernel_functions.c
+line 1392)
+IPL_ERROR: CStdImage::CopySubImage: Failed copying subimage
+(d:\home\edr\resources\source\ipl98\cpp_classes\std_image.cpp line 240)
+</PRE>
+<P>Normally two errors are produced when using the C++ methods: One from the 
+kernel function beginning with <CODE>k_</CODE> and one from the method that the 
+programmer used. The kernel error is produced to show the programmer where the 
+error checking was done and the second is printed to show the programmer exactly 
+what call in his code that caused the error. Errors always begings with the 
+prefix <TT>IPL_ERROR</TT> and warnings with <TT>IPL_WARNING</TT>. This is 
+followed by the functions/method name. In case of a method the class name is 
+also included like the example above where <TT>CStdImage::</TT> is proceeding 
+<TT>CopySubImage</TT>. After this the message text is shown and often the 
+parameters given are included in this text to give an idea about the problem. In 
+parentheses at the end of the error message is the exact location of the code 
+producing the error. This is very useful if the programmer want to take a closer 
+look at the IPL98 code. It is also recommended if the programmer finds a bug in 
+IPL98 to send this error information to the person responsible for developing 
+the library<A 
+href="footnode.html#foot576"
+name=tex2html12><SUP>8</SUP></A>. Errors<A name=577>&nbsp;</A> and warnings are 
+as default written to the standard out device but it is sometimes desireable to 
+redirect the messages to somewhere else, for instance when working with a GUI 
+application. This is done in the function <TT>k_ShowMessage(...)</TT><A 
+name=579>&nbsp;</A> near the bottom of the text contained in the file 
+<EM>ipl98/kernel_c/kernel_error.c</EM>: 
+<P><PRE>   ...
+   ...
+   /***********************************************************
+    * To change the destination of error messages made by     *
+    * IPL98 replace the code below with your own              *
+    * The resulting string is accessed by "StrOut.pChars"     *
+    ***********************************************************/
+   printf("%s",StrOut.pChars);
+   ...
+   ...
+</PRE>
+<P>The variable StrOut.pChars contains the error message as a simple character 
+pointer <CODE>char*</CODE>. Remove the printf statement an insert the new code 
+needed to redirect all errors and warnings. This method is not the best solution 
+because changes directly in the IPL98 causes problems when updating to a new 
+version, the programmer must be carefull not to overwrite this code. This 
+procedure may be changed in future versions when a better solution is found. 
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node25.htm"
+name=tex2html448><IMG align=bottom alt=next border=0 height=24 
+src="node24_files/next_motif.gif" width=37></A> <A 
+href="node22.htm"
+name=tex2html444><IMG align=bottom alt=up border=0 height=24 
+src="node24_files/up_motif.gif" width=26></A> <A 
+href="node23.htm"
+name=tex2html440><IMG align=bottom alt=previous border=0 height=24 
+src="node24_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html446><IMG align=bottom alt=contents border=0 height=24 
+src="node24_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html447><IMG align=bottom alt=index border=0 height=24 
+src="node24_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node25.htm"
+name=tex2html449>History</A> <B>Up:</B> <A 
+href="node22.htm"
+name=tex2html445>Error handling</A> <B>Previous:</B> <A 
+href="node23.htm"
+name=tex2html441>Return values</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

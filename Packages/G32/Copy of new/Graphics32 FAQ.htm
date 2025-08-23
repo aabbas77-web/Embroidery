@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://www.geocities.com/den_alex/g32_faq.html -->
+<HTML><HEAD><TITLE>Graphics32 FAQ</TITLE>
+<META content="text/html; charset=windows-1251" http-equiv=Content-Type><LINK 
+href="Graphics32 FAQ.files/styles.css" rel=stylesheet type=text/css>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff><SPAN class=main></SPAN><SPAN class=main></SPAN>
+<TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+  <TBODY>
+  <TR>
+    <TD height=20 width=128><IMG height=20 
+      src="Graphics32 FAQ.files/logo-0.gif" width=128></TD>
+    <TD bgColor=#807870 height=20 noWrap width=20><IMG height=20 
+      src="Graphics32 FAQ.files/logo-3.gif" width=20></TD>
+    <TD bgColor=#807870><IMG height=20 
+      src="Graphics32 FAQ.files/banner-top.gif" width=281></TD>
+    <TD bgColor=#807870 width=12>&nbsp;</TD></TR>
+  <TR>
+    <TD height=20><IMG height=20 src="Graphics32 FAQ.files/logo-1.gif" 
+      width=128></TD>
+    <TD noWrap width=20><IMG height=20 src="Graphics32 FAQ.files/logo-4.gif" 
+      width=20></TD>
+    <TD>&nbsp;</TD>
+    <TD background="Graphics32 FAQ.files/banner-right.gif" rowSpan=2><IMG 
+      height=1 src="Graphics32 FAQ.files/spacer.gif" width=12></TD></TR>
+  <TR>
+    <TD background="Graphics32 FAQ.files/nav-backgnd.gif" height=30 
+      vAlign=top><IMG align=top height=30 src="Graphics32 FAQ.files/logo-2.gif" 
+      width=128> 
+      <P class=nav-0><A class=nav 
+      href="http://www.geocities.com/den_alex/index.html">HOME</A></P>
+      <P class=nav-0>COMPONENTS</P>
+      <P class=nav-1><A class=nav 
+      href="http://www.geocities.com/den_alex/graphics32.html">GRAPHICS 
+      32</A></P>
+      <P class=nav-2><A class=nav-current 
+      href="http://www.geocities.com/den_alex/g32_faq.html">FAQ</A></P>
+      <P class=nav-2><A class=nav 
+      href="http://www.geocities.com/den_alex/apps.html">APPS</A></P>
+      <P class=nav-1><A class=nav 
+      href="http://www.geocities.com/den_alex/lut_control.html">LUT 
+      CONTROL</A></P>
+      <P class=nav-1><A class=nav 
+      href="http://www.geocities.com/den_alex/spaceball.html">SPACEBALL</A></P>
+      <P class=nav-0><A class=nav 
+      href="http://www.geocities.com/den_alex/links.html">LINKS</A></P>
+      <P class=nav-0><A class=nav 
+      href="http://www.geocities.com/den_alex/personal.html">PERSONAL 
+      INFO</A></P>
+      <P class=nav-0><A class=nav 
+      href="http://www.geocities.com/den_alex/contacts.html">CONTACTS</A></P></TD>
+    <TD class=main colSpan=2 vAlign=top>
+      <H1 class=nav-1>Graphics32 FAQ</H1>
+      <P class=body>&nbsp;</P>
+      <P class=body>Since I'm getting a lot of e-mails asking me how to do this 
+      or that, I decided to start this small FAQ. It includes some of my answers 
+      and small demos.</P>
+      <P class=question><B>Q: </B>Graphics32 supports only 32-bit color, what 
+      about other pixel formats?</P>
+      <P class=body><B>A: </B>From the very beginning I decided to restrict my 
+      attention exclusively to 32 bit pixel format. Here are the reasons:</P>
+      <UL>
+        <LI>Almost any function, even in GDI is faster in 32-pixel format 
+        compared to other formats, including 8-bpp; 
+        <LI>4-byte aligned memory access is much faster on modern generation of 
+        CPUs; 
+        <LI>Alpha blending can be implemented much faster in 32 bpp than in 16 
+        bpp and is almost impossible in 8 bpp; 
+        <LI>I do not have to write some monster multi-format functions (or 
+        create separate functions and then mess with linking); 
+        <LI>Using only 32-bit pixels allows for deeper optimization. A perfect 
+        example is DrawLine function, there I was able to get rid of function 
+        calls from the inner loop, and write directly into memory; </LI></UL>
+      <P class=body>However, this does not mean that I don't like other formats, 
+      probably, the library some day will have a limited support for 8-bit 
+      bitmaps (which now may be simulated with ByteMapes), or maybe some other 
+      pixel formats. </P>
+      <P class=question><B>Q: </B>I'm getting some strange floating point errors 
+      what's happening?</P>
+      <P class=body><B>A: </B>If you are using some <A 
+      href="http://www.geocities.com/den_alex/files/Graphics32/ByteMaps_Ex.zip"></A>low-level 
+      blending functions and forgot to put EMMS command after it, this can be a 
+      source for absolutely unnpredictable floating point errors and exceptions. 
+      <B>Be very careful with low-level blending routines.</B><BR></P>
+      <P class=question><B>Q: </B>I have a 2D dataset of scalar values and I 
+      want to display it with my custom palette. Is it possible?</P>
+      <P class=body><B>A: </B>Yes, that's what TByteMap is designed for. If your 
+      data as set of floating point or other values, it is always possible to 
+      transform it to 2D array of bytes. Example: <A 
+      href="http://www.geocities.com/den_alex/files/Graphics32/ByteMaps_Ex.zip">ByteMaps 
+      Example (213K) </A><BR></P>
+      <P class=question><B>Q: </B>How do I paint gradient lines with line 
+      stippling?</P>
+      <P class=body><B>A: </B>Example: <A 
+      href="http://www.geocities.com/den_alex/files/Graphics32/GradLines_Ex.zip">GradLines 
+      Example (182K)</A><BR></P>
+      <P class=question><B>Q: </B>How do I paint dashed/dotted lines with line 
+      stippling?</P>
+      <P class=body><B>A: </B>Here is one of the examples: <A 
+      href="http://www.geocities.com/den_alex/files/Graphics32/LineStippling_Ex.zip">LineStippling 
+      Example (178K)</A><BR></P>
+      <P class=question><B>Q: </B>How do I deinstall the library?</P>
+      <P class=body><B>A: </B>You may deinstall it as any other package: select 
+      <B>Component|Install Packages|Packages|Graphics32|Remove</B>, then remove 
+      Graphics32.* files from your <B>$(DELPHI)\Projects\Bpl</B> directory. 
+      Currently, you do <B>not</B> have to deinstall the old version, before 
+      installing the new one.<BR></P>
+      <P class=question><B>Q: </B>Is it possible to make the alpha blending to 
+      the desktop or other components on the form?</P>
+      <P class=body><B>A: </B>No, this feature is not supported and it is not 
+      planned in future. Though, it is in principle possible to get windowed 
+      controls blended to the backgound in Windows 2000, I want to keep the 
+      library compatible with previous OS versions and I want to keep it as 
+      separate from GDI as possible.<BR></P>
+      <P class=question><B>Q: </B>Any chances to see Graphics32 working with 
+      DirectX?</P>
+      <P class=body><B>A: </B>Well, in principle it should be possible to 
+      transfer data from TBitmap32 to other DIBs, including the ones in DirectX. 
+      Unfortunately, I am not that experienced with DirectX stuff, and I can not 
+      provide any better solution right now.<BR></P>
+      <P class=question><B>Q: </B>Is the library Borland C++ Builder 
+      compatible?</P>
+      <P class=body><B>A: </B>I'm working on it, most likely the library will 
+      compile in BCB, probably with a few modifications.<BR></P>
+      <P class=question><B>Q: </B>I'm trying to paint a red line, but it draws 
+      the green one, or nothing at all. What's wrong?</P>
+      <P class=body><B>A: </B>Do not use standard TColor constants with 
+      Graphics32, like clBlack, clGreen, etc. Use native Graphics32 color 
+      definitions: clBlack32, clGreen32, etc. They have different format. It is 
+      possible to transform the color from Graphics32 native format to/from 
+      Delphi's format. See "Color Construction" topic in documentation. </P>
+      <P class=question><B>Q: </B>How do I rotate the bitmap so that it is not 
+      clipped?</P>
+      <P class=body><B>A: </B>Two options: either increase the destination 
+      bitmap or adjust the transformation so that transformed image is rescaled 
+      to fit into its original boundaries, for example: <A 
+      href="http://www.geocities.com/den_alex/files/Graphics32/Rotate_Ex.zip">Rotate 
+      Example (279K)</A><BR></P>
+      <P class=question><B>Q: </B>How do I load both image and its alpha mask in 
+      run-time?</P>
+      <P class=body><B>A: </B>The problem is that there is no widely available 
+      software (at least known to me) normally supporting saving of images with 
+      alpha channel, (that should be in principle possible with TGA, TIFF, PNG 
+      and some other formats). So either create your own file loading procedure 
+      (you have an access to bitmap's memory, so that should not be of a big 
+      problem), or use the sample shown below to load RGB and Alpha channels 
+      from different bitmaps (they must be of the same size):</P>
+      <P class=body><B>var</B><BR>&nbsp;&nbsp;RGBBitmap: 
+      TBitmap32;<BR>&nbsp;&nbsp;AlphaBitmap: TBitmap32; // source for alpha 
+      channel<BR><B>begin</B><BR>&nbsp;&nbsp;RGBBitmap.LoadFromFile(RGB_Channels);<BR>&nbsp;&nbsp;AlphaBitmap.LoadFromFile(Alpha_Channel); 
+      // grayscale (or maybe colored 
+      mask)<BR>&nbsp;&nbsp;IntensityToAlpha(RGBBitmap, 
+      AlphaBitmap);<BR><B>end</B>; </P>
+      <P class=body>See also <A 
+      href="http://www.geocities.com/den_alex/files/Graphics32/ImgView_Layers_Ex.zip">ImgView 
+      and Layers Example (316K)</A></P>
+      <P class=question><B>Q: </B>How do I draw the bitmap with standard color 
+      key transparency?</P>
+      <P class=body><B>A: </B>Currently Graphics32 does not support color key 
+      transparency, but it is possible to pre-process the source bitmap and set 
+      its alpha buffer according to the "transparent" color:</P>
+      <P class=body><B>function</B> CromaKey(ABitmap: TBitmap32; TrColor: 
+      TColor32);<BR><B>var</B><BR>&nbsp;&nbsp;P: PColor32;<BR>&nbsp;&nbsp;C: 
+      TColor32;<BR>&nbsp;&nbsp;I: 
+      Integer;<BR><B>begin</B><BR>&nbsp;&nbsp;TrColor := TrColor and $00FFFFFF; 
+      // erase alpha, (just in case it has some)<BR>&nbsp;&nbsp;with ABitmap 
+      do<BR>&nbsp;&nbsp;<B>begin</B><BR>&nbsp;&nbsp;&nbsp;&nbsp;P := PixelPtr[0, 
+      0];<BR>&nbsp;&nbsp;&nbsp;&nbsp;<B>for</B> I := 0 <B>to</B> Width * Height 
+      - 1 
+      <B>do</B><BR>&nbsp;&nbsp;&nbsp;&nbsp;<B>begin</B><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C 
+      := P^ <B>and</B> $00FFFFFF; // get RGB without 
+      alpha<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>if</B> C = TrColor 
+      <B>then</B> // is this pixel 
+      "transparent"?<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P^ := C; 
+      // write RGB with "transparent" alpha back into the 
+      SrcBitmap<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inc(P); // proceed to the 
+      next 
+      pixel<BR>&nbsp;&nbsp;&nbsp;&nbsp;<B>end</B>;<BR>&nbsp;&nbsp;<B>end</B>;<BR><B>end</B>;</P>
+      <P class=body>Then set its DrawMode to dmBlend and call Draw or DrawTo to 
+      blend it to a backgrownd bitmap. It is possible to use this function 
+      several times for different colors<BR></P>
+      <P class=question><B>Q: </B>There are some red, green, blue (and alpha) 
+      circles on the screen, what's that?</P>
+      <P class=body><B>A: </B>You spend too much time with computer, get some 
+      rest.</P></TD></TR>
+  <TR>
+    <TD bgColor=#807870 colSpan=4 height=3><IMG height=1 
+      src="Graphics32 FAQ.files/spacer.gif" width=1></TD></TR></TBODY></TABLE>
+<P align=center><!-- Begin GeoGuide --><!-- <SERVICE NAME="geoguide"> -->
+<TABLE bgColor=#666666 border=0 cellPadding=1 cellSpacing=0 width=468>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE bgColor=#eeeeee border=0 cellPadding=2 cellSpacing=0 
+        width="100%"><TBODY>
+        <TR>
+          <TD bgColor=#ffffff><A 
+            href="http://geocities.yahoo.com/addons/interact/mbe.html"><IMG 
+            alt="Yahoo! GeoCities Member Banner Exchange" border=0 height=20 
+            src="Graphics32 FAQ.files/mbeFFFFFF.gif" width=335></A></TD>
+          <TD align=right bgColor=#ffffff><FONT face=Arial size=-1><A 
+            href="http://geocities.yahoo.com/addons/interact/mbe.html">Info</A></FONT>&nbsp;</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<TABLE border=0 cellPadding=0 cellSpacing=0 width=468>
+  <TBODY>
+  <TR>
+    <TD height=1 vAlign=top></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <SCRIPT language=javascript src="Graphics32 FAQ.files/toto"></SCRIPT>
+    </TD></TR></TBODY></TABLE><!-- </SERVICE> --><!-- End GeoGuide --></P><!-- text below generated by server. PLEASE REMOVE --></TABLE></SCRIPT></STYLE></NOSCRIPT>
+<SCRIPT language=JavaScript src="Graphics32 FAQ.files/ygIELib8.js"></SCRIPT>
+
+<SCRIPT language=JavaScript></SCRIPT>
+
+<SCRIPT language=JavaScript>yviR='us';yfiEA(1);</SCRIPT>
+</SCRIPT>
+<SCRIPT language=JavaScript src="Graphics32 FAQ.files/geov2.js"></SCRIPT>
+
+<SCRIPT language=javascript>geovisit();</SCRIPT>
+<NOSCRIPT><IMG border=0 height=1 src="Graphics32 FAQ.files/visit.gif" 
+width=1></NOSCRIPT> <IMG alt=1 height=1 src="Graphics32 FAQ.files/serv.gif" 
+width=1> </BODY></HTML>

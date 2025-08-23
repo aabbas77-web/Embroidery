@@ -1,0 +1,60 @@
+****************************************************
+
+     Varian Led studio Component Toolkit
+
+     Varian Software NL (c) 1996-1999
+     All Rights Reserved
+
+****************************************************
+
+
+Varian Led Studio 3.16 is available now!
+
+After the latest upgrade, we are now ready to release our newest 
+edition, the 3.16 version. Better performance and a lot of 
+additional components and features. Varian Led Studio is currently
+also available for Delphi 5!  
+ 
+Varian Led Studio 3.x Professional Edition for only $89.00 USD.
+
+Varian Led Studio comes packed with all of the great components
+and features. In addition, the disk is full of example programs 
+and comes with complete documentation in the form of a Windows Help 
+file. The professional edition comes with the complete source code 
+of the Varian Led Studio component toolkit.
+ 
+NOTE
+Registered users of previous versions receive the Professional 
+Edition for only $59 USD.
+
+A license will include the following:
+
+*  The latest version of the library, both compiled
+   and source code via Internet E-mail or as disk version.
+
+*  The right to use the components, royalty free, in any
+   application.
+
+*  Free bug fixes and upgrades until the next major release.
+
+*  Free technical support on usage and implementation
+
+
+For your convenience we have contracted another company, Shareit! Inc,
+to process any orders you may wish to place with your Visa,
+Eurocard/Mastercard, American Express or Diners Club. Please be sure 
+to mention that you would like to order Product #103712 when placing
+the order. As soon as ShareIt! proceeds the order and sends us 
+information about your order, we will contact you (by e-mail) to
+provide you with the library code.
+ 
+
+Kind regards,
+
+Varian Software NL
+Zwanenveld 7048
+6538 RD Nijmegen
+The Netherlands
+Email: Varian@Wxs.nl
+http://wxs.nl/~Varian
+

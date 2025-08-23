@@ -1,0 +1,23 @@
+LUTControl Change Log
+=====================
+
+
+v1.0 (9-Mar-2000)
+  First version. 
+
+v1.01 (16-Mar-2000)
+  No serious changes. Only the DFM file of the property editor 
+  was modified to be consistent with a new version of Graphics32.
+
+v1.1 (5-Apr-2000)
+  The Mode property is added. See docs and examples for details.
+
+v1.2 (29-Apr-2000)
+  No serious changes again, was modified to keep up with version
+  0.97 of of Graphics32
+
+v1.3 (9-Sep-2000)
+  Updated the code to make it compatible with v0.99 of Graphics32
+  
+  
+See www.geocities.com/den_alex for updates.

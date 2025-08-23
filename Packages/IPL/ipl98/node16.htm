@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)node16.html -->
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Compiling the library</TITLE>
+<META content="Compiling the library" name=description>
+<META content=include_all name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="node16_files/include_all.css" rel=STYLESHEET><LINK href="node15.htm"
+rel=previous><LINK href="node12.htm" rel=up><LINK href="node17.htm" rel=next>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="node17.htm"
+name=tex2html343><IMG align=bottom alt=next border=0 height=24 
+src="node16_files/next_motif.gif" width=37></A> <A 
+href="node12.htm"
+name=tex2html339><IMG align=bottom alt=up border=0 height=24 
+src="node16_files/up_motif.gif" width=26></A> <A 
+href="node15.htm"
+name=tex2html335><IMG align=bottom alt=previous border=0 height=24 
+src="node16_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html341><IMG align=bottom alt=contents border=0 height=24 
+src="node16_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html342><IMG align=bottom alt=index border=0 height=24 
+src="node16_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node17.htm"
+name=tex2html344>General information</A> <B>Up:</B> <A 
+href="node12.htm"
+name=tex2html340>Installing and compiling IPL98</A> <B>Previous:</B> <A 
+href="node15.htm"
+name=tex2html336>Using the C++ part</A> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00074000000000000000>&nbsp;</A><A name=433>&nbsp;</A><A 
+name=434>&nbsp;</A> <BR>Compiling the library </H2>The library has been compiled 
+with several compilers and environments. Here a list of links and information 
+for the different compilers: 
+<P>
+<UL>
+  <LI><B>MS Visual C++ 6.0</B><A name=437>&nbsp;</A> Information about creating 
+  a console-project, window-project and GUI-related methods can be found at: 
+  ``http://www.mip.sdu.dk/&nbsp;edr/visualc/''<A 
+  href="footnode.html#foot438"
+  name=tex2html8><SUP>4</SUP></A>. It should work from Visual C++ 4.2 and 
+  upwards. 
+  <LI><B>Borland C++ Builder 4.0</B><A name=440>&nbsp;</A> A complete project 
+  can be downloaded from the official IPL98 homepage by clicking at the ``IPL98 
+  Exchange'' button and following the link ``Borland C++ Builder GUI and 
+  IPL98''. Note that the library cannot be used without the namespace ipl with 
+  the Borland environment, this means you have to put the prefix ``ipl::'' in 
+  front of all IPL98 types and definitions. 
+  <LI><B>GNU G++</B><A name=442>&nbsp;</A><A name=443>&nbsp;</A> The g++ 
+  compiler has been tested on a UNIX<A name=444>&nbsp;</A> machine with IPL98 v. 
+  1.01 (it should work on a Linux<A name=445>&nbsp;</A> OS too). However, newer 
+  versions of IPL98 have caused problems, at the moment g++ v. 2.95.2 cannot 
+  compile the library since the std library header file <EM>os</EM> seems to be 
+  non-existent. The newer but still at the time of writing this unstable version 
+  2.97.x should work but has not been tested. It has also been tried with Sun's 
+  CC compiler, but it seems to have problems compilating the CPoint2D and 
+  CPoint3D template based classes, it can be fixed by rearranging some code in 
+  the header files, but then it does not compile under MS Visual C++ at the 
+  moment. As soon as new versions of compilers are available we will look at 
+  this problem. Here is an example of compiling a simple example<A 
+  href="footnode.html#foot447"
+  name=tex2html9><SUP>5</SUP></A> piece of code with g++ and IPL98 v. 1.01: <PRE>g++ ipl98/ipl98_cplusplus.cpp ipl.cpp -lm -Wno-non-template-friend
+</PRE>This example compiles the file ipl.cpp containing some code using IPL98. 
+  The skeleton of the code in the file looks like this: <PRE>#include "ipl98/ipl98_cplusplus.h"
+#include &lt;stdio.h&gt;
+using namespace ipl;
+
+void main()
+{
+   CImage Img,ImgDest; // Images
+   ...
+}
+</PRE>The option ``-Wno-non-template-friend'' given to the g++ compiler is to 
+  avoid a problem with the CPoint template classes. This may be solved in a 
+  future version. Remember that because most UNIX machines are BIG ENDIAN types 
+  you have to comment in the corresponding line in the ipl98.h file as explained 
+  in chapter&nbsp;<A 
+  href="node13.html#subsec:hardware"><IMG
+  align=bottom alt=[*] border=1 src="node16_files/cross_ref_motif.gif"></A>. 
+  </LI></UL>
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="node17.htm"
+name=tex2html343><IMG align=bottom alt=next border=0 height=24 
+src="node16_files/next_motif.gif" width=37></A> <A 
+href="node12.htm"
+name=tex2html339><IMG align=bottom alt=up border=0 height=24 
+src="node16_files/up_motif.gif" width=26></A> <A 
+href="node15.htm"
+name=tex2html335><IMG align=bottom alt=previous border=0 height=24 
+src="node16_files/previous_motif.gif" width=63></A> <A 
+href="node1.htm"
+name=tex2html341><IMG align=bottom alt=contents border=0 height=24 
+src="node16_files/contents_motif.gif" width=65></A> <A 
+href="node61.htm"
+name=tex2html342><IMG align=bottom alt=index border=0 height=24 
+src="node16_files/index_motif.gif" width=43></A> <BR><B>Next:</B> <A 
+href="node17.htm"
+name=tex2html344>General information</A> <B>Up:</B> <A 
+href="node12.htm"
+name=tex2html340>Installing and compiling IPL98</A> <B>Previous:</B> <A 
+href="node15.htm"
+name=tex2html336>Using the C++ part</A> <!--End of Navigation Panel-->
+<ADDRESS><I>Rene Dencker Eriksen</I> <BR><I>2001-01-31</I> 
+</ADDRESS></BODY></HTML>

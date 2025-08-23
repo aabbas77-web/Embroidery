@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.05.03"/>
+    <PROJECT value="Circles.dll"/>
+    <OBJFILES value="Main.obj Interface.obj ..\..\Packages\VECAD52\vecad52\VECAD\api_VecApi.obj 
+      About.obj ..\..\Libs\SPL\spl_Point.obj ..\..\Libs\SPL\spl_Contour.obj 
+      ..\..\Libs\SPL\spl_Embroidery.obj 
+      ..\..\Libs\SPL\Pyramids\pyramidfilters.obj 
+      ..\..\Libs\SPL\Pyramids\pyramidtools.obj"/>
+    <RESFILES value=""/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) Interface.dfm About.dfm"/>
+    <LIBFILES value="memmgr.lib"/>
+    <LIBRARIES value="bcbsmp50.lib VCLX50.lib"/>
+    <SPARELIBS value="VCL50.lib VCLX50.lib bcbsmp50.lib"/>
+    <PACKAGES value="VCL50.bpi"/>
+    <PATHCPP value=".;..\..\Packages\VECAD52\vecad52\VECAD;..\..\Libs\SPL;..\..\Libs\SPL\Pyramids"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="tlink32"/>
+    <USERDEFINES value=""/>
+    <SYSDEFINES value="NO_STRICT;_NO_VCL;USEPACKAGES"/>
+    <MAINSOURCE value="Circles.bpf"/>
+    <INCLUDEPATH value="..\..\Libs\SPL\Pyramids;..\..\Libs\SPL;&quot;C:\Program Files\Borland\CBuilder5\Projects\&quot;;..\..\Packages\VECAD52\vecad52\VECAD;E:\;E:\GPIB\;&quot;D:\Program Files\Borland\CBuilder5\Projects\&quot;;..\Driver;..\..\3000;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\..\Libs\SPL\Pyramids;..\..\Libs\SPL;&quot;C:\Program Files\Borland\CBuilder5\Projects\&quot;;..\..\Packages\VECAD52\vecad52\VECAD;E:\;E:\GPIB\;&quot;D:\Program Files\Borland\CBuilder5\Projects\&quot;;..\Driver;..\..\3000;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\..\Libs\SPL\Pyramids -I..\..\Libs\SPL 
+      -I&quot;C:\Program Files\Borland\CBuilder5\Projects\.&quot; 
+      -I..\..\Packages\VECAD52\vecad52\VECAD -IE:\. -IE:\GPIB\. 
+      -I&quot;D:\Program Files\Borland\CBuilder5\Projects\.&quot; -I..\Driver -I..\..\3000 
+      -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -boa"/>
+    <CFLAG1 value="-WD -O2 -H=$(BCB)\lib\vcl50.csm -Hc -Vx -Ve -X- -a8 -b- -k- -vi -tWD -tWM- 
+      -c"/>
+    <PFLAGS value="-$Y- -$L- -$D- -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpd -x -Gn"/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0d32.obj $(PACKAGES) $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cw32.lib"/>
+  </LINKER>
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=10241
+CodePage=1256
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=11
+Item0=..\..\Libs\SPL\Pyramids;..\..\Libs\SPL;C:\Program Files\Borland\CBuilder5\Projects\;..\..\Packages\VECAD52\vecad52\VECAD;E:\;E:\GPIB\;D:\Program Files\Borland\CBuilder5\Projects\;..\Driver;..\..\3000;$(BCB)\include;$(BCB)\include\vcl
+Item1=C:\Program Files\Borland\CBuilder5\Projects;..\..\Packages\VECAD52\vecad52\VECAD;E:\;E:\GPIB\;D:\Program Files\Borland\CBuilder5\Projects\;..\Driver;..\..\3000;$(BCB)\include;$(BCB)\include\vcl
+Item2=..\..\Packages\VECAD52\vecad52\VECAD;..\..\..;..\..\..\..\GPIB;D:\Program Files\Borland\CBuilder5\Projects\;..\Driver;..\..\3000;$(BCB)\include;$(BCB)\include\vcl
+Item3=..\..\..;D:\Program Files\Borland\CBuilder5\Projects\;..\Driver;..;$(BCB)\include;$(BCB)\include\vcl
+Item4=..\..\..\..\GPIB;D:\Program Files\Borland\CBuilder5\Projects\;..\Driver;..\..\3000;$(BCB)\include;$(BCB)\include\vcl
+Item5=..\..\..;D:\Program Files\Borland\CBuilder5\Projects;..\Driver;..\;..\..\..\..\GPIB;$(BCB)\include;$(BCB)\include\vcl
+Item6=$(BCB)\include;$(BCB)\include\vcl;..\..
+Item7=$(BCB)\include;$(BCB)\include\vcl;..\..\..\GPIB
+Item8=$(BCB)\include;$(BCB)\include\vcl;E:\Mazen\GPIB
+Item9=$(BCB)\include;$(BCB)\include\vcl
+Item10=$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=8
+Item0=..\..\Libs\SPL\Pyramids;..\..\Libs\SPL;C:\Program Files\Borland\CBuilder5\Projects\;..\..\Packages\VECAD52\vecad52\VECAD;E:\;E:\GPIB\;D:\Program Files\Borland\CBuilder5\Projects\;..\Driver;..\..\3000;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item1=C:\Program Files\Borland\CBuilder5\Projects;..\..\Packages\VECAD52\vecad52\VECAD;E:\;E:\GPIB\;D:\Program Files\Borland\CBuilder5\Projects\;..\Driver;..\..\3000;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item2=..\..\Packages\VECAD52\vecad52\VECAD;..\..\..;..\..\..\..\GPIB;D:\Program Files\Borland\CBuilder5\Projects\;..\Driver;..\..\3000;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item3=..\..\..;D:\Program Files\Borland\CBuilder5\Projects\;..\Driver;..;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item4=..\..\..\..\GPIB;D:\Program Files\Borland\CBuilder5\Projects\;..\Driver;..\..\3000;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item5=..\..\..;D:\Program Files\Borland\CBuilder5\Projects;..\Driver;..\;..\..\..\..\GPIB;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item6=$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item7=$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>
